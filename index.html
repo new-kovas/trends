@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOVAS 트렌드 인사이트</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+
+<style>
+/* ============================================================
+   [1] 디자인 토큰  —  ★ 브랜드 톤/레이아웃 변경은 여기부터 ★
+   ============================================================ */
+:root{
+  --brand-primary:#F16522; --brand-deep:#E4571A; --brand-mid:#F7941D;
+  --brand-amber:#FBB040;    --brand-yellow:#FDC945;
+  --paper:#FFF9F3; --surface:#FFFFFF; --ink:#2A2320; --ink-sub:#7A6E64; --line:#F0E3D6;
+  --ok:#2E9E5B; --info:#2F6FE4;
+  --radius:18px; --radius-sm:10px;
+  --shadow:0 10px 30px rgba(225,100,34,.10); --shadow-sm:0 4px 14px rgba(225,100,34,.07);
+  --font-body:"Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+body{ font-family:var(--font-body); background:var(--paper); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+img{ max-width:100%; display:block; }
+.wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+@media (max-width:640px){ .wrap{ padding:0 16px; } }
+
+/* ============================================================
+   [2] 상단 네비게이션
+   ============================================================ */
+.topbar{ background:linear-gradient(180deg,var(--brand-primary),var(--brand-deep)); color:#fff; position:sticky; top:0; z-index:30; box-shadow:0 4px 20px rgba(225,100,34,.18); }
+.topbar-inner{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+.logo{ display:flex; align-items:baseline; gap:10px; }
+.logo .k{ font-weight:800; font-size:20px; letter-spacing:.5px; }
+.logo .k b{ color:var(--brand-yellow); }
+.logo .sub{ font-size:11px; opacity:.85; }
+@media (max-width:720px){ .logo .sub{ display:none; } }
+.nav{ display:flex; gap:4px; }
+.nav button{ color:#fff; font-size:14px; font-weight:600; padding:8px 14px; border-radius:20px; opacity:.85; transition:.15s; white-space:nowrap; }
+.nav button:hover{ opacity:1; background:rgba(255,255,255,.14); }
+.nav button.active{ opacity:1; background:rgba(255,255,255,.22); }
+@media (max-width:720px){
+  .topbar-inner{ height:auto; flex-direction:column; align-items:stretch; gap:6px; padding:10px 0; }
+  .nav{ overflow-x:auto; padding-bottom:2px; }
+  .nav button{ padding:7px 12px; font-size:13px; }
+}
+
+/* ============================================================
+   [3] 공통 섹션 헤더
+   ============================================================ */
+.page{ padding:34px 0 70px; display:none; }
+.page.active{ display:block; }
+.page-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px; }
+.page-title{ font-size:28px; font-weight:800; }
+.page-title span{ color:var(--brand-primary); }
+.page-desc{ color:var(--ink-sub); font-size:14px; margin-bottom:24px; }
+.updated{ font-size:12px; color:var(--ink-sub); background:#FFF1E6; padding:5px 12px; border-radius:20px; font-weight:600; }
+
+/* ============================================================
+   [4] 홈 대시보드
+   ============================================================ */
+.hero{ background:linear-gradient(135deg,var(--brand-primary),var(--brand-mid)); color:#fff; border-radius:var(--radius); padding:34px 32px; margin-bottom:26px; position:relative; overflow:hidden; }
+.hero::after{ content:""; position:absolute; top:-50px; right:-30px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%); }
+.hero h1{ font-size:clamp(28px,5vw,44px); font-weight:800; line-height:1.1; margin-bottom:8px; }
+.hero p{ opacity:.92; font-size:15px; }
+.dash-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+.dash-card{ background:var(--surface); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-sm); cursor:pointer; transition:.15s; border-top:4px solid var(--brand-primary); }
+.dash-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+.dash-card .dc-label{ font-size:12px; font-weight:700; color:var(--brand-primary); text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; }
+.dash-card .dc-main{ font-size:16px; font-weight:700; margin-bottom:6px; line-height:1.4; }
+.dash-card .dc-sub{ font-size:13px; color:var(--ink-sub); }
+.dash-card .dc-when{ font-size:11px; color:var(--ink-sub); margin-top:12px; }
+
+/* ============================================================
+   [5] 캘린더
+   ============================================================ */
+.cal-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+.cal-nav{ display:flex; align-items:center; gap:8px; }
+.cal-nav button{ width:38px; height:38px; border-radius:50%; background:var(--surface); box-shadow:var(--shadow-sm); font-size:18px; color:var(--brand-primary); font-weight:700; }
+.cal-month{ min-width:140px; text-align:center; font-weight:700; }
+.cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:8px; }
+.cal-dow{ text-align:center; font-size:12px; font-weight:700; color:var(--ink-sub); padding-bottom:6px; }
+.cal-dow.sun{ color:var(--brand-deep); }
+.cal-cell{ aspect-ratio:1/1; background:var(--surface); border-radius:var(--radius-sm); padding:10px; display:flex; flex-direction:column; position:relative; box-shadow:var(--shadow-sm); }
+.cal-cell.empty{ background:transparent; box-shadow:none; }
+.cal-cell .num{ font-size:14px; font-weight:600; color:var(--ink-sub); }
+.cal-cell.has-report{ cursor:pointer; transition:.12s; }
+.cal-cell.has-report::before{ content:""; position:absolute; top:-1px; left:12px; width:34px; height:7px; border-radius:4px 4px 0 0; background:var(--brand-amber); }
+.cal-cell.has-report:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+.cal-cell.has-report .num{ color:var(--ink); }
+.cal-cell .badge{ margin-top:auto; font-size:11px; font-weight:700; color:#fff; background:var(--brand-primary); padding:3px 8px; border-radius:20px; align-self:flex-start; }
+@media (max-width:640px){ .cal-cell{ padding:6px; } .cal-cell .badge{ font-size:9px; padding:2px 5px; } }
+
+/* ============================================================
+   [6] 카드 그리드 (신제품 / 원료 목록)
+   ============================================================ */
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
+.item-card{ background:var(--surface); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); cursor:pointer; transition:.15s; }
+.item-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+.item-card .thumb{ height:150px; background:#F5E9DC; display:flex; align-items:center; justify-content:center; color:var(--ink-sub); font-size:15px; font-weight:700; }
+.item-card .body{ padding:16px 18px; }
+.item-card .brand{ font-size:12px; color:var(--brand-primary); font-weight:700; }
+.item-card .name{ font-size:16px; font-weight:800; margin:3px 0 6px; line-height:1.35; }
+.item-card .meta{ font-size:13px; color:var(--ink-sub); }
+.item-card .price{ font-weight:800; color:var(--ink); margin-top:8px; }
+
+.search-bar{ width:100%; padding:12px 16px; border:1px solid var(--line); border-radius:var(--radius-sm); font-size:14px; margin-bottom:18px; background:var(--surface); }
+.search-bar:focus{ outline:2px solid var(--brand-amber); }
+
+/* ============================================================
+   [7] 경쟁사 동향 피드
+   ============================================================ */
+.feed-item{ display:flex; gap:14px; background:var(--surface); border-radius:var(--radius-sm); padding:16px 18px; margin-bottom:12px; box-shadow:var(--shadow-sm); }
+.feed-tag{ flex-shrink:0; font-size:11px; font-weight:800; padding:4px 10px; border-radius:6px; height:fit-content; }
+.feed-tag.disclosure{ background:#E8F1FF; color:var(--info); }
+.feed-tag.news{ background:#FFF1E6; color:var(--brand-deep); }
+.feed-body{ flex:1; }
+.feed-company{ font-size:13px; font-weight:800; color:var(--ink); }
+.feed-title{ font-size:15px; font-weight:600; margin:2px 0 4px; }
+.feed-date{ font-size:12px; color:var(--ink-sub); }
+.company-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+.company-chips .chip{ background:var(--surface); border:1px solid var(--line); color:var(--ink); font-size:13px; font-weight:600; padding:6px 14px; border-radius:20px; box-shadow:var(--shadow-sm); }
+.company-chips .chip small{ color:var(--ink-sub); font-weight:400; }
+.chips-label{ font-size:12px; font-weight:700; color:var(--brand-primary); margin-bottom:10px; }
+
+/* ============================================================
+   [8] 수출 지표
+   ============================================================ */
+.stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; margin-bottom:26px; }
+.stat-box{ background:var(--surface); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-sm); text-align:center; }
+.stat-box .val{ font-size:30px; font-weight:800; color:var(--brand-primary); }
+.stat-box .unit{ font-size:14px; color:var(--ink-sub); font-weight:600; }
+.stat-box .lbl{ font-size:13px; color:var(--ink-sub); margin-top:6px; }
+.bar-chart{ background:var(--surface); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow-sm); }
+.bar-chart h4{ font-size:15px; margin-bottom:18px; }
+.bar-row{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.bar-row .yr{ width:50px; font-size:13px; font-weight:700; color:var(--ink-sub); }
+.bar-track{ flex:1; background:#F5E9DC; border-radius:8px; height:26px; overflow:hidden; }
+.bar-fill{ height:100%; background:linear-gradient(90deg,var(--brand-mid),var(--brand-primary)); border-radius:8px; display:flex; align-items:center; justify-content:flex-end; padding-right:10px; color:#fff; font-size:12px; font-weight:700; }
+
+/* ============================================================
+   [9] 상세 패널 (캘린더/신제품/원료 공용)
+   ============================================================ */
+.overlay{ position:fixed; inset:0; background:rgba(42,35,32,.45); opacity:0; pointer-events:none; transition:.25s; z-index:40; }
+.overlay.open{ opacity:1; pointer-events:auto; }
+.panel{ position:fixed; top:0; right:0; height:100%; width:min(720px,100%); background:var(--paper); box-shadow:-20px 0 50px rgba(0,0,0,.15); transform:translateX(100%); transition:transform .3s cubic-bezier(.22,.61,.36,1); z-index:50; display:flex; flex-direction:column; }
+.panel.open{ transform:translateX(0); }
+.panel-head{ background:linear-gradient(180deg,var(--brand-primary),var(--brand-deep)); color:#fff; padding:20px 26px; flex-shrink:0; display:flex; align-items:flex-start; justify-content:space-between; }
+.panel-head .p-date{ font-size:13px; opacity:.9; }
+.panel-head .p-title{ font-size:22px; font-weight:800; }
+.panel-close{ width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.18); color:#fff; font-size:20px; flex-shrink:0; }
+.panel-body{ overflow-y:auto; padding:24px 26px 60px; }
+
+.issue{ background:var(--surface); border-radius:var(--radius); padding:18px 20px; margin-bottom:14px; box-shadow:var(--shadow-sm); }
+.issue-no{ display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:7px; background:var(--brand-primary); color:#fff; font-weight:800; font-size:12px; margin-right:8px; }
+.issue-title{ font-size:16px; font-weight:800; display:flex; align-items:center; margin-bottom:8px; }
+.issue-body{ font-size:14px; margin-bottom:12px; }
+.issue-imp{ background:#FFF4EA; border-left:3px solid var(--brand-amber); border-radius:0 8px 8px 0; padding:10px 14px; margin-bottom:10px; }
+.issue-imp .imp-label{ font-size:12px; font-weight:800; color:var(--brand-deep); margin-bottom:5px; }
+.issue-imp ul{ list-style:none; }
+.issue-imp li{ font-size:13px; padding-left:12px; position:relative; margin-bottom:3px; }
+.issue-imp li::before{ content:"·"; position:absolute; left:2px; color:var(--brand-primary); font-weight:800; }
+.issue-src{ font-size:12px; color:var(--brand-primary); font-weight:600; }
+.oneliner{ background:linear-gradient(135deg,var(--brand-mid),var(--brand-amber)); color:#fff; border-radius:var(--radius); padding:18px 20px; margin:16px 0; font-weight:700; font-size:15px; }
+.oneliner .ol-label{ font-size:12px; opacity:.9; font-weight:600; margin-bottom:5px; }
+
+.detail-hero{ height:200px; background:#F5E9DC; border-radius:var(--radius); margin-bottom:18px; display:flex; align-items:center; justify-content:center; color:var(--ink-sub); font-weight:700; }
+.field-table{ width:100%; border-collapse:collapse; margin-bottom:18px; }
+.field-table th{ text-align:left; width:110px; padding:9px 12px; font-size:13px; color:var(--ink-sub); font-weight:700; vertical-align:top; }
+.field-table td{ padding:9px 12px; font-size:14px; border-bottom:1px solid var(--line); }
+.detail-block{ background:var(--surface); border-radius:var(--radius); padding:18px 20px; margin-bottom:14px; box-shadow:var(--shadow-sm); }
+.detail-block h4{ font-size:14px; color:var(--brand-primary); margin-bottom:8px; }
+.detail-block ul{ padding-left:18px; font-size:14px; }
+.detail-block li{ margin-bottom:5px; }
+
+.site-footer{ background:var(--brand-deep); color:#fff; padding:26px 0; text-align:center; font-size:13px; }
+.site-footer .tag{ opacity:.75; margin-top:4px; }
+</style>
+</head>
+<body>
+
+<!-- ===== 상단 네비 ===== -->
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <!-- ★ 로고 교체 지점: 아래 <span class="k">...</span> 를 <img src="logo.png" style="height:28px"> 로 바꾸면 이미지 로고가 됩니다 -->
+    <div class="logo"><span class="k">kovas<b>✳</b></span><span class="sub">트렌드 인사이트</span></div>
+    <nav class="nav" id="nav">
+      <button data-page="home" class="active">홈</button>
+      <button data-page="calendar">캘린더</button>
+      <button data-page="products">신제품</button>
+      <button data-page="ingredients">원료</button>
+      <button data-page="competitors">경쟁사 동향</button>
+      <button data-page="exports">수출지표</button>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ========== 홈 ========== -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <h1>오늘의 뷰티 트렌드,<br>한 곳에서</h1>
+      <p>기초화장품·스킨케어 트렌드부터 경쟁사 동향·수출지표까지 매일 자동 업데이트됩니다.</p>
+    </div>
+    <div class="dash-grid" id="dashGrid"></div>
+  </section>
+
+  <!-- ========== 캘린더 ========== -->
+  <section class="page" id="page-calendar">
+    <div class="page-head">
+      <div class="page-title"><span>데일리</span> 트렌드 캘린더</div>
+      <div class="updated">매일 업데이트</div>
+    </div>
+    <p class="page-desc">날짜를 누르면 그날 수집·요약된 주요 이슈를 볼 수 있습니다.</p>
+    <div class="cal-head">
+      <div></div>
+      <div class="cal-nav">
+        <button id="prevBtn">‹</button>
+        <div class="cal-month" id="calMonth"></div>
+        <button id="nextBtn">›</button>
+      </div>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+  </section>
+
+  <!-- ========== 신제품 ========== -->
+  <section class="page" id="page-products">
+    <div class="page-head">
+      <div class="page-title"><span>신제품</span> 살펴보기</div>
+      <div class="updated" id="prodUpdated"></div>
+    </div>
+    <p class="page-desc">매주 주목할 신제품을 등록합니다. (구글 시트로 입력 → 자동 반영)</p>
+    <div class="card-grid" id="prodGrid"></div>
+  </section>
+
+  <!-- ========== 원료 ========== -->
+  <section class="page" id="page-ingredients">
+    <div class="page-head">
+      <div class="page-title"><span>원료</span> 라이브러리</div>
+      <div class="updated" id="ingUpdated"></div>
+    </div>
+    <p class="page-desc">매주 하나씩 쌓이는 원료 자료실. 이름·효능으로 검색할 수 있습니다.</p>
+    <input class="search-bar" id="ingSearch" placeholder="🔍 원료명, 효능으로 검색 (예: 항산화, 카페인)">
+    <div class="card-grid" id="ingGrid"></div>
+  </section>
+
+  <!-- ========== 경쟁사 동향 ========== -->
+  <section class="page" id="page-competitors">
+    <div class="page-head">
+      <div class="page-title"><span>경쟁사</span> 동향</div>
+      <div class="updated">주 1회 업데이트</div>
+    </div>
+    <p class="page-desc">주요 ODM사의 공시·뉴스를 모아 봅니다. (공개된 사실만 게시)</p>
+    <div class="chips-label">추적 중인 업체</div>
+    <div class="company-chips" id="companyChips"></div>
+    <div id="compFeed"></div>
+  </section>
+
+  <!-- ========== 수출지표 ========== -->
+  <section class="page" id="page-exports">
+    <div class="page-head">
+      <div class="page-title"><span>화장품</span> 수출지표</div>
+      <div class="updated" id="expUpdated"></div>
+    </div>
+    <p class="page-desc">관세청 무역통계(HS 3304 화장품) 기준. 월 1회 업데이트됩니다.</p>
+    <div class="stat-row" id="statRow"></div>
+    <div class="bar-chart" id="barChart"></div>
+  </section>
+
+</div>
+
+<!-- ===== 상세 패널 ===== -->
+<div class="overlay" id="overlay"></div>
+<aside class="panel" id="panel">
+  <div class="panel-head">
+    <div><div class="p-date" id="pDate"></div><div class="p-title" id="pTitle"></div></div>
+    <button class="panel-close" id="closeBtn">×</button>
+  </div>
+  <div class="panel-body" id="panelBody"></div>
+</aside>
+
+<footer class="site-footer">
+  <div class="wrap">KOVAS 기술영업본부 제품개발<div class="tag">Good people · Good thinking · Good product</div></div>
+</footer>
+
+
+<script>
+/* ============================================================
+   [10] 데이터  —  ★ 자동화/구글시트 연결 지점 ★
+   실제 배포 시엔 아래 값들을 fetch로 교체합니다.
+     - 뉴스(캘린더): 자동화가 만든 data/YYYY-MM-DD.json
+     - 신제품/원료 : 구글 시트를 읽어 생성한 data/products.json, data/ingredients.json
+     - 경쟁사      : DART API + 뉴스로 생성한 data/competitors.json
+     - 수출지표    : 관세청 API로 생성한 data/exports.json
+   화면 로직은 그대로 두고, 데이터 '형식'만 아래와 맞추면 됩니다.
+   ============================================================ */
+
+// --- (A) 캘린더용 일별 뉴스 (자동화 산출물) ---
+const NEWS_DATA = {
+  "2026-07-13": {
+    weekLabel:"7월 2주차",
+    issues:[
+      {no:1,title:"K-뷰티 수출 호조에 ODM 기업 가치 상승세 지속",body:"상반기 화장품 수출이 70억 달러를 기록하며 역대 최대 실적을 이어간 가운데, 주요 ODM 기업의 2분기 실적 기대감이 확대되고 있습니다.",implications:["글로벌 브랜드의 생산 수요 증가로 ODM 경쟁력이 지속 부각됩니다.","브랜드사에게 생산 파트너의 공급 안정성과 개발 역량이 더 중요해지고 있습니다."],source:"https://www.mk.co.kr/news/stock/12096727"},
+      {no:2,title:"미국 오프라인 시장 공략 본격화",body:"스킨1004가 뉴욕 브로드웨이에 첫 글로벌 플래그십 스토어를 오픈하며, K-뷰티의 미국 진출이 온라인에서 오프라인 경험 중심으로 확장되고 있습니다.",implications:["체험형 공간과 히어로 제품 중심의 브랜딩이 중요해지고 있습니다."],source:"https://www.beautynury.com/news/view/111762/cat/10"},
+      {no:3,title:"에스테틱 기술의 홈케어 전환 가속",body:"멀츠 에스테틱스가 병원 중심 에스테틱 기술을 홈케어로 확장하며, 프리미엄 홈케어 제품 확대가 이어지고 있습니다.",implications:["기능성 패치·마스크 등 고기능 스킨케어 경쟁이 치열해질 가능성이 있습니다."],source:"https://www.k-health.com/news/articleView.html?idxno=100027"}
+    ],
+    oneLiner:"K-뷰티는 수출·ODM 성장세를 기반으로 글로벌 오프라인 확대와 프리미엄 홈케어를 동시에 강화하고 있습니다.",
+    hashtags:["ODM","미국시장","홈케어"]
+  },
+  "2026-07-11": { weekLabel:"7월 2주차", issues:[{no:1,title:"바디·두피로 확장되는 페이셜 케어 브랜드",body:"잘 만든 페이셜 스킨케어 하나가 바디·두피까지 라인을 확장하는 흐름이 이어지고 있습니다.",implications:["페이셜 성분·기술을 바디로 이식하는 제품 기획이 늘고 있습니다."],source:""}], oneLiner:"페이셜 케어 브랜드의 바디·두피 확장이 본격화되고 있습니다.", hashtags:["바디케어","두피케어"] },
+  "2026-07-10": { weekLabel:"7월 2주차", issues:[{no:1,title:"하이브리드 스킨케어 제품 시장 확대",body:"하나의 제품에서 즉각 효과와 장기 관리를 함께 제공하는 하이브리드 제품이 주목받고 있습니다.",implications:["멀티 기능을 한 제형에 담는 개발 역량이 차별화 요소가 됩니다."],source:""}], oneLiner:"기능 경계를 허문 하이브리드 제품이 확산되고 있습니다.", hashtags:["하이브리드","멀티케어"] }
+};
+
+// --- (B) 신제품 (구글 시트 → 수동 등록) ---
+const PRODUCTS = [
+  { id:"p1", brand:"그라운드플랜", name:"말차 버블 투 고마쥬폼", price:"25,000원", priceSale:"24,000원", volume:"150ml", maker:"㈜노디너리", seller:"㈜바리엔유",
+    desc:"오돌토돌 피부결 고민, 클렌징과 필링을 한 번에 하는 신개념 때밀이 클렌저.",
+    ingredients:"제주산 고농도 말차 가루 · 말차 PDRN · 말차수",
+    efficacy:["버블 속 말차 가루가 피부 위에서 롤링 시 고마쥬로 변하는 체인지 텍스처","필링 성분 없는 3세대 하이브리드 결클렌저로 저자극","특허받은 기능형 컴플렉스로 세안 후 당기지 않는 촉촉함"], week:"2026-07-2" },
+  { id:"p2", brand:"셀리맥스", name:"트라넥삼산 바디 클래리파잉 패드", price:"25,000원", priceSale:"20,000원", volume:"200ml [50매]", maker:"㈜그린코스", seller:"㈜앱솔브랩",
+    desc:"토닝부터 각질까지 한 장으로 케어하는 바디 멀티 패드.",
+    ingredients:"트라넥삼산 5,000ppm · 나이아신아마이드 20,000ppm",
+    efficacy:["도톰한 실리콘 패턴면으로 묵은 각질·노폐물 케어","부드러운 엠보면으로 저자극 토닝·결 케어","80mm 빅쉐입으로 넓은 부위도 한 번에"], week:"2026-07-2" },
+  { id:"p3", brand:"houry", name:"쿨링 시그널 디퍼프 토너 패드", price:"약 48,300원", priceSale:"", volume:"60매", maker:"Egg Cosmetic", seller:"houry",
+    desc:"아침 붓기·홍조를 케어하는 쿨링 온도 반응성 색상 변화 패드.",
+    ingredients:"카페인 · 10종 쿨링 컴플렉스 · 아이스플랜트 추출물 · 해수",
+    efficacy:["따뜻한 피부에 닿는 순간 보라→핑크로 변하는 스마트 컬러 원단","진정되면 다시 보라색으로 돌아와 시각적 효과 제공","깊은 수분과 즉각적인 쿨링 효과"], week:"2026-07-2" }
+];
+
+// --- (C) 원료 (구글 시트 → 수동 등록, 매주 하나씩) ---
+const INGREDIENTS = [
+  { id:"i1", nameKo:"과라나추출물", nameEn:"Paullinia Cupana Fruit Extract",
+    intro:"아마존의 생명력을 담은 천연 카페인이 풍부한 열매에서 추출한 성분. 브라질 원주민이 오래전부터 병과 갈증 해소를 위해 섭취해온 슈퍼푸르트.",
+    efficacy:["항산화 효과: DPPH 라디칼 소거 활성 테스트로 확인","항균 효과: 그람양성균·그람음성균 모두에 항균 활성"],
+    application:"스킨케어 제형, 패치 제형 등 모든 제형에 적용",
+    marketing:["아마존의 슈퍼푸르트","천연 카페인 에너지 케어","폴리페놀·타닌의 우수한 항산화","클린뷰티(비건·식물성)"], week:"2026-07-2", tags:"항산화 항균 카페인 비건" }
+];
+
+// --- (D) 경쟁사 동향 (DART 공시 + 뉴스) ---
+const COMPETITORS = [
+  { company:"한국콜마", type:"disclosure", title:"2분기 실적 공시 — 매출 전년 대비 증가", date:"2026-07-12", link:"" },
+  { company:"코스맥스", type:"news", title:"인도네시아 신공장 증설 발표, 할랄 시장 대응 강화", date:"2026-07-11", link:"" },
+  { company:"코스메카코리아", type:"disclosure", title:"자회사 잉글우드랩 관련 지분 변동 공시", date:"2026-07-10", link:"" },
+  { company:"씨앤씨인터내셔널", type:"news", title:"색조 신규 수주 확대…글로벌 브랜드 협업 소식", date:"2026-07-09", link:"" }
+];
+
+// 추적 중인 경쟁사 목록 (여기에 이름만 추가하면 상단 칩에 표시됩니다)
+const TRACKED_COMPANIES = [
+  { name:"한국콜마" }, { name:"코스맥스" }, { name:"코스메카코리아" }, { name:"씨앤씨인터내셔널" },
+  { name:"이미인" }, { name:"씨엔에프", note:"대표이사 추봉세" }, { name:"씨엔텍" },
+  { name:"그린코스" }, { name:"제닉" }, { name:"엔코스" }
+];
+
+// --- (E) 수출지표 (관세청 무역통계 HS 3304) ---
+const EXPORTS = {
+  updated:"2026-06 기준",
+  stats:[
+    { val:"94.2", unit:"억 달러", lbl:"2025년 화장품 수출액" },
+    { val:"+10.0", unit:"%", lbl:"전년 대비 증가율" },
+    { val:"3304", unit:"", lbl:"화장품 HS 코드" }
+  ],
+  yearly:[
+    { yr:"2023", value:71.8 },
+    { yr:"2024", value:85.7 },
+    { yr:"2025", value:94.2 }
+  ]
+};
+
+
+/* ============================================================
+   [11] 화면 로직
+   ============================================================ */
+
+/* ---- 페이지(섹션) 전환 ---- */
+const nav = document.getElementById("nav");
+nav.addEventListener("click", e=>{
+  if(e.target.tagName!=="BUTTON") return;
+  showPage(e.target.dataset.page);
+});
+function showPage(page){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("page-"+page).classList.add("active");
+  document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("active", b.dataset.page===page));
+  window.scrollTo(0,0);
+}
+
+/* ---- 홈 대시보드 ---- */
+function renderDashboard(){
+  const latestNewsDate = Object.keys(NEWS_DATA).sort().reverse()[0];
+  const latestNews = NEWS_DATA[latestNewsDate];
+  const latestProd = PRODUCTS[0];
+  const latestIng  = INGREDIENTS[0];
+  const latestComp = COMPETITORS[0];
+
+  const cards = [
+    { page:"calendar", label:"오늘의 트렌드", main:latestNews.oneLiner.slice(0,45)+"…", sub:`주요 이슈 ${latestNews.issues.length}건`, when:latestNewsDate },
+    { page:"products", label:"이번 주 신제품", main:`${latestProd.brand} ${latestProd.name}`, sub:latestProd.desc.slice(0,30)+"…", when:"주 1회 업데이트" },
+    { page:"ingredients", label:"이번 주 원료", main:latestIng.nameKo, sub:latestIng.efficacy[0], when:"주 1회 업데이트" },
+    { page:"competitors", label:"경쟁사 동향", main:`${latestComp.company} · ${latestComp.title.slice(0,24)}…`, sub:latestComp.type==="disclosure"?"공시":"뉴스", when:latestComp.date },
+    { page:"exports", label:"수출지표", main:`2025년 ${EXPORTS.stats[0].val}억 달러`, sub:`전년 대비 ${EXPORTS.stats[1].val}%`, when:EXPORTS.updated }
+  ];
+  document.getElementById("dashGrid").innerHTML = cards.map(c=>`
+    <div class="dash-card" onclick="showPage('${c.page}')">
+      <div class="dc-label">${c.label}</div>
+      <div class="dc-main">${c.main}</div>
+      <div class="dc-sub">${c.sub}</div>
+      <div class="dc-when">🕒 ${c.when}</div>
+    </div>`).join("");
+}
+
+/* ---- 캘린더 ---- */
+const DOW=["일","월","화","수","목","금","토"];
+let vY=2026, vM=6;
+const keyOf=(y,m,d)=>`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+function renderCalendar(){
+  const grid=document.getElementById("calGrid"); grid.innerHTML="";
+  document.getElementById("calMonth").textContent=`${vY}년 ${vM+1}월`;
+  DOW.forEach((d,i)=>{ const e=document.createElement("div"); e.className="cal-dow"+(i===0?" sun":""); e.textContent=d; grid.appendChild(e); });
+  const first=new Date(vY,vM,1).getDay(), days=new Date(vY,vM+1,0).getDate();
+  for(let i=0;i<first;i++){ const e=document.createElement("div"); e.className="cal-cell empty"; grid.appendChild(e); }
+  for(let d=1;d<=days;d++){
+    const key=keyOf(vY,vM,d), has=!!NEWS_DATA[key];
+    const e=document.createElement("div");
+    e.className="cal-cell"+(has?" has-report":"");
+    e.innerHTML=`<span class="num">${d}</span>`+(has?`<span class="badge">리포트</span>`:"");
+    if(has) e.onclick=()=>openNews(key);
+    grid.appendChild(e);
+  }
+}
+document.getElementById("prevBtn").onclick=()=>{ vM--; if(vM<0){vM=11;vY--;} renderCalendar(); };
+document.getElementById("nextBtn").onclick=()=>{ vM++; if(vM>11){vM=0;vY++;} renderCalendar(); };
+
+/* ---- 신제품 목록 ---- */
+function renderProducts(){
+  document.getElementById("prodUpdated").textContent=`7월 2주차 업데이트`;
+  document.getElementById("prodGrid").innerHTML=PRODUCTS.map(p=>`
+    <div class="item-card" onclick="openProduct('${p.id}')">
+      <div class="thumb">🧴 제품 이미지</div>
+      <div class="body">
+        <div class="brand">${p.brand}</div>
+        <div class="name">${p.name}</div>
+        <div class="meta">${p.volume}</div>
+        <div class="price">${p.priceSale||p.price}</div>
+      </div>
+    </div>`).join("");
+}
+
+/* ---- 원료 목록 + 검색 ---- */
+function renderIngredients(filter=""){
+  document.getElementById("ingUpdated").textContent=`총 ${INGREDIENTS.length}종 · 주 1회 추가`;
+  const f=filter.trim();
+  const list=INGREDIENTS.filter(i=> !f || (i.nameKo+i.nameEn+i.tags).includes(f));
+  document.getElementById("ingGrid").innerHTML=list.map(i=>`
+    <div class="item-card" onclick="openIngredient('${i.id}')">
+      <div class="thumb">🌿 ${i.nameKo}</div>
+      <div class="body">
+        <div class="brand">${i.nameEn}</div>
+        <div class="name">${i.nameKo}</div>
+        <div class="meta">${i.efficacy[0]}</div>
+      </div>
+    </div>`).join("") || `<p style="color:var(--ink-sub)">검색 결과가 없습니다.</p>`;
+}
+document.getElementById("ingSearch").addEventListener("input", e=>renderIngredients(e.target.value));
+
+/* ---- 경쟁사 피드 ---- */
+function renderCompetitors(){
+  document.getElementById("companyChips").innerHTML=TRACKED_COMPANIES.map(c=>`
+    <span class="chip">${c.name}${c.note?` <small>(${c.note})</small>`:""}</span>`).join("");
+  document.getElementById("compFeed").innerHTML=COMPETITORS.map(c=>`
+    <div class="feed-item">
+      <span class="feed-tag ${c.type}">${c.type==="disclosure"?"공시":"뉴스"}</span>
+      <div class="feed-body">
+        <div class="feed-company">${c.company}</div>
+        <div class="feed-title">${c.title}</div>
+        <div class="feed-date">${c.date}</div>
+      </div>
+    </div>`).join("");
+}
+
+/* ---- 수출지표 ---- */
+function renderExports(){
+  document.getElementById("expUpdated").textContent=`${EXPORTS.updated} · 월 1회`;
+  document.getElementById("statRow").innerHTML=EXPORTS.stats.map(s=>`
+    <div class="stat-box"><div class="val">${s.val}<span class="unit">${s.unit}</span></div><div class="lbl">${s.lbl}</div></div>`).join("");
+  const max=Math.max(...EXPORTS.yearly.map(y=>y.value));
+  document.getElementById("barChart").innerHTML=`<h4>연도별 화장품 수출액 (억 달러)</h4>`+
+    EXPORTS.yearly.map(y=>`
+      <div class="bar-row"><div class="yr">${y.yr}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${(y.value/max*100).toFixed(0)}%">${y.value}</div></div>
+      </div>`).join("");
+}
+
+/* ---- 상세 패널 열기 ---- */
+function openPanel(dateText,titleText,bodyHTML){
+  document.getElementById("pDate").textContent=dateText;
+  document.getElementById("pTitle").innerHTML=titleText;
+  document.getElementById("panelBody").innerHTML=bodyHTML;
+  document.getElementById("overlay").classList.add("open");
+  document.getElementById("panel").classList.add("open");
+  document.getElementById("panelBody").scrollTop=0;
+}
+function closePanel(){ document.getElementById("overlay").classList.remove("open"); document.getElementById("panel").classList.remove("open"); }
+document.getElementById("closeBtn").onclick=closePanel;
+document.getElementById("overlay").onclick=closePanel;
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closePanel(); });
+
+function openNews(key){
+  const d=NEWS_DATA[key];
+  const issues=d.issues.map(it=>`
+    <div class="issue">
+      <div class="issue-title"><span class="issue-no">${it.no}</span>${it.title}</div>
+      <div class="issue-body">${it.body}</div>
+      ${it.implications&&it.implications.length?`<div class="issue-imp"><div class="imp-label">시장·기획 시사점</div><ul>${it.implications.map(x=>`<li>${x}</li>`).join("")}</ul></div>`:""}
+      ${it.source?`<a class="issue-src" href="${it.source}" target="_blank" rel="noopener">대표 기사 보기 →</a>`:""}
+    </div>`).join("");
+  const one=`<div class="oneliner"><div class="ol-label">▶ 오늘의 트렌드 한 줄 정리</div>${d.oneLiner}</div>`;
+  openPanel(`${key.replace(/-/g,".")} · ${d.weekLabel}`, `오늘의 <span style="color:var(--brand-yellow)">트렌드</span>`, issues+one);
+}
+function openProduct(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  openPanel(p.brand, p.name, `
+    <div class="detail-hero">🧴 제품 이미지 (구글시트 이미지 링크)</div>
+    <table class="field-table">
+      <tr><th>브랜드</th><td>${p.brand}</td></tr>
+      <tr><th>가격</th><td>${p.price}${p.priceSale?` (할인 ${p.priceSale})`:""}</td></tr>
+      <tr><th>용량</th><td>${p.volume}</td></tr>
+      <tr><th>제조업자</th><td>${p.maker}</td></tr>
+      <tr><th>판매업자</th><td>${p.seller}</td></tr>
+    </table>
+    <div class="detail-block"><h4>제품 소개</h4>${p.desc}</div>
+    <div class="detail-block"><h4>원료 특성</h4>${p.ingredients}</div>
+    <div class="detail-block"><h4>효능·특징</h4><ul>${p.efficacy.map(e=>`<li>${e}</li>`).join("")}</ul></div>
+  `);
+}
+function openIngredient(id){
+  const i=INGREDIENTS.find(x=>x.id===id);
+  openPanel(i.nameEn, i.nameKo, `
+    <div class="detail-hero">🌿 원료 이미지</div>
+    <div class="detail-block"><h4>원료 소개</h4>${i.intro}</div>
+    <div class="detail-block"><h4>효능·효과</h4><ul>${i.efficacy.map(e=>`<li>${e}</li>`).join("")}</ul></div>
+    <div class="detail-block"><h4>적용 제형</h4>${i.application}</div>
+    <div class="detail-block"><h4>마케팅 포인트</h4><ul>${i.marketing.map(m=>`<li>${m}</li>`).join("")}</ul></div>
+  `);
+}
+
+/* ---- 최초 실행 ---- */
+renderDashboard();
+renderCalendar();
+renderProducts();
+renderIngredients();
+renderCompetitors();
+renderExports();
+</script>
+</body>
+</html>
