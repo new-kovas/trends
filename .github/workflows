@@ -1,0 +1,56 @@
+# ============================================================
+#  KOVAS 데일리 트렌드 자동 실행 (GitHub Actions)
+# ------------------------------------------------------------
+#  이 파일은 GitHub 서버가 매일 스스로 run.py를 돌리게 하는 지시서입니다.
+#  차장님 PC를 켜둘 필요 없이, 매일 아침 자동으로 사이트가 갱신됩니다.
+#
+#  놓을 위치: 저장소 안  .github/workflows/daily.yml
+# ============================================================
+
+name: 데일리 트렌드 자동 수집
+
+on:
+  schedule:
+    # 매일 실행 시각. GitHub은 UTC(세계표준시) 기준이라,
+    # 한국 오전 7시 = UTC 22시(전날). 그래서 '0 22 * * *' 로 적습니다.
+    - cron: "0 22 * * *"
+  # 아래 덕분에 GitHub 화면에서 '지금 즉시 실행' 버튼으로도 돌릴 수 있습니다(테스트용).
+  workflow_dispatch:
+
+# 결과 파일을 저장소에 커밋하려면 쓰기 권한이 필요합니다.
+permissions:
+  contents: write
+
+jobs:
+  run-trend:
+    runs-on: ubuntu-latest
+    steps:
+      # 1) 저장소 내용을 가져옵니다
+      - name: 저장소 가져오기
+        uses: actions/checkout@v4
+
+      # 2) 파이썬 설치
+      - name: 파이썬 설치
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3) 필요한 도구 설치 (requirements.txt 기준)
+      - name: 패키지 설치
+        run: pip install -r requirements.txt
+
+      # 4) run.py 실행 (API 키는 아래 Secrets에서 안전하게 주입)
+      - name: 트렌드 수집·요약 실행
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python run.py
+
+      # 5) 생성된 data 폴더를 저장소에 자동 커밋
+      - name: 결과 저장(커밋)
+        run: |
+          git config user.name "trend-bot"
+          git config user.email "trend-bot@users.noreply.github.com"
+          git add data/
+          # 변경사항이 있을 때만 커밋 (없으면 그냥 넘어감)
+          git diff --staged --quiet || git commit -m "데일리 트렌드 자동 업데이트 ($(date +%F))"
+          git push
