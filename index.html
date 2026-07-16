@@ -166,6 +166,15 @@ img{ max-width:100%; display:block; }
 .oneliner{ background:linear-gradient(135deg,var(--brand-mid),var(--brand-amber)); color:#fff; border-radius:var(--radius); padding:18px 20px; margin:16px 0; font-weight:700; font-size:15px; }
 .oneliner .ol-label{ font-size:12px; opacity:.9; font-weight:600; margin-bottom:5px; }
 
+/* 기타 단신 목록 (클릭 시 기사로 이동) */
+.briefs{ margin-top:20px; }
+.briefs-label{ font-size:14px; font-weight:800; color:var(--brand-deep); margin-bottom:10px; }
+.brief-item{ display:flex; align-items:baseline; gap:10px; padding:11px 14px; background:var(--surface); border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); margin-bottom:8px; transition:.12s; }
+.brief-item:hover{ transform:translateX(3px); box-shadow:var(--shadow); }
+.brief-title{ flex:1; font-size:14px; font-weight:600; color:var(--ink); }
+.brief-item:hover .brief-title{ color:var(--brand-primary); }
+.brief-src{ flex-shrink:0; font-size:11px; color:var(--ink-sub); }
+
 .detail-hero{ height:200px; background:#F5E9DC; border-radius:var(--radius); margin-bottom:18px; display:flex; align-items:center; justify-content:center; color:var(--ink-sub); font-weight:700; }
 .field-table{ width:100%; border-collapse:collapse; margin-bottom:18px; }
 .field-table th{ text-align:left; width:110px; padding:9px 12px; font-size:13px; color:var(--ink-sub); font-weight:700; vertical-align:top; }
@@ -504,7 +513,18 @@ function openNews(key){
       ${it.source?`<a class="issue-src" href="${it.source}" target="_blank" rel="noopener">대표 기사 보기 →</a>`:""}
     </div>`).join("");
   const one=`<div class="oneliner"><div class="ol-label">▶ 오늘의 트렌드 한 줄 정리</div>${d.oneLiner}</div>`;
-  openPanel(`${key.replace(/-/g,".")} · ${d.weekLabel}`, `오늘의 <span style="color:var(--brand-yellow)">트렌드</span>`, issues+one);
+  // 기타 단신: 주요 이슈에 안 묶인 개별 기사들. 제목을 누르면 기사로 이동합니다.
+  const briefs = (d.briefs && d.briefs.length)
+    ? `<div class="briefs">
+         <div class="briefs-label">📰 이런 소식도 있었습니다</div>
+         ${d.briefs.map(b=>`
+           <a class="brief-item" href="${b.link}" target="_blank" rel="noopener">
+             <span class="brief-title">${b.title}</span>
+             ${b.source?`<span class="brief-src">${b.source}</span>`:""}
+           </a>`).join("")}
+       </div>`
+    : "";
+  openPanel(`${key.replace(/-/g,".")} · ${d.weekLabel}`, `오늘의 <span style="color:var(--brand-yellow)">트렌드</span>`, issues+one+briefs);
 }
 function openProduct(id){
   const p=PRODUCTS.find(x=>x.id===id);
