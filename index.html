@@ -298,21 +298,8 @@ img{ max-width:100%; display:block; }
    화면 로직은 그대로 두고, 데이터 '형식'만 아래와 맞추면 됩니다.
    ============================================================ */
 
-// --- (A) 캘린더용 일별 뉴스 (자동화 산출물) ---
-const NEWS_DATA = {
-  "2026-07-13": {
-    weekLabel:"7월 2주차",
-    issues:[
-      {no:1,title:"K-뷰티 수출 호조에 ODM 기업 가치 상승세 지속",body:"상반기 화장품 수출이 70억 달러를 기록하며 역대 최대 실적을 이어간 가운데, 주요 ODM 기업의 2분기 실적 기대감이 확대되고 있습니다.",implications:["글로벌 브랜드의 생산 수요 증가로 ODM 경쟁력이 지속 부각됩니다.","브랜드사에게 생산 파트너의 공급 안정성과 개발 역량이 더 중요해지고 있습니다."],source:"https://www.mk.co.kr/news/stock/12096727"},
-      {no:2,title:"미국 오프라인 시장 공략 본격화",body:"스킨1004가 뉴욕 브로드웨이에 첫 글로벌 플래그십 스토어를 오픈하며, K-뷰티의 미국 진출이 온라인에서 오프라인 경험 중심으로 확장되고 있습니다.",implications:["체험형 공간과 히어로 제품 중심의 브랜딩이 중요해지고 있습니다."],source:"https://www.beautynury.com/news/view/111762/cat/10"},
-      {no:3,title:"에스테틱 기술의 홈케어 전환 가속",body:"멀츠 에스테틱스가 병원 중심 에스테틱 기술을 홈케어로 확장하며, 프리미엄 홈케어 제품 확대가 이어지고 있습니다.",implications:["기능성 패치·마스크 등 고기능 스킨케어 경쟁이 치열해질 가능성이 있습니다."],source:"https://www.k-health.com/news/articleView.html?idxno=100027"}
-    ],
-    oneLiner:"K-뷰티는 수출·ODM 성장세를 기반으로 글로벌 오프라인 확대와 프리미엄 홈케어를 동시에 강화하고 있습니다.",
-    hashtags:["ODM","미국시장","홈케어"]
-  },
-  "2026-07-11": { weekLabel:"7월 2주차", issues:[{no:1,title:"바디·두피로 확장되는 페이셜 케어 브랜드",body:"잘 만든 페이셜 스킨케어 하나가 바디·두피까지 라인을 확장하는 흐름이 이어지고 있습니다.",implications:["페이셜 성분·기술을 바디로 이식하는 제품 기획이 늘고 있습니다."],source:""}], oneLiner:"페이셜 케어 브랜드의 바디·두피 확장이 본격화되고 있습니다.", hashtags:["바디케어","두피케어"] },
-  "2026-07-10": { weekLabel:"7월 2주차", issues:[{no:1,title:"하이브리드 스킨케어 제품 시장 확대",body:"하나의 제품에서 즉각 효과와 장기 관리를 함께 제공하는 하이브리드 제품이 주목받고 있습니다.",implications:["멀티 기능을 한 제형에 담는 개발 역량이 차별화 요소가 됩니다."],source:""}], oneLiner:"기능 경계를 허문 하이브리드 제품이 확산되고 있습니다.", hashtags:["하이브리드","멀티케어"] }
-};
+// --- (A) 캘린더용 일별 뉴스 (자동화가 만든 data/*.json 에서 불러옵니다) ---
+let NEWS_DATA = {};   // 아래 loadNews()가 실제 데이터로 채웁니다
 
 // --- (B) 신제품 (구글 시트 → 수동 등록) ---
 const PRODUCTS = [
@@ -390,13 +377,13 @@ function showPage(page){
 /* ---- 홈 대시보드 ---- */
 function renderDashboard(){
   const latestNewsDate = Object.keys(NEWS_DATA).sort().reverse()[0];
-  const latestNews = NEWS_DATA[latestNewsDate];
+  const latestNews = latestNewsDate ? NEWS_DATA[latestNewsDate] : null;
   const latestProd = PRODUCTS[0];
   const latestIng  = INGREDIENTS[0];
   const latestComp = COMPETITORS[0];
 
   const cards = [
-    { page:"calendar", label:"오늘의 트렌드", main:latestNews.oneLiner.slice(0,45)+"…", sub:`주요 이슈 ${latestNews.issues.length}건`, when:latestNewsDate },
+    { page:"calendar", label:"오늘의 트렌드", main:latestNews ? latestNews.oneLiner.slice(0,45)+"…" : "아직 등록된 리포트가 없습니다", sub:latestNews ? `주요 이슈 ${latestNews.issues.length}건` : "", when:latestNewsDate || "-" },
     { page:"products", label:"이번 주 신제품", main:`${latestProd.brand} ${latestProd.name}`, sub:latestProd.desc.slice(0,30)+"…", when:"주 1회 업데이트" },
     { page:"ingredients", label:"이번 주 원료", main:latestIng.nameKo, sub:latestIng.efficacy[0], when:"주 1회 업데이트" },
     { page:"competitors", label:"경쟁사 동향", main:`${latestComp.company} · ${latestComp.title.slice(0,24)}…`, sub:latestComp.type==="disclosure"?"공시":"뉴스", when:latestComp.date },
@@ -546,9 +533,23 @@ function openIngredient(id){
   `);
 }
 
+/* ---- 데이터 불러오기: data 폴더의 JSON을 읽어 NEWS_DATA를 채웁니다 ---- */
+async function loadNews(){
+  try{
+    const idx = await (await fetch("data/index.json")).json();   // 리포트 있는 날짜 목록
+    for(const d of idx){
+      try{ NEWS_DATA[d] = await (await fetch(`data/${d}.json`)).json(); }
+      catch(e){ console.warn("로드 실패:", d, e); }
+    }
+  }catch(e){
+    console.warn("data/index.json을 불러오지 못했습니다. (아직 데이터가 없거나 로컬 파일로 열었을 수 있습니다)", e);
+  }
+  renderDashboard();   // 데이터 채운 뒤 화면 그리기
+  renderCalendar();
+}
+
 /* ---- 최초 실행 ---- */
-renderDashboard();
-renderCalendar();
+loadNews();
 renderProducts();
 renderIngredients();
 renderCompetitors();
