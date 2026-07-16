@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KOVAS 트렌드 인사이트</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
 <style>
 /* ============================================================
@@ -99,7 +100,11 @@ img{ max-width:100%; display:block; }
 .card-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
 .item-card{ background:var(--surface); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); cursor:pointer; transition:.15s; }
 .item-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
-.item-card .thumb{ height:150px; background:#F5E9DC; display:flex; align-items:center; justify-content:center; color:var(--ink-sub); font-size:15px; font-weight:700; }
+.item-card .thumb{ height:150px; background:#F5E9DC; display:flex; align-items:center; justify-content:center; color:var(--ink-sub); font-size:15px; font-weight:700; overflow:hidden; }
+.item-card .thumb img{ width:100%; height:100%; object-fit:cover; }
+.detail-hero img{ width:100%; height:100%; object-fit:cover; border-radius:var(--radius); }
+.buy-btn{ display:inline-block; background:var(--brand-primary); color:#fff; font-weight:700; font-size:14px; padding:12px 20px; border-radius:var(--radius-sm); margin-top:4px; transition:.15s; }
+.buy-btn:hover{ background:var(--brand-deep); transform:translateY(-2px); }
 .item-card .body{ padding:16px 18px; }
 .item-card .brand{ font-size:12px; color:var(--brand-primary); font-weight:700; }
 .item-card .name{ font-size:16px; font-weight:800; margin:3px 0 6px; line-height:1.35; }
@@ -310,30 +315,53 @@ img{ max-width:100%; display:block; }
 // --- (A) 캘린더용 일별 뉴스 (자동화가 만든 data/*.json 에서 불러옵니다) ---
 let NEWS_DATA = {};   // 아래 loadNews()가 실제 데이터로 채웁니다
 
-// --- (B) 신제품 (구글 시트 → 수동 등록) ---
-const PRODUCTS = [
-  { id:"p1", brand:"그라운드플랜", name:"말차 버블 투 고마쥬폼", price:"25,000원", priceSale:"24,000원", volume:"150ml", maker:"㈜노디너리", seller:"㈜바리엔유",
-    desc:"오돌토돌 피부결 고민, 클렌징과 필링을 한 번에 하는 신개념 때밀이 클렌저.",
-    ingredients:"제주산 고농도 말차 가루 · 말차 PDRN · 말차수",
-    efficacy:["버블 속 말차 가루가 피부 위에서 롤링 시 고마쥬로 변하는 체인지 텍스처","필링 성분 없는 3세대 하이브리드 결클렌저로 저자극","특허받은 기능형 컴플렉스로 세안 후 당기지 않는 촉촉함"], week:"2026-07-2" },
-  { id:"p2", brand:"셀리맥스", name:"트라넥삼산 바디 클래리파잉 패드", price:"25,000원", priceSale:"20,000원", volume:"200ml [50매]", maker:"㈜그린코스", seller:"㈜앱솔브랩",
-    desc:"토닝부터 각질까지 한 장으로 케어하는 바디 멀티 패드.",
-    ingredients:"트라넥삼산 5,000ppm · 나이아신아마이드 20,000ppm",
-    efficacy:["도톰한 실리콘 패턴면으로 묵은 각질·노폐물 케어","부드러운 엠보면으로 저자극 토닝·결 케어","80mm 빅쉐입으로 넓은 부위도 한 번에"], week:"2026-07-2" },
-  { id:"p3", brand:"houry", name:"쿨링 시그널 디퍼프 토너 패드", price:"약 48,300원", priceSale:"", volume:"60매", maker:"Egg Cosmetic", seller:"houry",
-    desc:"아침 붓기·홍조를 케어하는 쿨링 온도 반응성 색상 변화 패드.",
-    ingredients:"카페인 · 10종 쿨링 컴플렉스 · 아이스플랜트 추출물 · 해수",
-    efficacy:["따뜻한 피부에 닿는 순간 보라→핑크로 변하는 스마트 컬러 원단","진정되면 다시 보라색으로 돌아와 시각적 효과 제공","깊은 수분과 즉각적인 쿨링 효과"], week:"2026-07-2" }
-];
+// --- (B)(C) 신제품·원료 (구글 시트 CSV에서 불러옵니다) ---
+// ★ 구글 시트 "웹에 게시(CSV)" 주소. 시트를 바꾸려면 이 두 줄만 교체하세요.
+const PRODUCT_CSV    = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYKmG-dAk9VZ1NbfuFehZb8PH8whPpfN7PHOw5R1H9EA5qAn5LZKxLsPar1SUXG9en1cTEiV0Hw__z/pub?gid=0&single=true&output=csv";
+const INGREDIENT_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYKmG-dAk9VZ1NbfuFehZb8PH8whPpfN7PHOw5R1H9EA5qAn5LZKxLsPar1SUXG9en1cTEiV0Hw__z/pub?gid=1338375794&single=true&output=csv";
 
-// --- (C) 원료 (구글 시트 → 수동 등록, 매주 하나씩) ---
-const INGREDIENTS = [
-  { id:"i1", nameKo:"과라나추출물", nameEn:"Paullinia Cupana Fruit Extract",
-    intro:"아마존의 생명력을 담은 천연 카페인이 풍부한 열매에서 추출한 성분. 브라질 원주민이 오래전부터 병과 갈증 해소를 위해 섭취해온 슈퍼푸르트.",
-    efficacy:["항산화 효과: DPPH 라디칼 소거 활성 테스트로 확인","항균 효과: 그람양성균·그람음성균 모두에 항균 활성"],
-    application:"스킨케어 제형, 패치 제형 등 모든 제형에 적용",
-    marketing:["아마존의 슈퍼푸르트","천연 카페인 에너지 케어","폴리페놀·타닌의 우수한 항산화","클린뷰티(비건·식물성)"], week:"2026-07-2", tags:"항산화 항균 카페인 비건" }
-];
+let PRODUCTS = [];      // loadSheets()가 시트에서 채웁니다
+let INGREDIENTS = [];
+
+function splitList(s){ return (s||"").split(";").map(x=>x.trim()).filter(Boolean); }
+
+function mapProduct(row, i){
+  if(!row["브랜드"] && !row["제품명"]) return null;
+  return {
+    id:"p"+i, brand:row["브랜드"]||"", name:row["제품명"]||"",
+    price:row["가격"]||"", priceSale:row["할인가"]||"", volume:row["용량"]||"",
+    maker:row["제조업자"]||"", seller:row["판매업자"]||"",
+    desc:row["제품소개"]||"", ingredients:row["원료특성"]||"",
+    efficacy:splitList(row["효능"]),
+    image:(row["이미지주소"]||"").trim(), buyLink:(row["구매링크"]||"").trim()
+  };
+}
+function mapIngredient(row, i){
+  if(!row["원료명"]) return null;
+  return {
+    id:"i"+i, nameKo:row["원료명"]||"", nameEn:row["영문명"]||"",
+    intro:row["원료소개"]||"", efficacy:splitList(row["효능"]),
+    application:row["적용제형"]||"", marketing:splitList(row["마케팅포인트"]),
+    tags:row["태그"]||"", image:(row["이미지주소"]||"").trim()
+  };
+}
+function loadCsv(url, mapFn){
+  return new Promise((resolve)=>{
+    Papa.parse(url, {
+      download:true, header:true, skipEmptyLines:true,
+      transformHeader: hdr => hdr.trim(),
+      complete: r => resolve(r.data.map(mapFn).filter(Boolean)),
+      error: err => { console.warn("시트 로드 실패:", url, err); resolve([]); }
+    });
+  });
+}
+async function loadSheets(){
+  PRODUCTS    = await loadCsv(PRODUCT_CSV, mapProduct);
+  INGREDIENTS = await loadCsv(INGREDIENT_CSV, mapIngredient);
+  renderProducts();
+  renderIngredients();
+  renderDashboard();
+}
 
 // --- (D) 경쟁사 동향 (DART 공시 + 뉴스) ---
 const COMPETITORS = [
@@ -387,14 +415,14 @@ function showPage(page){
 function renderDashboard(){
   const latestNewsDate = Object.keys(NEWS_DATA).sort().reverse()[0];
   const latestNews = latestNewsDate ? NEWS_DATA[latestNewsDate] : null;
-  const latestProd = PRODUCTS[0];
-  const latestIng  = INGREDIENTS[0];
-  const latestComp = COMPETITORS[0];
+  const latestProd = PRODUCTS[0] || null;
+  const latestIng  = INGREDIENTS[0] || null;
+  const latestComp = COMPETITORS[0] || null;
 
   const cards = [
     { page:"calendar", label:"오늘의 트렌드", main:latestNews ? latestNews.oneLiner.slice(0,45)+"…" : "아직 등록된 리포트가 없습니다", sub:latestNews ? `주요 이슈 ${latestNews.issues.length}건` : "", when:latestNewsDate || "-" },
-    { page:"products", label:"이번 주 신제품", main:`${latestProd.brand} ${latestProd.name}`, sub:latestProd.desc.slice(0,30)+"…", when:"주 1회 업데이트" },
-    { page:"ingredients", label:"이번 주 원료", main:latestIng.nameKo, sub:latestIng.efficacy[0], when:"주 1회 업데이트" },
+    { page:"products", label:"이번 주 신제품", main:latestProd?`${latestProd.brand} ${latestProd.name}`:"등록된 신제품이 없습니다", sub:latestProd?latestProd.desc.slice(0,30)+"…":"", when:"주 1회 업데이트" },
+    { page:"ingredients", label:"이번 주 원료", main:latestIng?latestIng.nameKo:"등록된 원료가 없습니다", sub:latestIng?(latestIng.efficacy[0]||""):"", when:"주 1회 업데이트" },
     { page:"competitors", label:"경쟁사 동향", main:`${latestComp.company} · ${latestComp.title.slice(0,24)}…`, sub:latestComp.type==="disclosure"?"공시":"뉴스", when:latestComp.date },
     { page:"exports", label:"수출지표", main:`2025년 ${EXPORTS.stats[0].val}억 달러`, sub:`전년 대비 ${EXPORTS.stats[1].val}%`, when:EXPORTS.updated }
   ];
@@ -429,12 +457,18 @@ function renderCalendar(){
 document.getElementById("prevBtn").onclick=()=>{ vM--; if(vM<0){vM=11;vY--;} renderCalendar(); };
 document.getElementById("nextBtn").onclick=()=>{ vM++; if(vM>11){vM=0;vY++;} renderCalendar(); };
 
+/* 썸네일: 이미지가 있으면 표시, 없거나 깨지면 기본 아이콘 */
+function thumb(image, emoji){
+  if(image) return `<div class="thumb"><img src="${image}" alt="" onerror="this.parentNode.innerHTML='${emoji} 이미지 없음'"></div>`;
+  return `<div class="thumb">${emoji} 이미지</div>`;
+}
+
 /* ---- 신제품 목록 ---- */
 function renderProducts(){
   document.getElementById("prodUpdated").textContent=`7월 2주차 업데이트`;
   document.getElementById("prodGrid").innerHTML=PRODUCTS.map(p=>`
     <div class="item-card" onclick="openProduct('${p.id}')">
-      <div class="thumb">🧴 제품 이미지</div>
+      ${thumb(p.image, "🧴")}
       <div class="body">
         <div class="brand">${p.brand}</div>
         <div class="name">${p.name}</div>
@@ -451,7 +485,7 @@ function renderIngredients(filter=""){
   const list=INGREDIENTS.filter(i=> !f || (i.nameKo+i.nameEn+i.tags).includes(f));
   document.getElementById("ingGrid").innerHTML=list.map(i=>`
     <div class="item-card" onclick="openIngredient('${i.id}')">
-      <div class="thumb">🌿 ${i.nameKo}</div>
+      ${thumb(i.image, "🌿")}
       <div class="body">
         <div class="brand">${i.nameEn}</div>
         <div class="name">${i.nameKo}</div>
@@ -528,8 +562,10 @@ function openNews(key){
 }
 function openProduct(id){
   const p=PRODUCTS.find(x=>x.id===id);
+  const hero = p.image ? `<div class="detail-hero"><img src="${p.image}" alt="" onerror="this.parentNode.innerHTML='🧴 이미지 없음'"></div>` : `<div class="detail-hero">🧴 제품 이미지</div>`;
+  const buy = p.buyLink ? `<a class="buy-btn" href="${p.buyLink}" target="_blank" rel="noopener">구매하러 가기 →</a>` : "";
   openPanel(p.brand, p.name, `
-    <div class="detail-hero">🧴 제품 이미지 (구글시트 이미지 링크)</div>
+    ${hero}
     <table class="field-table">
       <tr><th>브랜드</th><td>${p.brand}</td></tr>
       <tr><th>가격</th><td>${p.price}${p.priceSale?` (할인 ${p.priceSale})`:""}</td></tr>
@@ -540,12 +576,14 @@ function openProduct(id){
     <div class="detail-block"><h4>제품 소개</h4>${p.desc}</div>
     <div class="detail-block"><h4>원료 특성</h4>${p.ingredients}</div>
     <div class="detail-block"><h4>효능·특징</h4><ul>${p.efficacy.map(e=>`<li>${e}</li>`).join("")}</ul></div>
+    ${buy}
   `);
 }
 function openIngredient(id){
   const i=INGREDIENTS.find(x=>x.id===id);
+  const hero = i.image ? `<div class="detail-hero"><img src="${i.image}" alt="" onerror="this.parentNode.innerHTML='🌿 이미지 없음'"></div>` : `<div class="detail-hero">🌿 원료 이미지</div>`;
   openPanel(i.nameEn, i.nameKo, `
-    <div class="detail-hero">🌿 원료 이미지</div>
+    ${hero}
     <div class="detail-block"><h4>원료 소개</h4>${i.intro}</div>
     <div class="detail-block"><h4>효능·효과</h4><ul>${i.efficacy.map(e=>`<li>${e}</li>`).join("")}</ul></div>
     <div class="detail-block"><h4>적용 제형</h4>${i.application}</div>
@@ -570,8 +608,7 @@ async function loadNews(){
 
 /* ---- 최초 실행 ---- */
 loadNews();
-renderProducts();
-renderIngredients();
+loadSheets();
 renderCompetitors();
 renderExports();
 </script>
