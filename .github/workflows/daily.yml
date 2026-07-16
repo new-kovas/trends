@@ -45,6 +45,12 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python run.py
 
+      # 4-2) 경쟁사 동향 수집 (DART 공시 + 뉴스)
+      - name: 경쟁사 동향 수집
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python competitors.py
+
       # 5) 생성된 data 폴더를 저장소에 자동 커밋
       - name: 결과 저장(커밋)
         run: |
