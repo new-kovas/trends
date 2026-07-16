@@ -502,7 +502,7 @@ function renderProducts(){
       : k.replace(/^(\d{4})-(\d{2})$/, (m,y,mo) => `${y}년 ${Number(mo)}월`);
     return `<div class="month-group">
       <h3 class="month-label">${label}</h3>
-      <div class="card-grid">${groups[k].map(card).join("")}</div>
+      <div class="card-grid">${groups[k].slice().reverse().map(card).join("")}</div>
     </div>`;
   }).join("");
 
@@ -514,7 +514,8 @@ function renderProducts(){
 function renderIngredients(filter=""){
   document.getElementById("ingUpdated").textContent=`총 ${INGREDIENTS.length}종 · 주 1회 추가`;
   const f=filter.trim();
-  const list=INGREDIENTS.filter(i=> !f || (i.nameKo+i.nameEn+i.tags).includes(f));
+  // 시트에 나중에 등록한 원료가 맨 앞에 오도록 역순 처리
+  const list=INGREDIENTS.slice().reverse().filter(i=> !f || (i.nameKo+i.nameEn+i.tags).includes(f));
   document.getElementById("ingGrid").innerHTML=list.map(i=>`
     <div class="item-card" onclick="openIngredient('${i.id}')">
       ${thumb(i.image, "🌿")}
