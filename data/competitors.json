@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-18",
+  "updated": "2026-07-19",
   "items": [
     {
       "company": "엔코스",
@@ -14,6 +14,20 @@
       "title": "코스맥스, 일본 '후지신'과 합작…맞춤형 화장품 확장 - 비즈워치",
       "date": "2026-07-13",
       "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8tOGRZMkthQlByTFgzcHVvaVBKc0hMRktTczJtZlVzYjFVTmZjd05td3BZYmRFMlprQWRfS2NyREhsbUczM0pnLUdVMkx1aEZUZUtVTnhMN2RGbGNXcE5kd1JwZFdBWl9MQ1ZEUw?oc=5"
+    },
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "코스맥스, 일본서 AI 맞춤형 화장품 사업 본격화 - 머니투데이 - 머니투데이",
+      "date": "2026-07-13",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFA2NVViY1JPeW1PWWMxa1NGUmhlcExkaER2dGxWSnc5OVpOeUdURXQ0VDZaTGJIV0hobkFyb29IRzZaWnNkVzJ0dTRKWHFQazNsdjJYY3R2UkxqQWhad0p2MFQ0SFZyVXY4aGfSAW9BVV95cUxNQ2oteThTZUhWbUsyNXNZSXBmWVR5dG8yZGVfVWh4ai0tZUlhM1NCajZ1VXJ1aVFFLTctUmJiRFVUVDhUcFJyQWVNbW82NGtDeFBlczJEbG5ka1ZkdTFsTGhaYUxFLXFaLXBzcWRXQ1E?oc=5"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "인디뷰티 업고 고공행진…뷰티 ODM 3사, 2분기 실적 '맑음' - 미디어펜",
+      "date": "2026-07-13",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5Yekl5RVRZYkxzRk45OWZsR3ZaN01TX2hIblB1a2pmbnFFdTJDdEVTNW12SEVvTWZ6dTRGaXlwVjQyMkFBbDRyWDR2T0xyQ0hRMExEatIBWEFVX3lxTE9CTWV4RU1MNXBhaC1ISHBWcWtzVEtmb2Uyel9pbWdQd1AxMDR2bkY3OGE4RHh0M2ZfZXQ0MjlRTTM1dkI1WE9VOHRIMVYyNGV1Ym1vNE1mUTM?oc=5"
     },
     {
       "company": "그린코스",
@@ -48,14 +62,14 @@
       "type": "news",
       "title": "[오늘 이 종목] 시장 리스크 속 기회… 강재헌 부장의 '시선집중' 필승 전략 - v.daum.net",
       "date": "2026-07-09",
-      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE51UE42YzJQd05WRnRIbjM1Q1NMRWt0dWpDT0xaTWhfdkZqbGtmbDZ3SGhWUUxXTVMzSkgwOUkyRFV2ZTlUU25aZGlSNEtydzVlczlpLQ?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1ZMnh6SVdrMk1kQ3hOcEhuR3NnRmkteXJvblZuc0ptQjZJTGQyWDFJV21qQ2FGb25lemtEOWJDbGtoOG5rTWZMaDY1Zw?oc=5"
     },
     {
-      "company": "코스맥스",
+      "company": "한국콜마",
       "type": "news",
-      "title": "코스맥스, AI·OBM 전략으로 뷰티 지형 바꾼다 - 헬스경향",
-      "date": "2026-07-06",
-      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9lSURSd2F3UmZZN3R1Q3drUzBUSTFhRnFsOUdONHFLeHNpR3pWNUVSTkloSVZqNXMxOFYwTE1YMUYydXJkTnpyUDQwblRuYWQyMEVCdjRZUldaWkV0RnlNcWFYOHRnRVQwMWc?oc=5"
+      "title": "일주일에 31% 뛰었는데도 “아직 싸다”…한국콜마 더 간다는 이유 [이주의 Bull기둥] - 매일경제",
+      "date": "2026-07-05",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE85Q004clVxZnM1VXhmMU1iUmtXV0ZQSzcyV3BadEUzQURMTjRnaHUzYUJEZC04bkFERVM0QmxHWGJhN2tKUWZZUWNjTHR1cVVrYUE?oc=5"
     },
     {
       "company": "이미인",
@@ -79,13 +93,6 @@
       "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQZjVWZUxqa0ZfYy11RTBOeFFvRGU1SkZBbGNYaE1PME9kU1Npdnd1RXVkQWJtQm9ENjM5dFdraWNFSlhjbEdLODFQQU5QVUhVVUlMQkpTUTFjZF9GWTEtbXY0MXl0YnNzMl9tdkZsRUNGd194SVlUSDFkLWV6bEdmWA?oc=5"
     },
     {
-      "company": "한국콜마",
-      "type": "news",
-      "title": "화장품주, 코스피 5% 급락에도 강세…한국콜마 11%↑[핫종목] - 뉴스1",
-      "date": "2026-07-02",
-      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE90Q3JLMlZYNUxYVjJRc3ZyNlVDdTllYkZfQllFbU5FZVl2ZUpxcF9pdGpsNmRIZUF1cTFIUS1SM1RJNzg1YVFsX0NuUl94LTVZYXNtcGw0TjZhZ09aWm1V?oc=5"
-    },
-    {
       "company": "씨엔에프",
       "type": "news",
       "title": "식약처장, 씨엔에프 방문 … 간담회 개최 - 주간신문씨엠엔",
@@ -95,14 +102,14 @@
     {
       "company": "코스메카코리아",
       "type": "news",
-      "title": "코스메카코리아, ‘AI 응용 제품 상용화 지원사업’ 선정 - 의학신문",
+      "title": "화장품신문 (Beautynury.com) :: 코스메카코리아, AI 응용제품 상용화 사업 선정 - 뷰티누리",
       "date": "2026-06-25",
-      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9VZGJZQ0szbVVvYjJZVV9GZVVlOUx6Ri16R2tUNlZwS21oaGduNkpkWGlkV0w4aTdNcGtaMkNlNU1HTmNrdHNKVzY1LUhJUWlMMm5DdGNFR3Y5UWNoUzVfTXlYc1ZadGVkWHc?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1xZ0JjeEdSMldPM2ZWQlpQdHZPRVZ5QUZBNUs5RXFXTTRXZ3hiS1Vkc2FiUWtva3dqemlDenBfQVlQclN5NEJZZV9VX0drVWZuY2FxQkhTQjhjQVA2UXM4?oc=5"
     },
     {
       "company": "제닉",
       "type": "news",
-      "title": "제닉(123330)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. - 씽크풀 AI",
+      "title": "제닉(123330)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. - ThinkPool",
       "date": "2026-06-24",
       "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5PLVRNSjROWWhSZmx3c1hadjI0a1paM2xWQVd2ODQxelRHYW5IUGRBaUxFSmRLemo3eGNrYUVfTF90V3VPUV85V05oMnc0b2dQdDQtUF9iSV85ODdi?oc=5"
     },
@@ -133,13 +140,6 @@
       "title": "[K-뷰티 마스터피스] ⑪ 씨앤씨인터내셔널 '패스트 트랙(Fast-Track)' - 약업신문",
       "date": "2026-06-22",
       "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1YZWt4ejRadE1CWUJCRENxSzJOZVQyQmh0a2ZwV2ZGcElzZGRfNDlCX0VNZ3FjVXZYTWY5cUI2NkI0N0NvaktaUkd4SmJLVG5KblB4ekZvS2c5WHhEWWlNSm5jTXcxZw?oc=5"
-    },
-    {
-      "company": "잉글우드랩",
-      "type": "news",
-      "title": "K-뷰티 급등 랠리 멈췄나…화장품주 차익 실현에 줄줄이 하락 - 핀포인트뉴스",
-      "date": "2026-06-19",
-      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE15VUhlVW5UTHctUFFKQ01fYXZaLURBUVh2c01VOGptVnNWblhsWFpOc1ZndmtQTDFJTEFHd0dZb19NRXRWTFZodS1oUkR3WC0zSW9oelhNQ2xFWDZheW1LVGVzQ3ZxSE9TZVhGbWtXTzZTdnfSAXdBVV95cUxPUlpheFNYRkhKVEYzY1k4elNTWXIyNWIxbUx1MHF1ank1c1Y4dFhKaTlRZWthUkpkMENOdGhKWXpodU03bmlSVjJLTkVkY012SElZTWVnSGVad3RMSGVVbE9TOXhIZXl6ejBNelVaYU9hUG1Iemxzbw?oc=5"
     }
   ]
 }
