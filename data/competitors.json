@@ -1,6 +1,20 @@
 {
-  "updated": "2026-07-19",
+  "updated": "2026-07-20",
   "items": [
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "화장품신문 (Beautynury.com) :: 잉글우드랩, FDA 신규 승인 자외선 필터 적용 선케어 공개 - 뷰티누리",
+      "date": "2026-07-20",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBTRGR3eTY4YW55aDIyWVprTHlZemdwejJLd2tHZ0tNSTJVM0tidm1XSi1HTHY3QVNtMmJUYzNBOVZkemFaWnFpUDZ6cWxUdnZ0a2NKaWFzU3dnb2N4ZXpV?oc=5"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "news",
+      "title": "‘ODM 3강 구도’로 한걸음…코스메카코리아, 인디뷰티 업고 날개 달았다 - 쿠키뉴스",
+      "date": "2026-07-17",
+      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFA3blFPRWpWSUxaOXVfN3lJOHJjeEpVVjYxM2VXejRXN0FtQUhiSjROakdrMHRpN1V6ZXc1NVZ3ZVplb3hkclBlcWNxWFlFN2tLWDdOU3UwZEw4WUhjWXljUkhYdw?oc=5"
+    },
     {
       "company": "엔코스",
       "type": "news",
@@ -18,16 +32,9 @@
     {
       "company": "코스맥스",
       "type": "news",
-      "title": "코스맥스, 일본서 AI 맞춤형 화장품 사업 본격화 - 머니투데이 - 머니투데이",
+      "title": "코스맥스, 일본서 AI 맞춤형 화장품 사업 첫 해외 진출 - 연합뉴스",
       "date": "2026-07-13",
-      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFA2NVViY1JPeW1PWWMxa1NGUmhlcExkaER2dGxWSnc5OVpOeUdURXQ0VDZaTGJIV0hobkFyb29IRzZaWnNkVzJ0dTRKWHFQazNsdjJYY3R2UkxqQWhad0p2MFQ0SFZyVXY4aGfSAW9BVV95cUxNQ2oteThTZUhWbUsyNXNZSXBmWVR5dG8yZGVfVWh4ai0tZUlhM1NCajZ1VXJ1aVFFLTctUmJiRFVUVDhUcFJyQWVNbW82NGtDeFBlczJEbG5ka1ZkdTFsTGhaYUxFLXFaLXBzcWRXQ1E?oc=5"
-    },
-    {
-      "company": "잉글우드랩",
-      "type": "news",
-      "title": "인디뷰티 업고 고공행진…뷰티 ODM 3사, 2분기 실적 '맑음' - 미디어펜",
-      "date": "2026-07-13",
-      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5Yekl5RVRZYkxzRk45OWZsR3ZaN01TX2hIblB1a2pmbnFFdTJDdEVTNW12SEVvTWZ6dTRGaXlwVjQyMkFBbDRyWDR2T0xyQ0hRMExEatIBWEFVX3lxTE9CTWV4RU1MNXBhaC1ISHBWcWtzVEtmb2Uyel9pbWdQd1AxMDR2bkY3OGE4RHh0M2ZfZXQ0MjlRTTM1dkI1WE9VOHRIMVYyNGV1Ym1vNE1mUTM?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE42RGdvZnBOMlRTa01TQVB1QWhWcDRwc19zdXg5bnpsVFNkdnhYUi1NTlZXV1hVSE1ndHJUc09lMzJoOWFiYTBDdmluZUVpWENiYzBsa0JUYVJDaVHSAWBBVV95cUxPRHA3c0ZUbUt2TzIzVXN3U0hyVjczTWY0NEd3UEQtMG50LUNGVVk0ZXZHQmdJLUlxcEVrRDNhcHRBQXhUb2tsZVJONnNsR0c1a1lVY1N2S29qSzE0Njg5V1c?oc=5"
     },
     {
       "company": "그린코스",
@@ -100,18 +107,18 @@
       "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBMYXNZWFVSV1lVaE9LclFiSGZGcWxQSTJCSjQ3bm9kQmNodE51bGlCdjVUX2YxVElOZlBrYVNhUUNuRVBQTDhMV2JjV0lOLWhsN1o2MWtEYUpUMGlkQTFDZGcyVVhZdw?oc=5"
     },
     {
+      "company": "제닉",
+      "type": "news",
+      "title": "제닉(123330)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. - 씽크풀 AI",
+      "date": "2026-06-28",
+      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5na2p6Q1hFSFVfWWVITm1GcVJNenJBcU9qOHZYOElPeGZZa2RhNWc4dFpNa1ItSDJESmZpRXZ0U2EtUVJFSlF4cE5oVVRSZDdZSkU5LTZqUExJTnQ2?oc=5"
+    },
+    {
       "company": "코스메카코리아",
       "type": "news",
       "title": "화장품신문 (Beautynury.com) :: 코스메카코리아, AI 응용제품 상용화 사업 선정 - 뷰티누리",
       "date": "2026-06-25",
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1xZ0JjeEdSMldPM2ZWQlpQdHZPRVZ5QUZBNUs5RXFXTTRXZ3hiS1Vkc2FiUWtva3dqemlDenBfQVlQclN5NEJZZV9VX0drVWZuY2FxQkhTQjhjQVA2UXM4?oc=5"
-    },
-    {
-      "company": "제닉",
-      "type": "news",
-      "title": "제닉(123330)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. - ThinkPool",
-      "date": "2026-06-24",
-      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5PLVRNSjROWWhSZmx3c1hadjI0a1paM2xWQVd2ODQxelRHYW5IUGRBaUxFSmRLemo3eGNrYUVfTF90V3VPUV85V05oMnc0b2dQdDQtUF9iSV85ODdi?oc=5"
     },
     {
       "company": "씨엔에프",
@@ -126,13 +133,6 @@
       "title": "㈜엔코스, 신공장 가동 및 ‘라이브러리’ 리뉴얼…디지털·생산 인프라 동시 혁신 - 장업신문",
       "date": "2026-06-23",
       "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1xUG5mTHJIbGczczNkaktUckhMTC1XOVRfZWVQMVdHY3c0UDlHUHF3dUV4ZUo1dlV3LUh6OUg1VnNiYjVKVHQzRW1jZWswMVJPR2hQdlJEb1hMV1g1WFByNzVqRndkRzQ?oc=5"
-    },
-    {
-      "company": "코스메카코리아",
-      "type": "news",
-      "title": "'물속에 물' 선크림 만든다…코스메카, 끈적임 없는 선제품 주력[유통人터뷰] - v.daum.net",
-      "date": "2026-06-22",
-      "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1mYWl0QmxheC1ReEpvdzJzb0NzZVl3aG81SzE3WUxORFJITnRJTDVGTFNlc05jS3pMa2NVX2RmRGpZeTRjNFE?oc=5"
     },
     {
       "company": "씨앤씨인터내셔널",
