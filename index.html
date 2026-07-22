@@ -262,8 +262,8 @@ img{ max-width:100%; display:block; }
       <div class="page-title"><span>원료</span> 라이브러리</div>
       <div class="updated" id="ingUpdated"></div>
     </div>
-    <p class="page-desc">매주 하나씩 쌓이는 원료 자료실. 이름·효능으로 검색할 수 있습니다.</p>
-    <input class="search-bar" id="ingSearch" placeholder="🔍 원료명, 효능으로 검색 (예: 항산화, 카페인)">
+    <p class="page-desc">매주 하나씩 쌓이는 원료 자료실. 아래 태그를 눌러 원하는 효능·특성으로 골라보세요.</p>
+    <div class="company-chips" id="ingTags"></div>
     <div class="card-grid" id="ingGrid"></div>
   </section>
 
@@ -510,22 +510,48 @@ function renderProducts(){
 }
 
 /* ---- 원료 목록 + 검색 ---- */
-function renderIngredients(filter=""){
+let ingTagFilter = "";   // "" = 전체, 태그명 = 그 태그만
+
+function renderIngredients(){
   document.getElementById("ingUpdated").textContent=`총 ${INGREDIENTS.length}종 · 주 1회 추가`;
-  const f=filter.trim();
-  // 시트에 나중에 등록한 원료가 맨 앞에 오도록 역순 처리
-  const list=INGREDIENTS.slice().reverse().filter(i=> !f || (i.nameKo+i.nameEn+i.tags).includes(f));
+
+  // 원료들의 태그를 모아 '전체' + 태그 버튼 만들기 (시트 태그칸에서 자동 생성)
+  const tagSet = [];
+  INGREDIENTS.forEach(i=>{
+    (i.tags||"").split(/\s+/).map(t=>t.trim()).filter(Boolean).forEach(t=>{
+      if(!tagSet.includes(t)) tagSet.push(t);
+    });
+  });
+  const chips = ["전체"].concat(tagSet);
+  document.getElementById("ingTags").innerHTML = chips.map(t=>{
+    const key = t==="전체" ? "" : t;
+    const on  = ingTagFilter===key ? " active" : "";
+    return `<span class="chip${on}" onclick="filterIngTag('${key}')">${t}</span>`;
+  }).join("");
+
+  // 태그 필터 적용 (나중 등록이 앞에 오도록 역순)
+  const list = INGREDIENTS.slice().reverse().filter(i=>{
+    if(!ingTagFilter) return true;
+    const tags = (i.tags||"").split(/\s+/);
+    return tags.includes(ingTagFilter);
+  });
+
   document.getElementById("ingGrid").innerHTML=list.map(i=>`
     <div class="item-card" onclick="openIngredient('${i.id}')">
       ${thumb(i.image, "🌿")}
       <div class="body">
         <div class="brand">${i.nameEn}</div>
         <div class="name">${i.nameKo}</div>
-        <div class="meta">${i.efficacy[0]}</div>
+        <div class="meta">${i.efficacy[0]||""}</div>
       </div>
-    </div>`).join("") || `<p style="color:var(--ink-sub)">검색 결과가 없습니다.</p>`;
+    </div>`).join("") || `<p style="color:var(--ink-sub)">${ingTagFilter?`'${ingTagFilter}' 태그의 원료가 없습니다.`:"등록된 원료가 없습니다."}</p>`;
 }
-document.getElementById("ingSearch").addEventListener("input", e=>renderIngredients(e.target.value));
+
+/* 태그 칩 클릭 → 해당 태그 원료만 (같은 걸 또 누르면 해제) */
+function filterIngTag(tag){
+  ingTagFilter = (ingTagFilter===tag) ? "" : tag;
+  renderIngredients();
+}
 
 /* ---- 경쟁사 피드 ---- */
 let compFilter = "";   // "" = 전체, 회사명 = 그 회사만
@@ -539,7 +565,9 @@ function renderCompetitors(){
     return `<span class="chip${on}" onclick="filterCompetitors('${key}')">${c.name}${c.note?` <small>(${c.note})</small>`:""}</span>`;
   }).join("");
   const list = compFilter ? COMPETITORS.filter(c=>c.company===compFilter) : COMPETITORS;
-  const feed = list.map(c=>`
+
+  // 한 건의 카드 HTML
+  const itemHTML = c => `
     <a class="feed-item" ${c.link?`href="${c.link}" target="_blank" rel="noopener"`:""}>
       <span class="feed-tag ${c.type}">${c.type==="disclosure"?"공시":"뉴스"}</span>
       <div class="feed-body">
@@ -547,7 +575,30 @@ function renderCompetitors(){
         <div class="feed-title">${c.title}</div>
         <div class="feed-date">${c.date||""}</div>
       </div>
-    </a>`).join("");
+    </a>`;
+
+  // 날짜(YYYY-MM-DD)에서 YYYY-MM 추출해 년월별 그룹핑
+  const groups = {};
+  list.forEach(c=>{
+    const m = (c.date||"").match(/^(\d{4})-(\d{2})/);
+    const key = m ? `${m[1]}-${m[2]}` : "날짜미상";
+    (groups[key] = groups[key] || []).push(c);
+  });
+  const keys = Object.keys(groups).sort((a,b)=>{
+    if(a==="날짜미상") return 1;
+    if(b==="날짜미상") return -1;
+    return a<b?1:a>b?-1:0;   // 최신월 먼저
+  });
+
+  const feed = keys.map(k=>{
+    const label = k==="날짜미상" ? "날짜 미상"
+      : k.replace(/^(\d{4})-(\d{2})$/, (m,y,mo)=>`${y}년 ${Number(mo)}월`);
+    return `<div class="month-group">
+      <h3 class="month-label">${label}</h3>
+      ${groups[k].map(itemHTML).join("")}
+    </div>`;
+  }).join("");
+
   document.getElementById("compFeed").innerHTML = feed
     || `<p style="color:var(--ink-sub)">${compFilter ? compFilter+" 관련 소식이 아직 없습니다." : "아직 수집된 경쟁사 소식이 없습니다."}</p>`;
 }
