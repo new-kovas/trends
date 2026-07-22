@@ -52,7 +52,6 @@ EXCLUDE = [
 DAYS_BACK = 90          # 최근 며칠 공시 (공시는 뜸해서 넉넉히)
 NEWS_DAYS = 30          # 뉴스는 최근 30일
 NEWS_PER_COMPANY = 2    # 회사당 뉴스 최대 건수
-MAX_ITEMS = 60          # 피드에 실을 최대 건수
 
 DATA_DIR = "data"
 KST = timezone(timedelta(hours=9))
@@ -195,16 +194,34 @@ def main():
         items += fetch_news(company)
         print(f"   [{company}] 코드 {'있음' if code else '없음(뉴스만)'}")
 
-    # 날짜 최신순 정렬 후 상한
-    items.sort(key=lambda x: x.get("date", ""), reverse=True)
-    items = items[:MAX_ITEMS]
-
     os.makedirs(DATA_DIR, exist_ok=True)
     path = os.path.join(DATA_DIR, "competitors.json")
+
+    # 기존에 쌓인 데이터를 읽어와 새 수집분과 합칩니다(누적).
+    existing = []
+    if os.path.exists(path):
+        try:
+            existing = json.load(open(path, encoding="utf-8")).get("items", [])
+        except Exception:
+            existing = []
+
+    # 합치고 중복 제거 (링크가 있으면 링크로, 없으면 회사+제목으로 식별)
+    merged = existing + items
+    seen, deduped = set(), []
+    for it in merged:
+        key = it.get("link") or (it.get("company", "") + "|" + it.get("title", ""))
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(it)
+
+    # 날짜 최신순 정렬 (상한 없음 — 계속 누적)
+    deduped.sort(key=lambda x: x.get("date", ""), reverse=True)
+
     with open(path, "w", encoding="utf-8") as f:
-        json.dump({"updated": datetime.now(KST).strftime("%Y-%m-%d"), "items": items},
+        json.dump({"updated": datetime.now(KST).strftime("%Y-%m-%d"), "items": deduped},
                   f, ensure_ascii=False, indent=2)
-    print(f"   → {path} 저장 ({len(items)}건)")
+    print(f"   → {path} 저장 (신규 {len(items)}건 반영, 누적 총 {len(deduped)}건)")
     print("===== 완료 =====")
 
 
