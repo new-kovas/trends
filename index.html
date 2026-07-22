@@ -129,7 +129,10 @@ img{ max-width:100%; display:block; }
 .feed-title{ font-size:15px; font-weight:600; margin:2px 0 4px; }
 .feed-date{ font-size:12px; color:var(--ink-sub); }
 .company-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
-.company-chips .chip{ background:var(--surface); border:1px solid var(--line); color:var(--ink); font-size:13px; font-weight:600; padding:6px 14px; border-radius:20px; box-shadow:var(--shadow-sm); }
+.company-chips .chip{ background:var(--surface); border:1px solid var(--line); color:var(--ink); font-size:13px; font-weight:600; padding:6px 14px; border-radius:20px; box-shadow:var(--shadow-sm); cursor:pointer; transition:.12s; }
+.company-chips .chip:hover{ border-color:var(--brand-amber); transform:translateY(-1px); }
+.company-chips .chip.active{ background:var(--brand-primary); color:#fff; border-color:var(--brand-primary); }
+.company-chips .chip.active small{ color:rgba(255,255,255,.8); }
 .company-chips .chip small{ color:var(--ink-sub); font-weight:400; }
 .chips-label{ font-size:12px; font-weight:700; color:var(--brand-primary); margin-bottom:10px; }
 
@@ -249,7 +252,7 @@ img{ max-width:100%; display:block; }
       <div class="page-title"><span>신제품</span> 살펴보기</div>
       <div class="updated" id="prodUpdated"></div>
     </div>
-    <p class="page-desc">신제품 리스트는 매주 업데이트 됩니다.</p>
+    <p class="page-desc">매주 주목할 신제품을 등록합니다. (구글 시트로 입력 → 자동 반영)</p>
     <div id="prodGrid"></div>
   </section>
 
@@ -525,10 +528,18 @@ function renderIngredients(filter=""){
 document.getElementById("ingSearch").addEventListener("input", e=>renderIngredients(e.target.value));
 
 /* ---- 경쟁사 피드 ---- */
+let compFilter = "";   // "" = 전체, 회사명 = 그 회사만
+
 function renderCompetitors(){
-  document.getElementById("companyChips").innerHTML=TRACKED_COMPANIES.map(c=>`
-    <span class="chip">${c.name}${c.note?` <small>(${c.note})</small>`:""}</span>`).join("");
-  const feed = COMPETITORS.map(c=>`
+  // 상단 칩: '전체' + 업체들. 누르면 해당 업체만 필터링됩니다.
+  const chips = [{name:"전체"}].concat(TRACKED_COMPANIES);
+  document.getElementById("companyChips").innerHTML = chips.map(c=>{
+    const key = c.name === "전체" ? "" : c.name;
+    const on  = compFilter === key ? " active" : "";
+    return `<span class="chip${on}" onclick="filterCompetitors('${key}')">${c.name}${c.note?` <small>(${c.note})</small>`:""}</span>`;
+  }).join("");
+  const list = compFilter ? COMPETITORS.filter(c=>c.company===compFilter) : COMPETITORS;
+  const feed = list.map(c=>`
     <a class="feed-item" ${c.link?`href="${c.link}" target="_blank" rel="noopener"`:""}>
       <span class="feed-tag ${c.type}">${c.type==="disclosure"?"공시":"뉴스"}</span>
       <div class="feed-body">
@@ -538,7 +549,13 @@ function renderCompetitors(){
       </div>
     </a>`).join("");
   document.getElementById("compFeed").innerHTML = feed
-    || `<p style="color:var(--ink-sub)">아직 수집된 경쟁사 소식이 없습니다.</p>`;
+    || `<p style="color:var(--ink-sub)">${compFilter ? compFilter+" 관련 소식이 아직 없습니다." : "아직 수집된 경쟁사 소식이 없습니다."}</p>`;
+}
+
+/* 업체 칩 클릭 → 해당 업체만 표시 */
+function filterCompetitors(name){
+  compFilter = (compFilter === name) ? "" : name;   // 같은 걸 또 누르면 해제
+  renderCompetitors();
 }
 
 /* ---- 경쟁사 데이터 불러오기 ---- */
