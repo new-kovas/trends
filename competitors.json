@@ -1,6 +1,34 @@
 {
-  "updated": "2026-07-16",
+  "updated": "2026-07-22",
   "items": [
+    {
+      "company": "코스메카코리아",
+      "type": "news",
+      "title": "코스메카코리아, 차세대 항노화 화장품 원료 개발 착수 - 의학신문",
+      "date": "2026-07-22",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5CNWlqLThjdkdzWXJkWF81anJrdGc3NG5BallyVXFRM3VqRUlyTDV1R05FUl9CN016MkswakhDcUo1OG9zU2ZpVkZzVEdpbGx2UnN1dmdNelppdnNTakZGODRQRkstVGt1ZWc?oc=5"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "잉글우드랩, 코스모프로프 라스베이거스서 BEMT 선케어 공개 - 의학신문",
+      "date": "2026-07-21",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBsLVJQZElKNTg5bWRvdWkwUGJDQ2s2MnVLeHQ2WkkwUk9oV0pSTG1JUHJwSlRrUVlsWmd5WllWUVZSUWhQRVRhZlhERlczMFpUYk0yZ002RzZXbGJoOFNwWkRzY2VHUGNILUE?oc=5"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "화장품신문 (Beautynury.com) :: 잉글우드랩, FDA 신규 승인 자외선 필터 적용 선케어 공개 - 뷰티누리",
+      "date": "2026-07-20",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9aUmVKdGJyT08yT1RtMFcxWVpoSklmVFdEbkhYaU81Z2VjZFo3cVdxSWR3cVI0dS13eWtQVkNKOW9RZkNsdUNqWURHMk4yNkUzcFlTQ2o1QnBOYmhDYnFR?oc=5"
+    },
+    {
+      "company": "제닉",
+      "type": "disclosure",
+      "title": "단기차입금증가결정",
+      "date": "2026-07-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260720900458"
+    },
     {
       "company": "엔코스",
       "type": "news",
@@ -16,6 +44,13 @@
       "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE42RGdvZnBOMlRTa01TQVB1QWhWcDRwc19zdXg5bnpsVFNkdnhYUi1NTlZXV1hVSE1ndHJUc09lMzJoOWFiYTBDdmluZUVpWENiYzBsa0JUYVJDaVHSAWBBVV95cUxPRHA3c0ZUbUt2TzIzVXN3U0hyVjczTWY0NEd3UEQtMG50LUNGVVk0ZXZHQmdJLUlxcEVrRDNhcHRBQXhUb2tsZVJONnNsR0c1a1lVY1N2S29qSzE0Njg5V1c?oc=5"
     },
     {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "코스맥스, 일본서 AI 맞춤형 화장품 사업 본격화 - 머니투데이 - 머니투데이",
+      "date": "2026-07-13",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFA2NVViY1JPeW1PWWMxa1NGUmhlcExkaER2dGxWSnc5OVpOeUdURXQ0VDZaTGJIV0hobkFyb29IRzZaWnNkVzJ0dTRKWHFQazNsdjJYY3R2UkxqQWhad0p2MFQ0SFZyVXY4aGfSAW9BVV95cUxNQ2oteThTZUhWbUsyNXNZSXBmWVR5dG8yZGVfVWh4ai0tZUlhM1NCajZ1VXJ1aVFFLTctUmJiRFVUVDhUcFJyQWVNbW82NGtDeFBlczJEbG5ka1ZkdTFsTGhaYUxFLXFaLXBzcWRXQ1E?oc=5"
+    },
+    {
       "company": "그린코스",
       "type": "news",
       "title": "미라콤아이앤씨, 그린코스 3공장 MES 구축 착수…화장품 생산·품질 데이터 통합 관리 추진 - 헬로티",
@@ -25,58 +60,51 @@
     {
       "company": "그린코스",
       "type": "news",
-      "title": "미라콤아이앤씨, 그린코스에 디지털팩토리 구축…“화장품 제조 품질관리 고도화” - 테크월드",
+      "title": "미라콤아이앤씨, 그린코스에 MES 구축…화장품 품질관리 디지털화 - 지디넷코리아",
       "date": "2026-07-13",
-      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1mcHBrdE52SVVQM1VBTXNzbDFDbkJTOGlhSjRLSVlFNzZMWnlsbW44N25PMlltbGJTblZKMUE5eTNSdklTbmFqSVBKN0FISXlGeGJ1T1FjeTRaVmZmUzlWLWUtczFQdWk4?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB0YU0tbGVCZXdQZ3hjVElERzNYQmYwTXprNHBaYTB0LVYtQjZWN2EtYW9GaVB2WVU1b3lmRURTY0pWWkItQTJtbWkwaWo1WWd3M0RtU0Z3?oc=5"
     },
     {
       "company": "씨앤씨인터내셔널",
       "type": "news",
-      "title": "씨앤씨인터내셔널 기업분석 - 네이버 프리미엄콘텐츠",
-      "date": "2026-07-12",
-      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPVWRRQUxiY08yeGh6UlBHMHpYM2lnVjNpYkJCVEh0akpqZXdOQW9JdTJFdFlrWjlvSHJFUVMybFJtODA4Wk9Qbl9MbERpdzdPWDlVc3VXRExGb3NGenYzeEFGRVVBbER0OHduVmlCcTlkY0JBYUY3RGpSYnlua2x1UVc0c3BZVHIyRzEw?oc=5"
+      "title": "씨앤씨인터내셔널 투자분석 2026. 07. 10 - 주달",
+      "date": "2026-07-10",
+      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5TTHM2M1Rud3VlZlp3cHNFU25nbnRNZHFPWEZkR08zbGJVR2tORko4Sl90WkpQdW9lYWE5SWhJdW1pV01MZUhkSDh0U1Rmckpnd2NidUFsbWZoQVFqTzktLUs2cWtqSEVNbjBFZlkyYTM5bVE?oc=5"
     },
     {
-      "company": "잉글우드랩",
+      "company": "이미인",
       "type": "news",
-      "title": "잉글우드랩 투자분석 2026. 07. 12 - 주달",
-      "date": "2026-07-12",
-      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5kU29sdmVTdGNuT2Fxbmg3emhCemx6cUlHbnBlY2x6S3VGMU1ibVBuM2xFc2MyN2xCWVdzOHdJM3F0X1cyUlVNbW03MVQtOW83V0lQRElTTkFRbVdKZW94dGxITGp6SjYwdXhDNXNlQVRWVzQ?oc=5"
+      "title": "\"폭우 뒤 폭염\"…여름철 기능성 화장품 뜬다 - 뉴시스",
+      "date": "2026-07-10",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9GbFUxYndnM1NOTE9CMElYeks1eDM0MVNtQXNXZmgxMmQtc0RYRnhvVEdtSldoaWJ2UUtSQ0hySDFFY1BPdVd2MFluRkc3ejJjVjljdF9OSUxrTVBETTZxMNIBeEFVX3lxTE93a3RPdzdVSHVKTVFRbzZSVm5rd0kxODU3dGpwQmRqcmlfVi1TZ0NoYkt2RldnZDMwNUktdHdFeDNuX0pZdUUzdHVHOXZMdW11TWNxVENGOG42YXZQYVhTYmVyT09BdHFwa3VmTk94cENneTljSUU4Zw?oc=5"
     },
     {
       "company": "제닉",
       "type": "news",
-      "title": "고기능 스킨케어 경쟁, 깊어지는 여름처럼 더 '뜨거워진다' [최기자의 화장품 털기] - meconomynews.com",
-      "date": "2026-07-11",
-      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE03QkNvZGFQNDFkQ3lFcUw3bzBDUkw1XzNMeHB0SzNvcjdKc1JiTXpGOUZoVEZQNTg5STdDQzlUWC1DaDVBLXcwR3dRYVlQVUxac1Y5N19JVXNSZDFzRmh3X0Z0dDZjNjJIQnpiVmM1ZWk?oc=5"
+      "title": "[오늘 이 종목] 시장 리스크 속 기회… 강재헌 부장의 '시선집중' 필승 전략 - v.daum.net",
+      "date": "2026-07-09",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE51UE42YzJQd05WRnRIbjM1Q1NMRWt0dWpDT0xaTWhfdkZqbGtmbDZ3SGhWUUxXTVMzSkgwOUkyRFV2ZTlUU25aZGlSNEtydzVlczlpLQ?oc=5"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "최대주주등소유주식변동신고서",
+      "date": "2026-07-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260706800440"
     },
     {
       "company": "이미인",
       "type": "news",
-      "title": "폭우 뒤엔 폭염… 여름철 피부 지키는 ‘기능성 뷰티 소비’ 뜬다 - 뉴스와이어",
-      "date": "2026-07-10",
-      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1taVUxOXRPNVlKRk5Kb29qdmQ0cFc5aHVJZkxSUXJiSUMwTW9nVmJVZ3dtQ3RkVGJOWkRRLWNWQmFLZy1Yb0N6Tm5GQTRZVDFCbHJGSF9IOXo5MnhEeTlr?oc=5"
-    },
-    {
-      "company": "코스맥스",
-      "type": "news",
-      "title": "코스맥스, AI·OBM 전략으로 뷰티 지형 바꾼다 - 헬스경향",
-      "date": "2026-07-06",
-      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9lSURSd2F3UmZZN3R1Q3drUzBUSTFhRnFsOUdONHFLeHNpR3pWNUVSTkloSVZqNXMxOFYwTE1YMUYydXJkTnpyUDQwblRuYWQyMEVCdjRZUldaWkV0RnlNcWFYOHRnRVQwMWc?oc=5"
+      "title": "이미인 박정완 대표, 2026 대한민국 중소기업인대회 ‘중소벤처기업부 장관 표창’ 수상… K-뷰티 ODM 경쟁력 빛났다 - 전국시민의소리",
+      "date": "2026-07-05",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBKRWlwdjZXT0plMVU3Qm5BVXJidGhLX1NFN2lSNGZ3ZkFiUnhHZjNMQklhTFhjLUgwTUZpV2piTjVobGNZN0h5WF82QVZBV1pFcGdSVHFTRlpxRTVoWHo1Y0xXMmptMWxPMWhtRg?oc=5"
     },
     {
       "company": "한국콜마",
       "type": "news",
-      "title": "일주일에 31% 뛰었는데도 “아직 싸다”…한국콜마 더 간다는 이유 [이주의 Bull기둥] - 매일경제",
-      "date": "2026-07-05",
-      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE85Q004clVxZnM1VXhmMU1iUmtXV0ZQSzcyV3BadEUzQURMTjRnaHUzYUJEZC04bkFERVM0QmxHWGJhN2tKUWZZUWNjTHR1cVVrYUE?oc=5"
-    },
-    {
-      "company": "이미인",
-      "type": "news",
-      "title": "박정완 이미인 대표, 중소기업인대회서 장관 표창 수상 - 매일경제",
+      "title": "[애프터마켓 리뷰] 화장품, 6월 수출 역대 최대치 경신… 한국콜마 급등 - v.daum.net",
       "date": "2026-07-03",
-      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBCZEVzUV9FUmxiRHJvX2dhRlk2QXFXMGUwRlg0YTFRTWhQdkxyanduT05IemNvQUV1UmVxSG9GSDFHZEgyNjJIOTZhUHU0NHpZY3c2R1ZR?oc=5"
+      "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE56Qi1WMzUwUGs1MkIzREEwWFJBSEFsQkxwU0dUNXdXcDBodV9HaHZuRTRMOWgzR3kwQTNBc3R1N1NDeWN6WXhlQ3lMZVNaZVU?oc=5"
     },
     {
       "company": "한국콜마",
@@ -86,25 +114,53 @@
       "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQZjVWZUxqa0ZfYy11RTBOeFFvRGU1SkZBbGNYaE1PME9kU1Npdnd1RXVkQWJtQm9ENjM5dFdraWNFSlhjbEdLODFQQU5QVUhVVUlMQkpTUTFjZF9GWTEtbXY0MXl0YnNzMl9tdkZsRUNGd194SVlUSDFkLWV6bEdmWA?oc=5"
     },
     {
-      "company": "씨엔에프",
-      "type": "news",
-      "title": "식약처장, 씨엔에프 방문 … 간담회 개최 - 주간신문씨엠엔",
-      "date": "2026-06-29",
-      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBMYXNZWFVSV1lVaE9LclFiSGZGcWxQSTJCSjQ3bm9kQmNodE51bGlCdjVUX2YxVElOZlBrYVNhUUNuRVBQTDhMV2JjV0lOLWhsN1o2MWtEYUpUMGlkQTFDZGcyVVhZdw?oc=5"
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "풍문또는보도에대한해명(미확정)",
+      "date": "2026-07-01",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260701800408"
     },
     {
-      "company": "코스메카코리아",
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "지속가능경영보고서등관련사항(자율공시)",
+      "date": "2026-06-30",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260630801410"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
       "type": "news",
-      "title": "코스메카코리아, ‘AI 응용 제품 상용화 지원사업’ 선정 - 의학신문",
-      "date": "2026-06-25",
-      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9VZGJZQ0szbVVvYjJZVV9GZVVlOUx6Ri16R2tUNlZwS21oaGduNkpkWGlkV0w4aTdNcGtaMkNlNU1HTmNrdHNKVzY1LUhJUWlMMm5DdGNFR3Y5UWNoUzVfTXlYc1ZadGVkWHc?oc=5"
+      "title": "소비재 수출 1위라더니 화장품 공장 줄폐업…K뷰티 호황의 ‘배신’ - 중앙일보",
+      "date": "2026-06-30",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE45VzNlZFZIUFFPNmU0cmc1OWp5ajg1a1Y2RElZamp0NWhROG5vaGRRUHVIek9TaFJ1VFRtRTN1My1vRmRHZk9ldnFZaS1rRHZzMFFJTzln?oc=5"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "타인에대한채무보증결정",
+      "date": "2026-06-29",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260629800819"
     },
     {
       "company": "제닉",
       "type": "news",
-      "title": "제닉(123330)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. - 씽크풀 AI",
-      "date": "2026-06-24",
-      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5PLVRNSjROWWhSZmx3c1hadjI0a1paM2xWQVd2ODQxelRHYW5IUGRBaUxFSmRLemo3eGNrYUVfTF90V3VPUV85V05oMnc0b2dQdDQtUF9iSV85ODdi?oc=5"
+      "title": "제닉(123330)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. - ThinkPool",
+      "date": "2026-06-28",
+      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5na2p6Q1hFSFVfWWVITm1GcVJNenJBcU9qOHZYOElPeGZZa2RhNWc4dFpNa1ItSDJESmZpRXZ0U2EtUVJFSlF4cE5oVVRSZDdZSkU5LTZqUExJTnQ2?oc=5"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "news",
+      "title": "화장품신문 (Beautynury.com) :: 코스메카코리아, AI 응용제품 상용화 사업 선정 - 뷰티누리",
+      "date": "2026-06-25",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1xZ0JjeEdSMldPM2ZWQlpQdHZPRVZ5QUZBNUs5RXFXTTRXZ3hiS1Vkc2FiUWtva3dqemlDenBfQVlQclN5NEJZZV9VX0drVWZuY2FxQkhTQjhjQVA2UXM4?oc=5"
+    },
+    {
+      "company": "씨엔에프",
+      "type": "news",
+      "title": "화장품신문 (Beautynury.com) :: 식약처, ODM 현장서 K-뷰티 수출 규제 개선 논의 - 뷰티누리",
+      "date": "2026-06-25",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9Hdkg2MVNMWmJHR2s2Ny1qOGF6RTJxT1YwWVZZcG91akNaTnFWall6bndaWWhvbllWaFpNeEQtX0FOWVljRk9vWEZCbG5LNHRHaHlBUXZmV3dFWDBlRkVr?oc=5"
     },
     {
       "company": "씨엔에프",
@@ -122,24 +178,157 @@
     },
     {
       "company": "코스메카코리아",
-      "type": "news",
-      "title": "'물속에 물' 선크림 만든다…코스메카, 끈적임 없는 선제품 주력[유통人터뷰] - v.daum.net",
-      "date": "2026-06-22",
-      "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1mYWl0QmxheC1ReEpvdzJzb0NzZVl3aG81SzE3WUxORFJITnRJTDVGTFNlc05jS3pMa2NVX2RmRGpZeTRjNFE?oc=5"
+      "type": "disclosure",
+      "title": "[첨부정정]주요사항보고서(유형자산양수결정)",
+      "date": "2026-06-05",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260605000640"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "주요사항보고서(유형자산양수결정)",
+      "date": "2026-06-05",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260605000279"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "대규모기업집단현황공시[연1회공시및1/4분기용(개별회사)]",
+      "date": "2026-06-01",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601000467"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "기업지배구조보고서공시",
+      "date": "2026-06-01",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601800703"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "기업지배구조보고서공시",
+      "date": "2026-05-29",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260529800992"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "최대주주등소유주식변동신고서",
+      "date": "2026-05-28",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260528800623"
     },
     {
       "company": "씨앤씨인터내셔널",
-      "type": "news",
-      "title": "[K-뷰티 마스터피스] ⑪ 씨앤씨인터내셔널 '패스트 트랙(Fast-Track)' - 약업신문",
-      "date": "2026-06-21",
-      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1YZWt4ejRadE1CWUJCRENxSzJOZVQyQmh0a2ZwV2ZGcElzZGRfNDlCX0VNZ3FjVXZYTWY5cUI2NkI0N0NvaktaUkd4SmJLVG5KblB4ekZvS2c5WHhEWWlNSm5jTXcxZw?oc=5"
+      "type": "disclosure",
+      "title": "주요사항보고서(자기주식취득신탁계약체결결정)",
+      "date": "2026-05-26",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260526000181"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "투자판단관련주요경영사항",
+      "date": "2026-05-22",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260522800985"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "신규시설투자등(자회사의 주요경영사항)",
+      "date": "2026-05-21",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260521800376"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "[기재정정]타인에대한채무보증결정",
+      "date": "2026-05-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260520800546"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "신규시설투자등",
+      "date": "2026-05-19",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260519800635"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "타인에대한채무보증결정",
+      "date": "2026-05-19",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260519800589"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-05-12",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260512800590"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-05-11",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260511900256"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-05-08",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260508800088"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "영업(잠정)실적(공정공시)",
+      "date": "2026-05-08",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260508800086"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-05-08",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260508900629"
     },
     {
       "company": "잉글우드랩",
-      "type": "news",
-      "title": "K-뷰티 급등 랠리 멈췄나…화장품주 차익 실현에 줄줄이 하락 - 핀포인트뉴스",
-      "date": "2026-06-19",
-      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE15VUhlVW5UTHctUFFKQ01fYXZaLURBUVh2c01VOGptVnNWblhsWFpOc1ZndmtQTDFJTEFHd0dZb19NRXRWTFZodS1oUkR3WC0zSW9oelhNQ2xFWDZheW1LVGVzQ3ZxSE9TZVhGbWtXTzZTdnfSAXdBVV95cUxPUlpheFNYRkhKVEYzY1k4elNTWXIyNWIxbUx1MHF1ank1c1Y4dFhKaTlRZWthUkpkMENOdGhKWXpodU03bmlSVjJLTkVkY012SElZTWVnSGVad3RMSGVVbE9TOXhIZXl6ejBNelVaYU9hUG1Iemxzbw?oc=5"
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-05-08",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260508900642"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "투자판단관련주요경영사항",
+      "date": "2026-05-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260506800620"
+    },
+    {
+      "company": "제닉",
+      "type": "disclosure",
+      "title": "소속부변경",
+      "date": "2026-04-30",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430901847"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "최대주주등소유주식변동신고서",
+      "date": "2026-04-28",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428800777"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "[기재정정]현금ㆍ현물배당결정(자회사의 주요경영사항)",
+      "date": "2026-04-24",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260424800519"
     }
   ]
 }
