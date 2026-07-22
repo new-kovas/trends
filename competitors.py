@@ -40,17 +40,19 @@ TRACKED = [
     "잉글우드랩", "제닉", "그린코스", "씨엔에프", "씨엔텍", "이미인", "엔코스",
 ]
 
-# 주요 경영사항으로 볼 공시 제목 키워드 (이 단어가 들어간 공시만 채택)
-KEYWORDS = [
-    "공급계약", "단일판매", "시설투자", "증설", "취득", "처분",
-    "실적", "손익구조", "매출액", "영업양수", "영업양도",
-    "유상증자", "무상증자", "합병", "분할", "자기주식",
-    "수주", "투자판단", "주요사항",
+# 제외할 공시(잡공시). 이 단어가 제목에 있으면 걸러냅니다.
+# ※ '주요 경영사항만 골라내기'보다, '잡공시만 빼기'가 놓치는 게 적습니다.
+EXCLUDE = [
+    "주주총회소집", "임원ㆍ주요주주", "임원·주요주주", "특정증권등소유상황",
+    "대량보유상황보고", "주식등의대량보유", "사업보고서", "분기보고서", "반기보고서",
+    "감사보고서", "정정신고", "기업설명회", "IR", "결산실적공시예고",
+    "최대주주변경", "주식명의개서", "전자증권",
 ]
 
-DAYS_BACK = 30          # 최근 며칠 공시/뉴스
+DAYS_BACK = 90          # 최근 며칠 공시 (공시는 뜸해서 넉넉히)
+NEWS_DAYS = 30          # 뉴스는 최근 30일
 NEWS_PER_COMPANY = 2    # 회사당 뉴스 최대 건수
-MAX_ITEMS = 40          # 피드에 실을 최대 건수
+MAX_ITEMS = 60          # 피드에 실을 최대 건수
 
 DATA_DIR = "data"
 KST = timezone(timedelta(hours=9))
@@ -123,11 +125,12 @@ def fetch_disclosures(corp_code, company):
             print(f"   [{company}] DART 메시지:", data.get("status"), data.get("message"))
         return []
 
+    raw = data.get("list", [])
     out = []
-    for it in data.get("list", []):
+    for it in raw:
         title = (it.get("report_nm") or "").strip()
-        if not any(k in title for k in KEYWORDS):
-            continue   # 주요 경영사항 아니면 건너뜀
+        if any(k in title for k in EXCLUDE):
+            continue   # 잡공시 제외
         dt = it.get("rcept_dt", "")
         out.append({
             "company": company,
@@ -136,6 +139,8 @@ def fetch_disclosures(corp_code, company):
             "date": f"{dt[:4]}-{dt[4:6]}-{dt[6:8]}" if len(dt) == 8 else dt,
             "link": f"https://dart.fss.or.kr/dsaf001/main.do?rcpNo={it.get('rcept_no','')}",
         })
+    # 진단용: 전체 몇 건 중 몇 건이 남았는지
+    print(f"      공시 {len(raw)}건 중 {len(out)}건 채택")
     return out
 
 
@@ -143,7 +148,7 @@ def fetch_disclosures(corp_code, company):
 # 뉴스: 회사별 최근 기사
 # ----------------------------------------------------------------
 def fetch_news(company):
-    q = urllib.parse.quote(f"{company} 화장품 when:{DAYS_BACK}d")
+    q = urllib.parse.quote(f"{company} 화장품 when:{NEWS_DAYS}d")
     url = f"https://news.google.com/rss/search?q={q}&hl=ko&gl=KR&ceid=KR:ko"
     out = []
     try:
