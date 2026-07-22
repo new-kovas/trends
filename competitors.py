@@ -49,9 +49,10 @@ EXCLUDE = [
     "최대주주변경", "주식명의개서", "전자증권",
 ]
 
-DAYS_BACK = 90          # 최근 며칠 공시 (공시는 뜸해서 넉넉히)
-NEWS_DAYS = 30          # 뉴스는 최근 30일
+DISCLOSURE_FROM = "20260101"   # 공시 수집 시작일 (YYYYMMDD) — 2026년 1월부터 누적
+NEWS_DAYS = 60          # 뉴스 조회 기간(구글뉴스 RSS는 과거를 잘 안 줘서 최근분만 잡힘)
 NEWS_PER_COMPANY = 2    # 회사당 뉴스 최대 건수
+MAX_PAGES = 10          # 공시 페이지 안전상한 (100건 × 10 = 최대 1,000건)
 
 DATA_DIR = "data"
 KST = timezone(timedelta(hours=9))
@@ -100,46 +101,54 @@ def find_code(corp_map, company):
 # DART: 회사별 주요 경영사항 공시
 # ----------------------------------------------------------------
 def fetch_disclosures(corp_code, company):
-    """최근 공시 목록에서 주요 경영사항 키워드가 든 것만 골라 돌려줍니다."""
-    end = datetime.now(KST)
-    bgn = end - timedelta(days=DAYS_BACK)
-    params = urllib.parse.urlencode({
-        "crtfc_key": DART_KEY,
-        "corp_code": corp_code,
-        "bgn_de": bgn.strftime("%Y%m%d"),
-        "end_de": end.strftime("%Y%m%d"),
-        "page_count": 100,
-    })
-    url = f"https://opendart.fss.or.kr/api/list.json?{params}"
-    try:
-        res = urllib.request.urlopen(url, timeout=20).read()
-        data = json.loads(res)
-    except Exception as e:
-        print(f"   [{company}] 공시 조회 실패:", e)
-        return []
-
-    if data.get("status") != "000":
-        # 013=데이터없음 은 정상(공시 없음)
-        if data.get("status") not in ("013",):
-            print(f"   [{company}] DART 메시지:", data.get("status"), data.get("message"))
-        return []
-
-    raw = data.get("list", [])
+    """2026-01-01부터 지금까지의 공시를 (여러 페이지에 걸쳐) 모아, 잡공시만 빼고 돌려줍니다."""
+    end = datetime.now(KST).strftime("%Y%m%d")
     out = []
-    for it in raw:
-        title = (it.get("report_nm") or "").strip()
-        if any(k in title for k in EXCLUDE):
-            continue   # 잡공시 제외
-        dt = it.get("rcept_dt", "")
-        out.append({
-            "company": company,
-            "type": "disclosure",
-            "title": title,
-            "date": f"{dt[:4]}-{dt[4:6]}-{dt[6:8]}" if len(dt) == 8 else dt,
-            "link": f"https://dart.fss.or.kr/dsaf001/main.do?rcpNo={it.get('rcept_no','')}",
+    total_raw = 0
+    page = 1
+    while page <= MAX_PAGES:
+        params = urllib.parse.urlencode({
+            "crtfc_key": DART_KEY,
+            "corp_code": corp_code,
+            "bgn_de": DISCLOSURE_FROM,
+            "end_de": end,
+            "page_no": page,
+            "page_count": 100,
         })
-    # 진단용: 전체 몇 건 중 몇 건이 남았는지
-    print(f"      공시 {len(raw)}건 중 {len(out)}건 채택")
+        url = f"https://opendart.fss.or.kr/api/list.json?{params}"
+        try:
+            data = json.loads(urllib.request.urlopen(url, timeout=20).read())
+        except Exception as e:
+            print(f"   [{company}] 공시 조회 실패:", e)
+            break
+
+        status = data.get("status")
+        if status != "000":
+            if status not in ("013",):   # 013=데이터없음(정상)
+                print(f"   [{company}] DART 메시지:", status, data.get("message"))
+            break
+
+        lst = data.get("list", [])
+        total_raw += len(lst)
+        for it in lst:
+            title = (it.get("report_nm") or "").strip()
+            if any(k in title for k in EXCLUDE):
+                continue   # 잡공시 제외
+            dt = it.get("rcept_dt", "")
+            out.append({
+                "company": company,
+                "type": "disclosure",
+                "title": title,
+                "date": f"{dt[:4]}-{dt[4:6]}-{dt[6:8]}" if len(dt) == 8 else dt,
+                "link": f"https://dart.fss.or.kr/dsaf001/main.do?rcpNo={it.get('rcept_no','')}",
+            })
+
+        # 다음 페이지가 있으면 계속
+        if page >= data.get("total_page", 1):
+            break
+        page += 1
+
+    print(f"      공시 {total_raw}건 중 {len(out)}건 채택 (2026-01~)")
     return out
 
 
