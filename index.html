@@ -145,6 +145,17 @@ img{ max-width:100%; display:block; }
 .stat-box .unit{ font-size:14px; color:var(--ink-sub); font-weight:600; }
 .stat-box .lbl{ font-size:13px; color:var(--ink-sub); margin-top:6px; }
 .bar-chart{ background:var(--surface); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow-sm); }
+.exp-toggle{ display:inline-flex; gap:4px; background:#F3E7DA; border-radius:20px; padding:4px; margin-bottom:14px; }
+.exp-toggle button{ font-size:13px; font-weight:700; color:var(--ink-sub); padding:7px 18px; border-radius:16px; }
+.exp-toggle button.active{ background:var(--brand-primary); color:#fff; }
+/* 세로 막대 그래프 */
+.vbars{ display:flex; align-items:flex-end; gap:6px; height:220px; overflow-x:auto; padding-top:10px; }
+.vbar{ flex:0 0 auto; min-width:22px; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end; }
+.vbar .col{ width:70%; max-width:34px; background:linear-gradient(180deg,var(--brand-mid),var(--brand-primary)); border-radius:5px 5px 0 0; transition:height .3s, filter .12s; }
+.vbar .vlabel{ font-size:10px; color:var(--ink-sub); white-space:nowrap; }
+.vbar .vval{ font-size:10px; font-weight:700; color:var(--brand-deep); white-space:nowrap; opacity:0; transition:opacity .12s; }
+.vbar:hover .vval{ opacity:1; }
+.vbar:hover .col{ filter:brightness(1.12); }
 .bar-chart h4{ font-size:15px; margin-bottom:18px; }
 .bar-row{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
 .bar-row .yr{ width:50px; font-size:13px; font-weight:700; color:var(--ink-sub); }
@@ -285,8 +296,12 @@ img{ max-width:100%; display:block; }
       <div class="page-title"><span>화장품</span> 수출지표</div>
       <div class="updated" id="expUpdated"></div>
     </div>
-    <p class="page-desc">관세청 무역통계(HS 3304 화장품) 기준. 월 1회 업데이트됩니다.</p>
+    <p class="page-desc">관세청 무역통계(HS 3304.99) 기준. 월 1회 업데이트됩니다.</p>
     <div class="stat-row" id="statRow"></div>
+    <div class="exp-toggle" id="expToggle">
+      <button data-mode="month" class="active">월간</button>
+      <button data-mode="year">연간</button>
+    </div>
     <div class="bar-chart" id="barChart"></div>
   </section>
 
@@ -381,19 +396,9 @@ const TRACKED_COMPANIES = [
 ];
 
 // --- (E) 수출지표 (관세청 무역통계 HS 3304) ---
-const EXPORTS = {
-  updated:"2026-06 기준",
-  stats:[
-    { val:"94.2", unit:"억 달러", lbl:"2025년 화장품 수출액" },
-    { val:"+10.0", unit:"%", lbl:"전년 대비 증가율" },
-    { val:"3304", unit:"", lbl:"화장품 HS 코드" }
-  ],
-  yearly:[
-    { yr:"2023", value:71.8 },
-    { yr:"2024", value:85.7 },
-    { yr:"2025", value:94.2 }
-  ]
-};
+// --- (E) 수출지표 (exports.py가 만든 data/exports.json 에서 불러옵니다) ---
+let EXPORTS = { updated:"", hs:"3304.99", monthly:[] };   // loadExports()가 채웁니다
+let expMode = "month";   // "month" 월간 / "year" 연간
 
 
 /* ============================================================
@@ -620,15 +625,68 @@ async function loadCompetitors(){
 
 /* ---- 수출지표 ---- */
 function renderExports(){
-  document.getElementById("expUpdated").textContent=`${EXPORTS.updated} · 월 1회`;
-  document.getElementById("statRow").innerHTML=EXPORTS.stats.map(s=>`
+  const monthly = EXPORTS.monthly || [];
+  document.getElementById("expUpdated").textContent = (EXPORTS.updated||"") + " 기준 · 월 1회";
+
+  // 억 달러로 변환 (API 금액은 USD로 가정 → /1e8). 첫 실행 진단 후 단위 보정 가능.
+  const toEok = usd => usd / 1e8;
+
+  // 연간 합계 계산
+  const yearMap = {};
+  monthly.forEach(r=>{ const y=r.ym.slice(0,4); yearMap[y]=(yearMap[y]||0)+r.exp; });
+  const yearly = Object.keys(yearMap).sort().map(y=>({label:y, val:yearMap[y]}));
+
+  // 상단 요약 카드: 최신월, 최근 12개월 합계, 전년 동기 대비
+  const stats = [];
+  if(monthly.length){
+    const last = monthly[monthly.length-1];
+    stats.push({ val:toEok(last.exp).toFixed(2), unit:"억 달러", lbl:`${last.ym} 수출액` });
+    const last12 = monthly.slice(-12).reduce((s,r)=>s+r.exp,0);
+    stats.push({ val:toEok(last12).toFixed(1), unit:"억 달러", lbl:"최근 12개월 합계" });
+  }
+  stats.push({ val:"3304.99", unit:"", lbl:"화장품 HS 코드" });
+  document.getElementById("statRow").innerHTML = stats.map(s=>`
     <div class="stat-box"><div class="val">${s.val}<span class="unit">${s.unit}</span></div><div class="lbl">${s.lbl}</div></div>`).join("");
-  const max=Math.max(...EXPORTS.yearly.map(y=>y.value));
-  document.getElementById("barChart").innerHTML=`<h4>연도별 화장품 수출액 (억 달러)</h4>`+
-    EXPORTS.yearly.map(y=>`
-      <div class="bar-row"><div class="yr">${y.yr}</div>
-        <div class="bar-track"><div class="bar-fill" style="width:${(y.value/max*100).toFixed(0)}%">${y.value}</div></div>
-      </div>`).join("");
+
+  // 막대 데이터: 월간이면 최근 24개월, 연간이면 전체 연도
+  let bars, title;
+  if(expMode === "year"){
+    bars = yearly.map(y=>({label:y.label, val:toEok(y.val)}));
+    title = "연도별 화장품 수출액 (억 달러)";
+  } else {
+    bars = monthly.map(r=>({label:r.ym.slice(2), val:toEok(r.exp)}));  // YY-MM, 2018년부터 전체
+    title = "월별 화장품 수출액 (억 달러, 2018년~)";
+  }
+
+  if(!bars.length){
+    document.getElementById("barChart").innerHTML = `<p style="color:var(--ink-sub)">아직 수출 데이터가 없습니다.</p>`;
+    return;
+  }
+  const max = Math.max(...bars.map(b=>b.val)) || 1;
+  document.getElementById("barChart").innerHTML =
+    `<h4>${title}</h4><div class="vbars">` +
+    bars.map(b=>`
+      <div class="vbar" title="${b.label} · ${b.val.toFixed(2)}억 달러">
+        <div class="vval">${b.val.toFixed(2)}억$</div>
+        <div class="col" style="height:${(b.val/max*100).toFixed(1)}%"></div>
+        <div class="vlabel">${b.label}</div>
+      </div>`).join("") + `</div>`;
+}
+
+/* 월간/연간 토글 */
+document.getElementById("expToggle").addEventListener("click", e=>{
+  if(e.target.tagName!=="BUTTON") return;
+  expMode = e.target.dataset.mode;
+  document.querySelectorAll("#expToggle button").forEach(b=>b.classList.toggle("active", b.dataset.mode===expMode));
+  renderExports();
+});
+
+/* 수출 데이터 불러오기 */
+async function loadExports(){
+  try{
+    EXPORTS = await (await fetch("data/exports.json")).json();
+  }catch(e){ console.warn("exports.json 로드 실패(아직 없을 수 있음)", e); }
+  renderExports();
 }
 
 /* ---- 상세 패널 열기 ---- */
@@ -718,7 +776,10 @@ async function loadNews(){
 loadNews();
 loadSheets();
 loadCompetitors();
-renderExports();
+loadExports();
 </script>
+<!-- 방문자 통계 (GoatCounter) — 통계는 https://kovas-trend.goatcounter.com 에서 확인 -->
+<script data-goatcounter="https://kovas-trend.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
