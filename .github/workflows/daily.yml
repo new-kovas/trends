@@ -51,6 +51,12 @@ jobs:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python competitors.py
 
+      # 4-3) 화장품 수출지표 수집 (관세청)
+      - name: 수출지표 수집
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+        run: python exports.py
+
       # 5) 생성된 data 폴더를 저장소에 자동 커밋
       - name: 결과 저장(커밋)
         run: |
