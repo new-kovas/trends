@@ -421,18 +421,31 @@ function showPage(page){
 }
 
 /* ---- 홈 대시보드 ---- */
+/* 홈 대시보드용: 목록에서 맨 앞에 보이는 항목과 동일하게 최신 항목을 고릅니다 */
+function latestProduct(){
+  if(!PRODUCTS.length) return null;
+  const dated = PRODUCTS.filter(p=>/^\d{4}-\d{2}$/.test(p.date||""));
+  if(!dated.length) return PRODUCTS[PRODUCTS.length-1];      // 출시년월이 없으면 마지막 등록분
+  const maxYm = dated.reduce((a,p)=> p.date>a ? p.date : a, dated[0].date);
+  const group = dated.filter(p=>p.date===maxYm);
+  return group[group.length-1];                              // 최신월 중 마지막 등록분
+}
+function latestIngredient(){
+  return INGREDIENTS.length ? INGREDIENTS[INGREDIENTS.length-1] : null;
+}
+
 function renderDashboard(){
   const latestNewsDate = Object.keys(NEWS_DATA).sort().reverse()[0];
   const latestNews = latestNewsDate ? NEWS_DATA[latestNewsDate] : null;
-  const latestProd = PRODUCTS[0] || null;
-  const latestIng  = INGREDIENTS[0] || null;
+  const latestProd = latestProduct();
+  const latestIng  = latestIngredient();
   const latestComp = COMPETITORS[0] || null;
   const expMonthly = (EXPORTS && EXPORTS.monthly) ? EXPORTS.monthly : [];
   const expLatest  = expMonthly.length ? expMonthly[expMonthly.length-1] : null;
 
   const cards = [
     { page:"calendar", label:"오늘의 트렌드", main:latestNews ? latestNews.oneLiner.slice(0,45)+"…" : "아직 등록된 리포트가 없습니다", sub:latestNews ? `주요 이슈 ${latestNews.issues.length}건` : "", when:latestNewsDate || "-" },
-    { page:"products", label:"이번 주 신제품", main:latestProd?`${latestProd.brand} ${latestProd.name}`:"등록된 신제품이 없습니다", sub:latestProd?latestProd.desc.slice(0,30)+"…":"", when:"주 1회 업데이트" },
+    { page:"products", label:"이번 주 신제품", main:latestProd?`${latestProd.brand} ${latestProd.name}`:"등록된 신제품이 없습니다", sub:latestProd?latestProd.desc.slice(0,30)+"…":"", when:(latestProd&&latestProd.date)?latestProd.date.replace(/^(\d{4})-(\d{2})$/,(m,y,mo)=>`${y}년 ${Number(mo)}월 출시`):"주 1회 업데이트" },
     { page:"ingredients", label:"이번 주 원료", main:latestIng?latestIng.nameKo:"등록된 원료가 없습니다", sub:latestIng?(latestIng.efficacy[0]||""):"", when:"주 1회 업데이트" },
     { page:"competitors", label:"경쟁사 동향", main:latestComp?`${latestComp.company} · ${latestComp.title.slice(0,24)}…`:"수집된 소식이 없습니다", sub:latestComp?(latestComp.type==="disclosure"?"공시":"뉴스"):"", when:latestComp?latestComp.date:"-" },
     { page:"exports", label:"수출지표", main:expLatest?`${expLatest.ym} ${(expLatest.exp/1e8).toFixed(2)}억 달러`:"수집된 수출 데이터가 없습니다", sub:expLatest?"HS 3304.99 기준":"", when:EXPORTS.updated||"-" }
