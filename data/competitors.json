@@ -1,6 +1,13 @@
 {
-  "updated": "2026-07-22",
+  "updated": "2026-07-23",
   "items": [
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "지속가능경영보고서등관련사항(자율공시)",
+      "date": "2026-07-23",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260723900097"
+    },
     {
       "company": "코스메카코리아",
       "type": "news",
@@ -65,6 +72,13 @@
       "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB0YU0tbGVCZXdQZ3hjVElERzNYQmYwTXprNHBaYTB0LVYtQjZWN2EtYW9GaVB2WVU1b3lmRURTY0pWWkItQTJtbWkwaWo1WWd3M0RtU0Z3?oc=5"
     },
     {
+      "company": "그린코스",
+      "type": "news",
+      "title": "미라콤아이앤씨, 그린코스에 디지털팩토리 구축…화장품 제조 품질관리 고도화 - 한국경제",
+      "date": "2026-07-12",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE0tWUtsNzVIZEF0QlMtUWpSN2pKYl95MUFyUXFaVGpDeTBrdlpiaFZ6V3NnQ184cm1hUUlRc3ZIMnU2aVg5REtoeGxNQVdhWXQ1dXFoQzJ0WENYdw?oc=5"
+    },
+    {
       "company": "씨앤씨인터내셔널",
       "type": "news",
       "title": "씨앤씨인터내셔널 투자분석 2026. 07. 10 - 주달",
@@ -91,6 +105,13 @@
       "title": "최대주주등소유주식변동신고서",
       "date": "2026-07-06",
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260706800440"
+    },
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "코스맥스, AI·OBM 전략으로 뷰티 지형 바꾼다 - 헬스경향",
+      "date": "2026-07-06",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9lSURSd2F3UmZZN3R1Q3drUzBUSTFhRnFsOUdONHFLeHNpR3pWNUVSTkloSVZqNXMxOFYwTE1YMUYydXJkTnpyUDQwblRuYWQyMEVCdjRZUldaWkV0RnlNcWFYOHRnRVQwMWc?oc=5"
     },
     {
       "company": "이미인",
@@ -177,6 +198,20 @@
       "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1xUG5mTHJIbGczczNkaktUckhMTC1XOVRfZWVQMVdHY3c0UDlHUHF3dUV4ZUo1dlV3LUh6OUg1VnNiYjVKVHQzRW1jZWswMVJPR2hQdlJEb1hMV1g1WFByNzVqRndkRzQ?oc=5"
     },
     {
+      "company": "씨앤씨인터내셔널",
+      "type": "news",
+      "title": "[K-뷰티 마스터피스] ⑪ 씨앤씨인터내셔널 '패스트 트랙(Fast-Track)' - 약업신문",
+      "date": "2026-06-22",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1YZWt4ejRadE1CWUJCRENxSzJOZVQyQmh0a2ZwV2ZGcElzZGRfNDlCX0VNZ3FjVXZYTWY5cUI2NkI0N0NvaktaUkd4SmJLVG5KblB4ekZvS2c5WHhEWWlNSm5jTXcxZw?oc=5"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "[6월 1주 화장품 주가] 미국 추가관세 리스크로 혼조... 제닉, 5월에 1분기 실적 추월, 주가 홀로 상승 - 코스인코리아닷컴",
+      "date": "2026-06-06",
+      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE8xd0JPWE94WFdfNGhZSlRnVmRabWhBNGpxS0hQTEFkdXJqcDlaWGtSTFoxNGxWYThJV3RQV1ZrVDZiYlB2QWdwLU1WeHpaaXQ5Ni1FOWxJcTRIT0NtWGY0MEZ3MA?oc=5"
+    },
+    {
       "company": "코스메카코리아",
       "type": "disclosure",
       "title": "[첨부정정]주요사항보고서(유형자산양수결정)",
@@ -189,6 +224,20 @@
       "title": "주요사항보고서(유형자산양수결정)",
       "date": "2026-06-05",
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260605000279"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "제닉, 역대 최대 매출…하이드로겔 마스크 수요 폭증 - 경제타임스",
+      "date": "2026-06-05",
+      "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE03MVo4MTBOeUh4M1RmVHNpSXp5clJZN3pMR1ZITzJIcGlDVkp5Z08zT0FZNnVydUxtYmpUdlBnY0s2dnlFNlRzSVNucHdyQmk0S2dV?oc=5"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "이미인, 'K-클리닉 더마' 부상…고효능 홈케어가 뷰티 시장 이끈다 - 머니투데이 - 머니투데이",
+      "date": "2026-06-02",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE8xWDcydTQ3THFmRHhFdjlMd1RXODV5T1J5bzYzLVRSREJseTFvdm5aY19jTGhCd3J5U09XVUlDb1ExUmdSRTFUQWY1bFc5MnBwX3ZKN3NYUUFZUlpVRGxrc3RfRWRBeVFQZFHSAW9BVV95cUxOSXJHQldRMVFUWWh1V0N2U2VPaFNDaXV2a3hxZWlHMmRRak5IdkhMTXlCUHdDVTJxbkJMQk1UVk5SNHdjdXBLYU9taVozNE1NaGRjRnNDamx5Qnl4VTZzTmNLU0VxNS1EOGNZNHdub0U?oc=5"
     },
     {
       "company": "한국콜마",
@@ -205,6 +254,20 @@
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601800703"
     },
     {
+      "company": "씨앤씨인터내셔널",
+      "type": "news",
+      "title": "립 색조로 큰 씨앤씨인터내셔널, 매출 1조 넘본다 [글로벌 K뷰티 콘퍼런스] - 매일경제",
+      "date": "2026-06-01",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1tRGItSnl0S1ZiQ2VtQjMzOU5qQVVQcG9UQVFtcFJPZmdDQ0FKUFFnWTRsV0xEM3dIWmVod28wY2xBSnNwcjBmNExkOE5vckEwNDZXQjdR?oc=5"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "마스크팩 열풍 이끈 ODM 강자, 이미인 [글로벌 K뷰티 콘퍼런스] - 매일경제",
+      "date": "2026-06-01",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAzX19YbFJmaWYwelNuQjI0Z0NhdmxyMGp3TGVHdzNFaENwRWx3R3BKbjc5TjAzM2doc2VremFqWjlHR0RlSFNCcmxjQXFqdHlJNkZ2ZUFR?oc=5"
+    },
+    {
       "company": "한국콜마",
       "type": "disclosure",
       "title": "기업지배구조보고서공시",
@@ -219,11 +282,25 @@
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260528800623"
     },
     {
+      "company": "엔코스",
+      "type": "news",
+      "title": "한솔제지, '프로테고' 앞세워 'K-뷰티 친환경 패키징' 시장 선점 - v.daum.net",
+      "date": "2026-05-28",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9tSHNkdFFHM0NVaVNVTnF4NkticVJ4QzVzX01RTUEwZ211NFlpSVFXMVB5bEI2c3FvSlkxdGxGTjhaa1hqUDFrVXgzZi05NlhPTEJtZQ?oc=5"
+    },
+    {
       "company": "씨앤씨인터내셔널",
       "type": "disclosure",
       "title": "주요사항보고서(자기주식취득신탁계약체결결정)",
       "date": "2026-05-26",
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260526000181"
+    },
+    {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "\"화장품주 반등 타이밍…에이피알·한국콜마 담아두길\" - 연합인포맥스",
+      "date": "2026-05-26",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1pUlN6X0gtbXFTLXlhVjJ5cW5nSUxmZ3c0dzAyU0lVOEV2NENkVjFRWi1Wel9lRFF3UzJBNXBBTEhTZTVLTGU1cnJDNUl0SnhjNnJtMDNwWTAwSVJPY2RmN3dJdFV6Rzd1TjZ0a2plTE8?oc=5"
     },
     {
       "company": "한국콜마",
@@ -329,6 +406,475 @@
       "title": "[기재정정]현금ㆍ현물배당결정(자회사의 주요경영사항)",
       "date": "2026-04-24",
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260424800519"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "최대주주등소유주식변동신고서",
+      "date": "2026-04-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260420800822"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "풍문또는보도에대한해명(미확정)",
+      "date": "2026-04-02",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260402800757"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "투자판단관련주요경영사항",
+      "date": "2026-04-01",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260401801139"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "타인에대한채무보증결정",
+      "date": "2026-03-31",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260331802655"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "독립이사의선임ㆍ해임또는중도퇴임에관한신고",
+      "date": "2026-03-31",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260331003347"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "대표이사변경",
+      "date": "2026-03-31",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260331901683"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "정기주주총회결과",
+      "date": "2026-03-31",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260331901660"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "[기재정정]영업양수결정(종속회사의주요경영사항)",
+      "date": "2026-03-27",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260327802092"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "정기주주총회결과",
+      "date": "2026-03-27",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260327902907"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "독립이사의선임ㆍ해임또는중도퇴임에관한신고",
+      "date": "2026-03-27",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260327001524"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "disclosure",
+      "title": "정기주주총회결과",
+      "date": "2026-03-27",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260327902926"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "disclosure",
+      "title": "독립이사의선임ㆍ해임또는중도퇴임에관한신고",
+      "date": "2026-03-27",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260327001582"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "정기주주총회결과",
+      "date": "2026-03-26",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260326802182"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "기업가치제고계획(자율공시)              (고배당기업 표시를 위한 재공시)",
+      "date": "2026-03-26",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260326803537"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "정기주주총회결과",
+      "date": "2026-03-26",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260326802416"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "독립이사의선임ㆍ해임또는중도퇴임에관한신고",
+      "date": "2026-03-26",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260326001302"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "disclosure",
+      "title": "공개매수결과보고서",
+      "date": "2026-03-25",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260325000027"
+    },
+    {
+      "company": "제닉",
+      "type": "disclosure",
+      "title": "정기주주총회결과",
+      "date": "2026-03-24",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260324901242"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "[기재정정]지주회사의자회사편입",
+      "date": "2026-03-23",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323801314"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "[첨부정정]의결권대리행사권유참고서류",
+      "date": "2026-03-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320001025"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "의결권대리행사권유참고서류",
+      "date": "2026-03-16",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260316000286"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "의결권대리행사권유참고서류",
+      "date": "2026-03-11",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260311003755"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "의결권대리행사권유참고서류",
+      "date": "2026-03-11",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260311004184"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "의결권대리행사권유참고서류",
+      "date": "2026-03-11",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260311004159"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "주주총회집중일개최사유신고",
+      "date": "2026-03-11",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260311901469"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "현금ㆍ현물배당결정(자회사의 주요경영사항)",
+      "date": "2026-03-10",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260310800952"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "현금ㆍ현물배당을위한주주명부폐쇄(기준일)결정(자회사의 주요경영사항)",
+      "date": "2026-03-10",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260310800906"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "현금ㆍ현물배당결정",
+      "date": "2026-03-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260306800918"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "현금ㆍ현물배당을위한주주명부폐쇄(기준일)결정",
+      "date": "2026-03-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260306800911"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "disclosure",
+      "title": "주주총회집중일개최사유신고",
+      "date": "2026-03-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260306900882"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "풍문또는보도에대한해명(미확정)",
+      "date": "2026-03-03",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260303800484"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "disclosure",
+      "title": "공개매수설명서",
+      "date": "2026-03-03",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260303000100"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "disclosure",
+      "title": "공개매수신고서",
+      "date": "2026-03-03",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260303000095"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "공정거래자율준수프로그램운영현황(안내공시)",
+      "date": "2026-02-25",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260225800677"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "현금ㆍ현물배당결정",
+      "date": "2026-02-25",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260225800565"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "현금ㆍ현물배당을위한주주명부폐쇄(기준일)결정",
+      "date": "2026-02-25",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260225800553"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-02-25",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260225800394"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "영업(잠정)실적(공정공시)",
+      "date": "2026-02-25",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260225800390"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "증권발행실적보고서",
+      "date": "2026-02-24",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260224003402"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "투자설명서",
+      "date": "2026-02-24",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260224000025"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "[발행조건확정]증권신고서(채무증권)",
+      "date": "2026-02-23",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260223004020"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "[기재정정]증권신고서(채무증권)",
+      "date": "2026-02-23",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260223003629"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "매출액또는손익구조30%(대규모법인은15%)이상변경",
+      "date": "2026-02-23",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260223800600"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "전환사채(해외전환사채포함)발행후만기전사채취득",
+      "date": "2026-02-23",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260223901373"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "매출액또는손익구조30%(대규모법인은15%)이상변경",
+      "date": "2026-02-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260220800724"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "현금ㆍ현물배당결정",
+      "date": "2026-02-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260220900640"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "매출액또는손익구조30%(대규모법인은15%)이상변동",
+      "date": "2026-02-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260220900635"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-02-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260220900631"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "disclosure",
+      "title": "매출액또는손익구조30%(대규모법인은15%)이상변동",
+      "date": "2026-02-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260220900621"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-02-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260220900619"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "[발행조건확정]증권신고서(채무증권)",
+      "date": "2026-02-13",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260213002610"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "[기재정정]증권신고서(채무증권)",
+      "date": "2026-02-13",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260213002584"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-02-13",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260213901974"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "매출액또는손익구조30%(대규모법인은15%)이상변동",
+      "date": "2026-02-13",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260213901969"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "증권신고서(채무증권)",
+      "date": "2026-02-09",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260209000586"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "매출액또는손익구조30%(대규모법인은15%)이상변경(자회사의 주요경영사항)",
+      "date": "2026-02-09",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260209801024"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "신규시설투자등",
+      "date": "2026-02-05",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260205900810"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "지주회사의자회사편입",
+      "date": "2026-02-02",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260202801308"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "영업양수결정(종속회사의주요경영사항)",
+      "date": "2026-01-30",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260130800295"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "disclosure",
+      "title": "현금ㆍ현물배당결정",
+      "date": "2026-01-30",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260130901074"
+    },
+    {
+      "company": "제닉",
+      "type": "disclosure",
+      "title": "매출액또는손익구조30%(대규모법인은15%)이상변동",
+      "date": "2026-01-28",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260128900532"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "최대주주등소유주식변동신고서",
+      "date": "2026-01-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260120800329"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "공정거래자율준수프로그램운영현황(안내공시)",
+      "date": "2026-01-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260120800321"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "타인에대한채무보증결정",
+      "date": "2026-01-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260120800318"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "투자판단관련주요경영사항",
+      "date": "2026-01-08",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260108800439"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "최대주주등소유주식변동신고서",
+      "date": "2026-01-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260106800403"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "투자판단관련주요경영사항",
+      "date": "2026-01-05",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260105800301"
     }
   ]
 }
