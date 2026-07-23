@@ -425,13 +425,15 @@ function renderDashboard(){
   const latestProd = PRODUCTS[0] || null;
   const latestIng  = INGREDIENTS[0] || null;
   const latestComp = COMPETITORS[0] || null;
+  const expMonthly = (EXPORTS && EXPORTS.monthly) ? EXPORTS.monthly : [];
+  const expLatest  = expMonthly.length ? expMonthly[expMonthly.length-1] : null;
 
   const cards = [
     { page:"calendar", label:"오늘의 트렌드", main:latestNews ? latestNews.oneLiner.slice(0,45)+"…" : "아직 등록된 리포트가 없습니다", sub:latestNews ? `주요 이슈 ${latestNews.issues.length}건` : "", when:latestNewsDate || "-" },
     { page:"products", label:"이번 주 신제품", main:latestProd?`${latestProd.brand} ${latestProd.name}`:"등록된 신제품이 없습니다", sub:latestProd?latestProd.desc.slice(0,30)+"…":"", when:"주 1회 업데이트" },
     { page:"ingredients", label:"이번 주 원료", main:latestIng?latestIng.nameKo:"등록된 원료가 없습니다", sub:latestIng?(latestIng.efficacy[0]||""):"", when:"주 1회 업데이트" },
-    { page:"competitors", label:"경쟁사 동향", main:`${latestComp.company} · ${latestComp.title.slice(0,24)}…`, sub:latestComp.type==="disclosure"?"공시":"뉴스", when:latestComp.date },
-    { page:"exports", label:"수출지표", main:`2025년 ${EXPORTS.stats[0].val}억 달러`, sub:`전년 대비 ${EXPORTS.stats[1].val}%`, when:EXPORTS.updated }
+    { page:"competitors", label:"경쟁사 동향", main:latestComp?`${latestComp.company} · ${latestComp.title.slice(0,24)}…`:"수집된 소식이 없습니다", sub:latestComp?(latestComp.type==="disclosure"?"공시":"뉴스"):"", when:latestComp?latestComp.date:"-" },
+    { page:"exports", label:"수출지표", main:expLatest?`${expLatest.ym} ${(expLatest.exp/1e8).toFixed(2)}억 달러`:"수집된 수출 데이터가 없습니다", sub:expLatest?"HS 3304.99 기준":"", when:EXPORTS.updated||"-" }
   ];
   document.getElementById("dashGrid").innerHTML = cards.map(c=>`
     <div class="dash-card" onclick="showPage('${c.page}')">
@@ -768,8 +770,9 @@ async function loadNews(){
   }catch(e){
     console.warn("data/index.json을 불러오지 못했습니다. (아직 데이터가 없거나 로컬 파일로 열었을 수 있습니다)", e);
   }
-  renderDashboard();   // 데이터 채운 뒤 화면 그리기
-  renderCalendar();
+  // 한쪽에서 오류가 나도 다른 화면은 그려지도록 각각 분리해 실행합니다
+  try{ renderDashboard(); }catch(e){ console.warn("대시보드 그리기 실패", e); }
+  try{ renderCalendar();  }catch(e){ console.warn("캘린더 그리기 실패", e); }
 }
 
 /* ---- 최초 실행 ---- */
