@@ -79,7 +79,7 @@ img{ max-width:100%; display:block; }
 .hero .rule{ height:6px; width:76px; background:var(--brand-amber); margin-top:22px; }
 /* 키워드 마퀴 */
 .marquee{ overflow:hidden; margin-top:22px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:9px 0; }
-.marquee-track{ display:flex; gap:26px; width:max-content; animation:slideMarquee 26s linear infinite; }
+.marquee-track{ display:flex; gap:26px; width:max-content; animation:slideMarquee 37s linear infinite; }
 .marquee span{ font-size:13px; font-weight:700; color:var(--brand-deep); white-space:nowrap; letter-spacing:.2px; }
 .marquee span::before{ content:"#"; opacity:.45; margin-right:2px; }
 .marquee:hover .marquee-track{ animation-play-state:paused; }
@@ -111,10 +111,10 @@ img{ max-width:100%; display:block; }
 .cal-cell{ aspect-ratio:1/1; background:var(--surface); border-radius:var(--radius-sm); padding:10px; display:flex; flex-direction:column; position:relative; box-shadow:var(--shadow-sm); }
 .cal-cell.empty{ background:transparent; box-shadow:none; }
 .cal-cell .num{ font-size:14px; font-weight:700; color:#C7BCB2; }
-.cal-cell.has-report{ cursor:pointer; transition:.14s; background:var(--ink); }
-.cal-cell.has-report .num{ color:#fff; }
-.cal-cell.has-report:hover{ transform:translateY(-5px); box-shadow:var(--shadow); background:var(--brand-primary); }
-.cal-cell .badge{ margin-top:auto; font-size:10px; font-weight:800; color:var(--ink); background:var(--brand-mid); padding:3px 8px; border-radius:20px; align-self:flex-start; letter-spacing:.3px; }
+.cal-cell.has-report{ cursor:pointer; transition:.14s; background:#FFE3D0; }
+.cal-cell.has-report .num{ color:var(--brand-deep); }
+.cal-cell.has-report:hover{ transform:translateY(-5px); box-shadow:var(--shadow); background:#FFD0AE; }
+.cal-cell .badge{ margin-top:auto; font-size:10px; font-weight:800; color:#fff; background:var(--brand-primary); padding:3px 8px; border-radius:20px; align-self:flex-start; letter-spacing:.3px; }
 @media (max-width:640px){ .cal-cell{ padding:6px; } .cal-cell .badge{ font-size:9px; padding:2px 5px; } }
 
 /* ============================================================
@@ -289,7 +289,7 @@ img{ max-width:100%; display:block; }
     <div class="hero">
       <span class="kicker">"K" stands for Kovas</span>
       <h1><em>K</em>-BEAUTY<br>TREND</h1>
-      <p>기초화장품·스킨케어 트렌드부터 경쟁사 동향·수출지표까지 매일 자동 업데이트됩니다.</p>
+      <p>기초화장품·스킨케어 트렌드부터 경쟁사 동향·수출지표까지 최신 소식을 확인하세요!</p>
       <div class="rule"></div>
       <div class="marquee" id="heroMarquee"></div>
 
@@ -321,7 +321,7 @@ img{ max-width:100%; display:block; }
       <div class="page-title"><span>신제품</span> 살펴보기</div>
       <div class="updated" id="prodUpdated"></div>
     </div>
-    <p class="page-desc">매주 주목할 신제품을 등록합니다. (구글 시트로 입력 → 자동 반영)</p>
+    <p class="page-desc">매주 주목할 신제품을 등록합니다.</p>
     <div id="prodGrid"></div>
   </section>
 
@@ -342,7 +342,7 @@ img{ max-width:100%; display:block; }
       <div class="page-title"><span>경쟁사</span> 동향</div>
       <div class="updated">주 1회 업데이트</div>
     </div>
-    <p class="page-desc">주요 ODM사의 공시·뉴스를 모아 봅니다. (공개된 사실만 게시)</p>
+    <p class="page-desc">주요 ODM사의 공시·뉴스를 모아 봅니다.</p>
     <div class="chips-label">추적 중인 업체</div>
     <div class="company-chips" id="companyChips"></div>
     <div id="compFeed"></div>
@@ -518,6 +518,7 @@ function showPage(page){
   document.getElementById("page-"+page).classList.add("active");
   document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("active", b.dataset.page===page));
   window.scrollTo(0,0);
+  if(page==="exports") maybeCountUp();
 }
 
 /* ---- 홈 대시보드 ---- */
@@ -782,7 +783,7 @@ function renderExports(){
   stats.push({ val:"3304.99", unit:"", lbl:"화장품 HS 코드" });
   document.getElementById("statRow").innerHTML = stats.map(s=>`
     <div class="stat-box"><div class="val" data-to="${s.val}">${s.val}<span class="unit">${s.unit}</span></div><div class="lbl">${s.lbl}</div></div>`).join("");
-  try{ countUp(); }catch(e){ console.warn("카운트업 실패", e); }
+  maybeCountUp();   // 수출지표 페이지에 처음 들어왔을 때만 1회
 
   // 막대 데이터: 월간이면 최근 24개월, 연간이면 전체 연도
   let bars, title;
@@ -808,6 +809,17 @@ function renderExports(){
         <div class="vtrack"><div class="col" style="height:${Math.max(2, b.val/max*TRACK).toFixed(1)}px"></div></div>
         <div class="vlabel">${b.label}</div>
       </div>`).join("") + `</div>`;
+}
+
+/* 카운트업은 수출지표 페이지에 처음 들어섰을 때 딱 한 번만 실행 */
+let expCounted = false;
+function maybeCountUp(){
+  if(expCounted) return;
+  const page = document.getElementById("page-exports");
+  if(!page || !page.classList.contains("active")) return;   // 아직 그 페이지가 아니면 대기
+  if(!document.querySelector("#statRow .val")) return;        // 데이터가 아직 없으면 대기
+  expCounted = true;
+  try{ countUp(); }catch(e){ console.warn("카운트업 실패", e); }
 }
 
 /* 숫자가 스르륵 올라가는 카운트업 */
