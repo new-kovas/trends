@@ -322,6 +322,8 @@ img{ max-width:100%; display:block; }
       <div class="updated" id="prodUpdated"></div>
     </div>
     <p class="page-desc">매주 주목할 신제품을 등록합니다.</p>
+    <div class="chips-label">제조사</div>
+    <div class="company-chips" id="prodMakers"></div>
     <div id="prodGrid"></div>
   </section>
 
@@ -606,9 +608,33 @@ function thumb(image, emoji){
   return `<div class="thumb">${emoji} 이미지</div>`;
 }
 
-/* ---- 신제품 목록 (출시년월로 그룹핑, 최신월 먼저) ---- */
+/* ---- 신제품 목록 (제조사 필터 + 출시년월 그룹핑, 최신월 먼저) ---- */
+let prodMakerFilter = "";   // "" = 전체, 제조사명 = 그 제조사만
+
 function renderProducts(){
-  document.getElementById("prodUpdated").textContent = `총 ${PRODUCTS.length}개 · 월별 정리`;
+  // 제조사 칩: 등록된 제품들의 제조업자에서 자동 수집
+  const makers = [];
+  PRODUCTS.forEach(p=>{
+    const m = (p.maker||"").trim();
+    if(m && !makers.includes(m)) makers.push(m);
+  });
+  const chipBox = document.getElementById("prodMakers");
+  if(chipBox){
+    chipBox.innerHTML = ["전체"].concat(makers).map(t=>{
+      const key = t==="전체" ? "" : t;
+      const on  = prodMakerFilter===key ? " active" : "";
+      const safe = key.replace(/'/g, "\\'");
+      return `<span class="chip${on}" onclick="filterProdMaker('${safe}')">${t}</span>`;
+    }).join("");
+  }
+
+  // 필터 적용
+  const source = prodMakerFilter
+    ? PRODUCTS.filter(p => (p.maker||"").trim() === prodMakerFilter)
+    : PRODUCTS;
+
+  document.getElementById("prodUpdated").textContent =
+    prodMakerFilter ? `${prodMakerFilter} · ${source.length}개` : `총 ${PRODUCTS.length}개 · 월별 정리`;
 
   // 카드 하나 HTML
   const card = p => `
@@ -624,7 +650,7 @@ function renderProducts(){
 
   // 출시년월(예: 2026-07)로 그룹핑
   const groups = {};
-  PRODUCTS.forEach(p => {
+  source.forEach(p => {
     const key = (p.date && /^\d{4}-\d{2}$/.test(p.date)) ? p.date : "미상";
     (groups[key] = groups[key] || []).push(p);
   });
@@ -647,7 +673,13 @@ function renderProducts(){
   }).join("");
 
   document.getElementById("prodGrid").innerHTML = html
-    || `<p style="color:var(--ink-sub)">${PROD_DIAG || "등록된 신제품이 없습니다."}</p>`;
+    || `<p style="color:var(--ink-sub)">${prodMakerFilter ? prodMakerFilter+" 제품이 없습니다." : (PROD_DIAG || "등록된 신제품이 없습니다.")}</p>`;
+}
+
+/* 제조사 칩 클릭 → 해당 제조사 제품만 (같은 걸 또 누르면 해제) */
+function filterProdMaker(name){
+  prodMakerFilter = (prodMakerFilter === name) ? "" : name;
+  renderProducts();
 }
 
 /* ---- 원료 목록 + 검색 ---- */
