@@ -1,6 +1,20 @@
 {
-  "updated": "2026-07-26",
+  "updated": "2026-07-27",
   "items": [
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "최대주주등소유주식변동신고서",
+      "date": "2026-07-27",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260727800284"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "이미인, 창립 20주년 맞아 ‘글로벌 스킨케어 ODM 기업 도약’ 선포 - 뉴스와이어",
+      "date": "2026-07-27",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE13Q2JMb0QyaURyVlJFeXo0Q2pOWFV4dnJQYmR3ZEV6THBsaVhWT3czM3F5SnFpZkQ0cElpeDhrYVJjS3Z3cW9tMmRYZ1dyLTFyQlMwdWZLZks4cnllOHN3?oc=5"
+    },
     {
       "company": "코스메카코리아",
       "type": "disclosure",
