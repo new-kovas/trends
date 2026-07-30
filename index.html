@@ -387,20 +387,20 @@ img{ max-width:100%; display:block; }
       <div class="page-title"><span>성분</span> 트렌드</div>
       <div class="updated" id="itUpdated"></div>
     </div>
-    <p class="page-desc">우리가 매일 수집하는 기사에서 성분 언급을 집계하여 만든 <b>참고 신호</b>입니다.</p>
-    <div id="itEmpty" class="hidden" style="color:var(--ink-sub); padding:20px 0;">데이터 수집 중 입니다.</div>
+    <p class="page-desc">우리가 매일 수집하는 기사에서 성분 언급을 세어 만든 <b>참고 신호</b>입니다. 30일(약 한 달) 이동평균으로 부드럽게 그렸고, 데이터가 쌓일수록 정확해집니다.</p>
+    <div id="itEmpty" class="hidden" style="color:var(--ink-sub); padding:20px 0;">아직 집계된 데이터가 부족합니다. 며칠 쌓이면 곡선이 그려집니다.</div>
     <div class="it-movers">
       <div class="it-col">
-        <div class="chips-label" style="color:var(--brand-deep)">▲ 지난주보다 뜨는 성분</div>
+        <div class="chips-label" style="color:var(--brand-deep)">▲ 지난달 대비 뜨는 성분</div>
         <div id="itUp"></div>
       </div>
       <div class="it-col">
-        <div class="chips-label" style="color:var(--ink-sub)">▼ 지난주보다 지는 성분</div>
+        <div class="chips-label" style="color:var(--ink-sub)">▼ 지난달 대비 지는 성분</div>
         <div id="itDown"></div>
       </div>
     </div>
     <div class="it-chartbox">
-      <div class="chips-label">성분별 언급 추이 (7일 이동평균) · 성분을 눌러 켜고 끄세요</div>
+      <div class="chips-label">성분별 언급 추이 (30일 이동평균) · 성분을 눌러 켜고 끄세요</div>
       <div class="company-chips" id="itChips"></div>
       <div id="itChart"></div>
     </div>
