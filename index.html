@@ -254,6 +254,21 @@ img{ max-width:100%; display:block; }
   75% { transform:rotate(-3.4deg) scale(1.03); }
   100%{ opacity:1; transform:rotate(var(--ang)) scale(1); }
 }
+/* 성분 트렌드 */
+.it-movers{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+@media (max-width:640px){ .it-movers{ grid-template-columns:1fr; } }
+.it-col{ background:var(--surface); border-radius:var(--radius); padding:18px 20px; box-shadow:var(--shadow-sm); }
+.mover{ display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); }
+.mover:last-child{ border-bottom:none; }
+.mover .mn{ font-size:15px; font-weight:700; letter-spacing:-.2px; }
+.mover .md{ font-size:12.5px; font-weight:800; }
+.mover .md.up{ color:var(--brand-deep); }
+.mover .md.down{ color:var(--ink-sub); }
+.it-chartbox{ background:var(--surface); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-sm); }
+#itChart svg{ width:100%; height:auto; display:block; }
+.it-legend{ display:flex; flex-wrap:wrap; gap:12px; margin-top:12px; }
+.it-legend span{ font-size:12px; color:var(--ink-sub); display:flex; align-items:center; gap:5px; }
+.it-legend i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
 .site-footer{ background:var(--ink); color:#fff; padding:34px 0; text-align:center; font-size:13px; font-weight:700; letter-spacing:-.2px; }
 .site-footer .tag{ opacity:.5; margin-top:6px; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; }
 .hidden{ display:none; }
@@ -276,6 +291,7 @@ img{ max-width:100%; display:block; }
       <button data-page="calendar">캘린더</button>
       <button data-page="products">신제품</button>
       <button data-page="ingredients">원료</button>
+      <button data-page="ingtrend">성분 트렌드</button>
       <button data-page="competitors">경쟁사 동향</button>
       <button data-page="exports">수출지표</button>
     </nav>
@@ -363,6 +379,31 @@ img{ max-width:100%; display:block; }
       <button data-mode="year">연간</button>
     </div>
     <div class="bar-chart" id="barChart"></div>
+  </section>
+
+  <!-- ========== 성분 트렌드 ========== -->
+  <section class="page" id="page-ingtrend">
+    <div class="page-head">
+      <div class="page-title"><span>성분</span> 트렌드</div>
+      <div class="updated" id="itUpdated"></div>
+    </div>
+    <p class="page-desc">우리가 매일 수집하는 기사에서 성분 언급을 세어 만든 <b>참고 신호</b>입니다. 7일 이동평균으로 부드럽게 그렸고, 데이터가 쌓일수록 정확해집니다.</p>
+    <div id="itEmpty" class="hidden" style="color:var(--ink-sub); padding:20px 0;">아직 집계된 데이터가 부족합니다. 며칠 쌓이면 곡선이 그려집니다.</div>
+    <div class="it-movers">
+      <div class="it-col">
+        <div class="chips-label" style="color:var(--brand-deep)">▲ 지난주보다 뜨는 성분</div>
+        <div id="itUp"></div>
+      </div>
+      <div class="it-col">
+        <div class="chips-label" style="color:var(--ink-sub)">▼ 지난주보다 지는 성분</div>
+        <div id="itDown"></div>
+      </div>
+    </div>
+    <div class="it-chartbox">
+      <div class="chips-label">성분별 언급 추이 (7일 이동평균) · 성분을 눌러 켜고 끄세요</div>
+      <div class="company-chips" id="itChips"></div>
+      <div id="itChart"></div>
+    </div>
   </section>
 
 </div>
@@ -976,11 +1017,106 @@ async function loadNews(){
   try{ renderCalendar();  }catch(e){ console.warn("캘린더 그리기 실패", e); }
 }
 
+/* ============ 성분 트렌드 ============ */
+let INGTREND = { updated:"", tracked:[], series:{dates:[],ma7:{}}, movers:[] };
+let itActive = [];   // 차트에 켜진 성분들
+const IT_COLORS = ["#F16522","#2F6FE4","#2E9E5B","#B8299B","#E4A400","#8A5CF6","#00A5B5","#D0342C"];
+
+async function loadIngTrend(){
+  try{ INGTREND = await (await fetch("data/ingredient_trend.json")).json(); }
+  catch(e){ console.warn("ingredient_trend.json 로드 실패(아직 없을 수 있음)", e); }
+  renderIngTrend();
+}
+
+function renderIngTrend(){
+  const box = document.getElementById("itUpdated");
+  if(box) box.textContent = (INGTREND.updated||"") + " 기준 · 매일 누적";
+
+  const series = INGTREND.series || {dates:[], ma7:{}};
+  const names = Object.keys(series.ma7 || {});
+  const enough = (series.dates||[]).length >= 2 && names.length > 0;
+  document.getElementById("itEmpty").classList.toggle("hidden", enough);
+
+  renderMovers();
+  if(!enough){ document.getElementById("itChart").innerHTML=""; document.getElementById("itChips").innerHTML=""; return; }
+
+  // 언급량 상위 성분을 기본으로 켬(최대 5개)
+  if(!itActive.length){
+    const totals = names.map(n=>[n, (series.ma7[n]||[]).reduce((a,b)=>a+b,0)]);
+    totals.sort((a,b)=>b[1]-a[1]);
+    itActive = totals.slice(0,5).map(x=>x[0]);
+  }
+
+  // 성분 토글 칩
+  document.getElementById("itChips").innerHTML = names.map(n=>{
+    const on = itActive.includes(n) ? " active" : "";
+    const safe = n.replace(/'/g,"\\'");
+    return `<span class="chip${on}" onclick="toggleItName('${safe}')">${n}</span>`;
+  }).join("");
+
+  drawItChart();
+}
+
+function toggleItName(n){
+  if(itActive.includes(n)) itActive = itActive.filter(x=>x!==n);
+  else itActive.push(n);
+  renderIngTrend();
+}
+
+function drawItChart(){
+  const series = INGTREND.series;
+  const dates = series.dates;
+  const W=760, H=300, P={t:16,r:16,b:34,l:34};
+  const iw=W-P.l-P.r, ih=H-P.t-P.b;
+  const active = itActive.filter(n=>series.ma7[n]);
+  let max=0;
+  active.forEach(n=>series.ma7[n].forEach(v=>{ if(v>max) max=v; }));
+  max = Math.max(1, Math.ceil(max));
+  const n = dates.length;
+  const x = i => P.l + (n<=1 ? iw/2 : iw*i/(n-1));
+  const y = v => P.t + ih - (v/max*ih);
+
+  // 축
+  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
+  svg += `<line x1="${P.l}" y1="${P.t+ih}" x2="${P.l+iw}" y2="${P.t+ih}" stroke="#E7DAcc" stroke-width="1"/>`;
+  for(let g=0; g<=2; g++){
+    const vy = P.t + ih - (ih*g/2), val=(max*g/2).toFixed(0);
+    svg += `<line x1="${P.l}" y1="${vy}" x2="${P.l+iw}" y2="${vy}" stroke="#F1E6D8" stroke-width="1"/>`;
+    svg += `<text x="${P.l-6}" y="${vy+3}" text-anchor="end" font-size="10" fill="#9A8E84">${val}</text>`;
+  }
+  // x축 라벨(양끝 + 가운데)
+  [0, Math.floor((n-1)/2), n-1].filter((v,i,a)=>a.indexOf(v)===i).forEach(i=>{
+    svg += `<text x="${x(i)}" y="${P.t+ih+18}" text-anchor="middle" font-size="10" fill="#9A8E84">${(dates[i]||"").slice(5)}</text>`;
+  });
+  // 라인
+  active.forEach((name,ci)=>{
+    const col = IT_COLORS[ci % IT_COLORS.length];
+    const pts = series.ma7[name].map((v,i)=>`${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+    svg += `<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+    const li=n-1, lv=series.ma7[name][li];
+    svg += `<circle cx="${x(li).toFixed(1)}" cy="${y(lv).toFixed(1)}" r="3.2" fill="${col}"/>`;
+  });
+  svg += `</svg>`;
+
+  const legend = active.map((name,ci)=>`<span><i style="background:${IT_COLORS[ci%IT_COLORS.length]}"></i>${name}</span>`).join("");
+  document.getElementById("itChart").innerHTML = svg + `<div class="it-legend">${legend}</div>`;
+}
+
+function renderMovers(){
+  const movers = (INGTREND.movers||[]).filter(m=>m.delta!==0);
+  const up = movers.filter(m=>m.delta>0).slice(0,6);
+  const down = movers.filter(m=>m.delta<0).slice(-6).reverse();
+  const row = (m,dir)=>`<div class="mover"><span class="mn">${m.name}</span><span class="md ${dir}">${m.delta>0?"+":""}${m.delta} <small style="color:var(--ink-sub);font-weight:600">(${m.last7}회)</small></span></div>`;
+  document.getElementById("itUp").innerHTML   = up.length   ? up.map(m=>row(m,"up")).join("")     : `<div style="color:var(--ink-sub);font-size:13px;padding:8px 0">아직 데이터가 부족합니다.</div>`;
+  document.getElementById("itDown").innerHTML = down.length ? down.map(m=>row(m,"down")).join("") : `<div style="color:var(--ink-sub);font-size:13px;padding:8px 0">아직 데이터가 부족합니다.</div>`;
+}
+
 /* ---- 최초 실행 ---- */
 loadNews();
 loadSheets();
 loadCompetitors();
 loadExports();
+loadIngTrend();
 </script>
 <!-- 방문자 통계 (GoatCounter) — 통계는 https://kovas-trend.goatcounter.com 에서 확인 -->
 <script data-goatcounter="https://kovas-trend.goatcounter.com/count"
