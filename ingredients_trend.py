@@ -27,11 +27,11 @@ from datetime import datetime, timezone, timedelta
 # [1] 기본 추적 성분 (처음부터 추적) — 필요시 자유롭게 가감하세요
 # ----------------------------------------------------------------
 SEED = [
-    "레티놀", "나이아신아마이드", "병풀", "시카", "PDRN", "히알루론산",
+    "레티놀", "나이아신아마이드", "병풀", "PDRN", "히알루론산",
     "세라마이드", "비타민C", "콜라겐", "펩타이드", "아젤라익애씨드",
     "살리실산", "갈락토미세스", "프로바이오틱스", "엑소좀", "스쿠알란",
-    "판테놀", "마데카소사이드", "트라넥사믹애씨드", "아데노신",
-    "코엔자임Q10", "레티날", "바쿠치올", "센텔라", "티트리",
+    "판테놀", "트라넥사믹애씨드", "아데노신",
+    "코엔자임Q10", "레티날", "바쿠치올", "티트리", "마이크로바이옴",
 ]
 
 # ----------------------------------------------------------------
@@ -41,28 +41,43 @@ SEED = [
 CANDIDATES = [
     "아쿠아포린", "리포좀", "글루타치온",
     "성장인자", "EGF", "FGF", "달팽이점액", "뮤신",
-    "프로폴리스", "어성초", "쑥", "녹차", "말차", "카페인", "아르부틴",
+    "프로폴리스", "카페인", "아르부틴",
     "코직산", "글리콜산", "락틱애씨드", "만델산", "PHA", "AHA", "BHA",
-    "스핑고지질", "판테인", "알란토인", "마데카식애씨드", "아시아티코사이드",
-    "비타민B", "비타민E", "비타민A", "비타민K", "페룰산", "레스베라트롤",
+    "스핑고지질", "판테인", "알란토인",
+    "페룰산", "레스베라트롤",
     "아줄렌", "알로에", "폴리글루타믹애씨드", "베타글루칸",
     "타우린", "에르고티오네인", "폴리페놀", "프로테오글리칸",
-    "발효", "효모", "유산균",
-    "동백", "제주", "감태", "미역", "다시마",
+    "포스트바이오틱스",
+    "세라마이드엔피", "달팽이뮤신",
 ]
 
 # 성분명 → 별칭(같은 성분의 다른 표기). 한쪽으로 합쳐 셉니다.
 ALIAS = {
-    "시카": ["센텔라", "센텔라아시아티카", "병풀"],
-    "병풀": ["시카", "센텔라", "센텔라아시아티카"],
-    "비타민C": ["아스코르빈산", "아스코빅애씨드", "비타민씨"],
-    "PDRN": ["연어주사", "폴리뉴클레오타이드"],
+    "병풀": ["시카", "센텔라아시아티카", "센텔라", "마데카소사이드", "마데카식애씨드", "아시아티코사이드"],
+    "비타민C": ["아스코르빈산", "아스코빅애씨드", "비타민씨", "아스코빌"],
+    "PDRN": ["연어주사", "폴리뉴클레오타이드", "폴리뉴클레오티드"],
     "레티놀": ["레티노이드"],
+    "프로바이오틱스": ["유산균"],
+    "마이크로바이옴": ["포스트바이오틱스"],
 }
 
 DATA_DIR = "data"
 KST = timezone(timedelta(hours=9))
 OUT = os.path.join(DATA_DIR, "ingredient_trend.json")
+
+
+# 별칭으로 흡수되는 단어들(대표가 아닌 쪽) — 추적 목록에서 자동 제외
+ALIAS_MEMBERS = set()
+for _rep, _alist in {}.items():
+    pass
+
+def alias_members():
+    s = set()
+    for rep, alist in ALIAS.items():
+        for a in alist:
+            if a != rep:
+                s.add(a)
+    return s
 
 
 def norm(s):
@@ -113,7 +128,8 @@ def main():
 
     # 아직 집계 안 한 날짜의 뉴스 파일 찾기
     files = sorted(glob.glob(os.path.join(DATA_DIR, "20*-*-*.json")))
-    tracked = set(store["tracked"]) | set(SEED)
+    members = alias_members()
+    tracked = (set(store["tracked"]) | set(SEED)) - members
 
     for path in files:
         date = os.path.basename(path)[:-5]  # YYYY-MM-DD
@@ -127,9 +143,9 @@ def main():
         if not text:
             continue
 
-        # 후보 사전 중 오늘 처음 등장한 성분을 추적 목록에 편입
+        # 후보 사전 중 오늘 처음 등장한 성분을 추적 목록에 편입 (별칭 멤버는 제외)
         for c in CANDIDATES:
-            if c in tracked:
+            if c in tracked or c in members:
                 continue
             if count_in(text, c) > 0:
                 tracked.add(c)
@@ -162,14 +178,17 @@ def build_views(store):
     dates = sorted(store["daily"].keys())
     daily = store["daily"]
 
-    # 성분별 일별 카운트 배열
+    # 성분별 일별 카운트 배열 (별칭 멤버 제외)
+    members = alias_members()
     per = {}
     for name in store["tracked"]:
+        if name in members:
+            continue
         per[name] = [daily.get(d, {}).get(name, 0) for d in dates]
 
-    # 7일 이동평균 시계열
+    # 30일(약 한 달) 이동평균 시계열
     series = {"dates": dates, "ma7": {}}
-    W = 7
+    W = 30
     for name, arr in per.items():
         ma = []
         for i in range(len(arr)):
@@ -179,19 +198,19 @@ def build_views(store):
         if any(v > 0 for v in ma):
             series["ma7"][name] = ma
 
-    # 지난주(최근 7일) 대비 그 전주(8~14일 전) 언급 합 비교 → 증감
+    # 최근 30일 대비 그 전 30일 언급 합 비교 → 증감
     movers = []
     if len(dates) >= 2:
         for name, arr in per.items():
-            last7 = sum(arr[-7:])
-            prev7 = sum(arr[-14:-7]) if len(arr) >= 8 else 0
-            if last7 == 0 and prev7 == 0:
+            last30 = sum(arr[-30:])
+            prev30 = sum(arr[-60:-30]) if len(arr) >= 31 else 0
+            if last30 == 0 and prev30 == 0:
                 continue
             movers.append({
                 "name": name,
-                "last7": last7,
-                "prev7": prev7,
-                "delta": last7 - prev7,
+                "last7": last30,      # 웹 호환 위해 키 이름 유지(값은 최근 30일)
+                "prev7": prev30,
+                "delta": last30 - prev30,
             })
         movers.sort(key=lambda x: x["delta"], reverse=True)
 
