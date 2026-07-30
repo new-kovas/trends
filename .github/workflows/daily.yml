@@ -57,6 +57,10 @@ jobs:
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
         run: python exports.py
 
+      # 4-4) 성분 트렌드 집계 (수집된 뉴스 기반, 추가 키 불필요)
+      - name: 성분 트렌드 집계
+        run: python ingredients_trend.py
+
       # 5) 생성된 data 폴더를 저장소에 자동 커밋
       - name: 결과 저장(커밋)
         run: |
