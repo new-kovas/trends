@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-30",
+  "updated": "2026-07-31",
   "items": [
     {
       "company": "코스맥스",
@@ -109,6 +109,13 @@
     {
       "company": "그린코스",
       "type": "news",
+      "title": "미라콤아이앤씨, 그린코스에 MES 구축…화장품 품질관리 디지털화 - v.daum.net",
+      "date": "2026-07-13",
+      "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAyRGcyT2JlNEk1eGplY3lPTER3WXhUcGhqdkZaSE1pa2t4a3VCZG9OeVFINzM1bGJTd3lGYnY1U2pnQ19ySC1pXzd4LWdrSlU?oc=5"
+    },
+    {
+      "company": "그린코스",
+      "type": "news",
       "title": "미라콤아이앤씨, 그린코스에 디지털팩토리 구축…화장품 제조 품질관리 고도화 - 한국경제",
       "date": "2026-07-12",
       "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE0tWUtsNzVIZEF0QlMtUWpSN2pKYl95MUFyUXFaVGpDeTBrdlpiaFZ6V3NnQ184cm1hUUlRc3ZIMnU2aVg5REtoeGxNQVdhWXQ1dXFoQzJ0WENYdw?oc=5"
@@ -163,11 +170,25 @@
       "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE56Qi1WMzUwUGs1MkIzREEwWFJBSEFsQkxwU0dUNXdXcDBodV9HaHZuRTRMOWgzR3kwQTNBc3R1N1NDeWN6WXhlQ3lMZVNaZVU?oc=5"
     },
     {
+      "company": "이미인",
+      "type": "news",
+      "title": "이미인 박정완 대표, 2026 대한민국 중소기업인대회 ‘중소벤처기업부 장관 표창’ 수상… K-뷰티 ODM 경쟁력 빛났다 - 오늘의한국",
+      "date": "2026-07-03",
+      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBQUFhfelhFczRIUW0xbTFVYkpBNWp6UUhGMVluRXhOQlFyTWZtNEQ2RVhLZWZTRndHUC1uRWJCalV5b3VBVFB0aXpLbXhURXlJQVdybERXbUxIdWozazFOUkJQVU8zU1pw?oc=5"
+    },
+    {
       "company": "한국콜마",
       "type": "news",
       "title": "한국콜마 10%대 급등...반도체에 가려진 K화장품 시대 오나 - 조선일보",
       "date": "2026-07-02",
       "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQZjVWZUxqa0ZfYy11RTBOeFFvRGU1SkZBbGNYaE1PME9kU1Npdnd1RXVkQWJtQm9ENjM5dFdraWNFSlhjbEdLODFQQU5QVUhVVUlMQkpTUTFjZF9GWTEtbXY0MXl0YnNzMl9tdkZsRUNGd194SVlUSDFkLWV6bEdmWA?oc=5"
+    },
+    {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "화장품, 6월 수출 역대 최대치 경신… 한국콜마, 10%대↑ - 머니투데이 - 머니투데이",
+      "date": "2026-07-02",
+      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9paS1CRXF6U0dhSzN6OVM5UXlDMkwwb2ZPVWlPRElGcjhESDh0LU5RaTRYRzNSYThsdGZ1cDRuSG9WUjZYb1ItdWRHS1UxMDdqVm80aE5TS3hHTFd1Qm1WakZYRU1va0hH0gFuQVVfeXFMTkhmdVRoVTdKdzFldVBJMTN2RWdnb1NkakZkWTllb2wzcGdITjZ2NUI0cUdsUDlqN3FzZHNpQ1NUd1VPV3h0cWJyX0p0bTdQeGxvekFIa0Z4WlY3TWVOOXR3Y0xsZUpKOXdRTkhwanc?oc=5"
     },
     {
       "company": "한국콜마",
@@ -275,6 +296,13 @@
       "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE8xd0JPWE94WFdfNGhZSlRnVmRabWhBNGpxS0hQTEFkdXJqcDlaWGtSTFoxNGxWYThJV3RQV1ZrVDZiYlB2QWdwLU1WeHpaaXQ5Ni1FOWxJcTRIT0NtWGY0MEZ3MA?oc=5"
     },
     {
+      "company": "제닉",
+      "type": "news",
+      "title": "[6월 1주 화장품 주가] 미국 추가관세 리스크로 혼조... 제닉, 5월에 1분기 실적 추월, 주가 홀로 상승 - 코스인코리아닷컴",
+      "date": "2026-06-06",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9qR3dwOWxQaHVLLUdhaFFneTVpMG5ab0JSMzdnV2pLakF0em96ay1QSjZXdVhzYUdOUERrMTdJTVRRQ1VzdnF2UFNUbjMxanFBSWlFZDFySFBVM1M4dlQ3OQ?oc=5"
+    },
+    {
       "company": "코스메카코리아",
       "type": "disclosure",
       "title": "[첨부정정]주요사항보고서(유형자산양수결정)",
@@ -296,11 +324,25 @@
       "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE03MVo4MTBOeUh4M1RmVHNpSXp5clJZN3pMR1ZITzJIcGlDVkp5Z08zT0FZNnVydUxtYmpUdlBnY0s2dnlFNlRzSVNucHdyQmk0S2dV?oc=5"
     },
     {
+      "company": "코스메카코리아",
+      "type": "news",
+      "title": "코스메카코리아, 640억원 규모 오창공장 인수 - THE K BEAUTY SCIENCE",
+      "date": "2026-06-05",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9XdEU1WW5wdEtPajJLUTZGY2wyUEU4NXA1bTBraEZDSGg2cHNETGlMOHdWV2R4UG5oZDEyUTR5b2V3aFpfUU9pNFFfQi15VVBNMWN0ZlpkNU1xSGxQcks1VUNGQ3R5cThPZ1E?oc=5"
+    },
+    {
       "company": "이미인",
       "type": "news",
       "title": "이미인, 'K-클리닉 더마' 부상…고효능 홈케어가 뷰티 시장 이끈다 - 머니투데이 - 머니투데이",
       "date": "2026-06-02",
       "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE8xWDcydTQ3THFmRHhFdjlMd1RXODV5T1J5bzYzLVRSREJseTFvdm5aY19jTGhCd3J5U09XVUlDb1ExUmdSRTFUQWY1bFc5MnBwX3ZKN3NYUUFZUlpVRGxrc3RfRWRBeVFQZFHSAW9BVV95cUxOSXJHQldRMVFUWWh1V0N2U2VPaFNDaXV2a3hxZWlHMmRRak5IdkhMTXlCUHdDVTJxbkJMQk1UVk5SNHdjdXBLYU9taVozNE1NaGRjRnNDamx5Qnl4VTZzTmNLU0VxNS1EOGNZNHdub0U?oc=5"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "news",
+      "title": "배수아ㆍ차건아 “5년 내 세계 1위 뷰티 ODM”⋯한 지붕 두 대표 의기투합[유통人터뷰] - v.daum.net",
+      "date": "2026-06-02",
+      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5zQkZiemwxVHZfZ2V6ZVhoZVhmRWFpVHIyMVZfdHhFb1d5OXF4QUFLbF9oaWpDd2E2Rm1zOUk4T1lsb0s3UHl5ZjRhSQ?oc=5"
     },
     {
       "company": "한국콜마",
