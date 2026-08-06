@@ -133,16 +133,21 @@ def main():
             monthly = {}
 
     todo = [ym for ym in month_list(START_YM)
-            if f"{ym[:4]}-{ym[4:]}" not in monthly]
+            if f"{ym[:4]}-{ym[4:]}" not in monthly]   # 아직 없거나 0원이라 저장 안 된 달
     print(f"   가져올 달: {len(todo)}개 (이미 보유 {len(monthly)}개)")
 
     first = True
     for ym in todo:
         exp = fetch_month(ym, debug=first)
         first = False
-        if exp is not None:
-            monthly[f"{ym[:4]}-{ym[4:]}"] = exp
-            print(f"   {ym[:4]}-{ym[4:]}  수출 {exp:,.0f} USD")
+        if exp is None:
+            continue                    # 조회 실패 → 다음 실행 때 재시도
+        if exp <= 0:
+            # 아직 통계가 확정 안 된 최근 달 등은 0으로 옴 → 저장하지 않고 다음(1·15·30일) 실행 때 다시 확인
+            print(f"   {ym[:4]}-{ym[4:]}  집계 전(0) — 저장하지 않고 다음 실행에 재확인")
+            continue
+        monthly[f"{ym[:4]}-{ym[4:]}"] = exp
+        print(f"   {ym[:4]}-{ym[4:]}  수출 {exp:,.0f} USD")
 
     # 정렬해서 저장
     rows = [{"ym": k, "exp": v} for k, v in sorted(monthly.items())]
