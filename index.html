@@ -114,6 +114,11 @@ img{ max-width:100%; display:block; }
 .cal-cell.has-report{ cursor:pointer; transition:.14s; background:#FFE3D0; }
 .cal-cell.has-report .num{ color:var(--brand-deep); }
 .cal-cell.has-report:hover{ transform:translateY(-5px); box-shadow:var(--shadow); background:#FFD0AE; }
+.cal-cell .wbadge{ position:absolute; top:8px; right:8px; font-size:9px; font-weight:800; color:#fff; background:var(--info); padding:3px 7px; border-radius:20px; cursor:pointer; letter-spacing:.3px; z-index:2; }
+.cal-cell .wbadge:hover{ filter:brightness(1.1); }
+.cal-cell.has-week{ cursor:pointer; }
+.cal-cell.has-week:not(.has-report){ background:#E8F1FF; }
+.cal-cell.has-week:not(.has-report) .num{ color:var(--info); }
 .cal-cell .badge{ margin-top:auto; font-size:10px; font-weight:800; color:#fff; background:var(--brand-primary); padding:3px 8px; border-radius:20px; align-self:flex-start; letter-spacing:.3px; }
 @media (max-width:640px){ .cal-cell{ padding:6px; } .cal-cell .badge{ font-size:9px; padding:2px 5px; } }
 
@@ -264,12 +269,35 @@ img{ max-width:100%; display:block; }
 .mover .md{ font-size:12.5px; font-weight:800; }
 .mover .md.up{ color:var(--brand-deep); }
 .mover .md.down{ color:var(--ink-sub); }
+.it-rankbox{ background:var(--surface); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-sm); margin-top:20px; }
+.rank-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:6px 20px; }
+.rank-row{ display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid var(--line); }
+.rank-row .rk{ width:26px; text-align:right; font-weight:800; font-size:14px; color:var(--ink-sub); flex:0 0 auto; }
+.rank-row.top .rk{ color:var(--brand-primary); }
+.rank-row .rn{ flex:1; font-size:14px; font-weight:600; letter-spacing:-.2px; }
+.rank-row .rt{ font-size:12.5px; font-weight:700; color:var(--ink-sub); }
 .it-chartbox{ background:var(--surface); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-sm); }
 #itChart svg{ width:100%; height:auto; display:block; }
 .it-legend{ display:flex; flex-wrap:wrap; gap:12px; margin-top:12px; }
 .it-legend span{ font-size:12px; color:var(--ink-sub); display:flex; align-items:center; gap:5px; }
 .it-legend i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+/* 원료 카드: 가로 배치(사진 왼쪽 + 정보 오른쪽), 사진은 정보 높이에 맞춰 작게 */
+.ing-grid{ grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); }
+.ing-card{ display:flex; align-items:stretch; }
+.ing-card .thumb{ aspect-ratio:1/1; width:104px; flex:0 0 104px; height:auto; }
+.ing-card .body{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:14px 16px; }
+.ing-card .name{ margin:4px 0 6px; }
+@media (max-width:480px){
+  .ing-card .thumb{ width:84px; flex-basis:84px; }
+}
 .site-footer{ background:var(--ink); color:#fff; padding:34px 0; text-align:center; font-size:13px; font-weight:700; letter-spacing:-.2px; }
+.op-corner{ margin-top:16px; display:flex; align-items:center; justify-content:center; gap:6px; opacity:.5; transition:opacity .2s; }
+.op-corner:hover{ opacity:.9; }
+.op-corner input{ width:96px; padding:5px 9px; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.06); color:#fff; border-radius:6px; font-size:12px; }
+.op-corner input::placeholder{ color:rgba(255,255,255,.4); }
+.op-corner button{ padding:5px 11px; border-radius:6px; background:rgba(255,255,255,.14); color:#fff; font-size:12px; font-weight:700; }
+.op-corner button:hover{ background:var(--brand-primary); }
+.op-corner #opState{ font-size:11px; color:var(--brand-mid); font-weight:700; }
 .site-footer .tag{ opacity:.5; margin-top:6px; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; }
 .hidden{ display:none; }
 
@@ -351,7 +379,7 @@ img{ max-width:100%; display:block; }
     </div>
     <p class="page-desc">매주 하나씩 쌓이는 원료 자료실. 아래 태그를 눌러 원하는 효능·특성으로 골라보세요.</p>
     <div class="company-chips" id="ingTags"></div>
-    <div class="card-grid" id="ingGrid"></div>
+    <div class="card-grid ing-grid" id="ingGrid"></div>
   </section>
 
   <!-- ========== 경쟁사 동향 ========== -->
@@ -387,7 +415,7 @@ img{ max-width:100%; display:block; }
       <div class="page-title"><span>성분</span> 트렌드</div>
       <div class="updated" id="itUpdated"></div>
     </div>
-    <p class="page-desc">우리가 매일 수집하는 기사에서 성분 언급을 집계하였습니다. </p>
+    <p class="page-desc">우리가 매일 수집하는 기사에서 성분 언급을 세어 만든 <b>참고 신호</b>입니다. 최근 1년간 누적 언급량입니다. 꾸준히 우상향하는 성분이 스테디, 최근 기울기가 가파른 성분이 라이징입니다.</p>
     <div id="itEmpty" class="hidden" style="color:var(--ink-sub); padding:20px 0;">아직 집계된 데이터가 부족합니다. 며칠 쌓이면 곡선이 그려집니다.</div>
     <div class="it-movers">
       <div class="it-col">
@@ -400,9 +428,13 @@ img{ max-width:100%; display:block; }
       </div>
     </div>
     <div class="it-chartbox">
-      <div class="chips-label">성분별 언급 추이 (30일 이동평균) · 성분을 눌러 켜고 끄세요</div>
+      <div class="chips-label">성분별 <b>누적 언급량</b> (최근 1년) · 성분을 눌러 켜고 끄세요</div>
       <div class="company-chips" id="itChips"></div>
       <div id="itChart"></div>
+    </div>
+    <div class="it-rankbox">
+      <div class="chips-label">누적 언급 순위 · 최근 1년 (스테디 성분이 상위에 오래 머뭅니다)</div>
+      <div id="itRank"></div>
     </div>
   </section>
 
@@ -419,7 +451,13 @@ img{ max-width:100%; display:block; }
 </aside>
 
 <footer class="site-footer">
-  <div class="wrap">KOVAS 전략기획본부 전략경영팀<div class="tag">Good people · Good thinking · Good product</div></div>
+  <div class="wrap">KOVAS 전략기획본부 전략경영팀<div class="tag">Good people · Good thinking · Good product</div>
+    <div class="op-corner">
+      <span id="opState"></span>
+      <input type="password" id="opPw" placeholder="운영자" autocomplete="off" spellcheck="false">
+      <button id="opBtn" type="button">확인</button>
+    </div>
+  </div>
 </footer>
 
 
@@ -436,6 +474,7 @@ img{ max-width:100%; display:block; }
 
 // --- (A) 캘린더용 일별 뉴스 (자동화가 만든 data/*.json 에서 불러옵니다) ---
 let NEWS_DATA = {};   // 아래 loadNews()가 실제 데이터로 채웁니다
+let WEEKS = {};       // 주간 트렌드: { "2026-07-27": {…week json…} }
 
 // --- (B)(C) 신제품·원료 (구글 시트 CSV에서 불러옵니다) ---
 // ★ 구글 시트 "웹에 게시(CSV)" 주소. 시트를 바꾸려면 이 두 줄만 교체하세요.
@@ -632,11 +671,25 @@ function renderCalendar(){
   for(let i=0;i<first;i++){ const e=document.createElement("div"); e.className="cal-cell empty"; grid.appendChild(e); }
   for(let d=1;d<=days;d++){
     const key=keyOf(vY,vM,d), has=!!NEWS_DATA[key];
+    // 주간 배지는 그 주가 끝나는 '금요일'에 표시합니다.
+    // 데이터는 주 시작(토요일) 날짜로 저장돼 있으므로, 금요일에서 6일 전(토)의 키로 찾습니다.
+    const cellDate = new Date(vY,vM,d);
+    const isFri = cellDate.getDay()===5;   // 금요일(주 끝)
+    let weekKey=null, wk=null;
+    if(isFri){
+      const sat = new Date(cellDate); sat.setDate(sat.getDate()-6);  // 그 주 토요일
+      weekKey = keyOf(sat.getFullYear(), sat.getMonth(), sat.getDate());
+      wk = WEEKS[weekKey] || null;
+    }
     const e=document.createElement("div");
-    e.className="cal-cell"+(has?" has-report":"");
+    e.className="cal-cell"+(has?" has-report":"")+(wk?" has-week":"");
     e.setAttribute("data-focus","d"+key);
-    e.innerHTML=`<span class="num">${d}</span>`+(has?`<span class="badge">리포트</span>`:"");
+    let inner=`<span class="num">${d}</span>`;
+    if(wk)  inner+=`<span class="wbadge" onclick="event.stopPropagation();openWeek('${weekKey}')">주간</span>`;
+    if(has) inner+=`<span class="badge">리포트</span>`;
+    e.innerHTML=inner;
     if(has) e.onclick=()=>openNews(key);
+    else if(wk) e.onclick=()=>openWeek(weekKey);
     grid.appendChild(e);
   }
 }
@@ -751,7 +804,7 @@ function renderIngredients(){
   });
 
   document.getElementById("ingGrid").innerHTML=list.map(i=>`
-    <div class="item-card" data-focus="${i.id}" onclick="openIngredient('${i.id}')">
+    <div class="item-card ing-card" data-focus="${i.id}" onclick="openIngredient('${i.id}')">
       ${thumb(i.image, "🌿")}
       <div class="body">
         <div class="brand">${i.nameEn}</div>
@@ -969,6 +1022,22 @@ function openNews(key){
     : "";
   openPanel(`${key.replace(/-/g,".")} · ${d.weekLabel}`, `오늘의 <span style="color:var(--brand-yellow)">트렌드</span>`, issues+one+briefs);
 }
+function openWeek(mon){
+  const w=WEEKS[mon]; if(!w) return;
+  const issues=(w.weekIssues||[]).map((it,i)=>`
+    <div class="issue">
+      <div class="issue-title"><span class="issue-no">${i+1}</span>${it.title}</div>
+      <div class="issue-body">${it.body}</div>
+      ${it.implications&&it.implications.length?`<div class="issue-imp"><div class="imp-label">코바스 관점 시사점</div><ul>${it.implications.map(x=>`<li>${x}</li>`).join("")}</ul></div>`:""}
+    </div>`).join("");
+  const one=`<div class="oneliner"><div class="ol-label">▶ 이번 주 트렌드 한 줄 정리</div>${w.weekOneLiner||""}</div>`;
+  const tags=(w.hashtags&&w.hashtags.length)?`<div class="hashtags">${w.hashtags.map(t=>`<span>#${String(t).replace(/^#/,"")}</span>`).join("")}</div>`:"";
+  const copyBox=`<div id="weekCopyBox" style="display:${OP_MODE?"":"none"}; margin-top:18px;">
+      <button id="weekCopyBtn" class="buy-btn" style="background:var(--info)" onclick="copyWeekEmail('${mon}')">📋 이메일 초안 복사</button>
+      <div style="font-size:12px;color:var(--ink-sub);margin-top:8px">복사 후 아웃룩에 붙여넣어 발송하세요.</div>
+    </div>`;
+  openPanel(`${w.weekLabel||mon}`, `주간 <span style="color:var(--brand-yellow)">트렌드</span>`, one+tags+issues+copyBox);
+}
 function openProduct(id){
   const p=PRODUCTS.find(x=>x.id===id);
   const hero = p.image ? `<div class="detail-hero"><img src="${p.image}" alt="" onerror="this.parentNode.innerHTML='🧴 이미지 없음'"></div>` : `<div class="detail-hero">🧴 제품 이미지</div>`;
@@ -1011,14 +1080,96 @@ async function loadNews(){
   }catch(e){
     console.warn("data/index.json을 불러오지 못했습니다. (아직 데이터가 없거나 로컬 파일로 열었을 수 있습니다)", e);
   }
+  // 주간 트렌드 로드 (weeks.json → 각 주 파일)
+  try{
+    const widx = await (await fetch("data/weeks.json")).json();
+    for(const mon of widx){
+      try{ WEEKS[mon] = await (await fetch(`data/week-${mon}.json`)).json(); }
+      catch(e){ console.warn("주간 로드 실패:", mon, e); }
+    }
+  }catch(e){ /* 아직 주간 데이터가 없을 수 있음(정상) */ }
+  // 리포트가 있는 가장 최근 달로 캘린더 기본 위치를 맞춥니다
+  const keys = Object.keys(NEWS_DATA).sort();
+  if(keys.length){
+    const latest = keys[keys.length-1];         // YYYY-MM-DD
+    vY = Number(latest.slice(0,4));
+    vM = Number(latest.slice(5,7)) - 1;
+  }
   // 한쪽에서 오류가 나도 다른 화면은 그려지도록 각각 분리해 실행합니다
   try{ renderDashboard(); }catch(e){ console.warn("대시보드 그리기 실패", e); }
   try{ renderMarquee();  }catch(e){ console.warn("키워드 마퀴 실패", e); }
   try{ renderCalendar();  }catch(e){ console.warn("캘린더 그리기 실패", e); }
 }
 
+/* ============ 운영자 모드 (주간 이메일 복사 버튼 노출) ============ */
+/* 참고: 정적 사이트라 이 검사는 브라우저 안에서만 이뤄집니다.
+   일반 방문자에게 복사 버튼을 가리는 '가벼운 가림막' 용도이며, 완벽한 보안은 아닙니다. */
+let OP_MODE = false;
+const OP_PW = "strat779";
+
+function initOpCorner(){
+  const btn=document.getElementById("opBtn");
+  const pw=document.getElementById("opPw");
+  const state=document.getElementById("opState");
+  if(!btn||!pw) return;
+  // 세션 동안 유지(새로고침해도 이 탭에선 열린 상태 유지)
+  try{ if(sessionStorage.getItem("opMode")==="1") OP_MODE=true; }catch(e){}
+  const paint=()=>{
+    if(OP_MODE){ state.textContent="운영자 모드"; pw.style.display="none"; btn.textContent="해제"; }
+    else{ state.textContent=""; pw.style.display=""; btn.textContent="확인"; }
+  };
+  paint();
+  btn.onclick=()=>{
+    if(OP_MODE){ OP_MODE=false; try{sessionStorage.removeItem("opMode");}catch(e){} paint(); refreshWeekCopy(); return; }
+    if(pw.value===OP_PW){ OP_MODE=true; try{sessionStorage.setItem("opMode","1");}catch(e){} pw.value=""; paint(); refreshWeekCopy(); }
+    else{ state.textContent="비밀번호가 올바르지 않습니다"; setTimeout(()=>{state.textContent="";},1800); }
+  };
+  pw.onkeydown=(e)=>{ if(e.key==="Enter") btn.click(); };
+}
+
+/* 주간 패널이 열려 있으면 복사 버튼 표시를 갱신 */
+function refreshWeekCopy(){
+  const box=document.getElementById("weekCopyBox");
+  if(box) box.style.display = OP_MODE ? "" : "none";
+}
+
+/* 이메일 초안 텍스트를 만들어 클립보드로 복사 */
+function copyWeekEmail(mon){
+  const w=WEEKS[mon]; if(!w) return;
+  const lines=[];
+  lines.push(`제목: [코바스 주간 뷰티 트렌드] ${w.weekLabel||mon}`);
+  lines.push("");
+  lines.push("한 주간의 기초화장품·스킨케어 트렌드를 정리했습니다.");
+  lines.push("");
+  lines.push("■ 이번 주 한 줄 요약");
+  lines.push(w.weekOneLiner||"");
+  lines.push("");
+  lines.push("■ 주요 흐름");
+  (w.weekIssues||[]).forEach((it,i)=>{
+    lines.push(`  ${i+1}. ${it.title||""}`);
+    lines.push(`     ${it.body||""}`);
+  });
+  const tags=(w.hashtags||[]).map(t=>`#${String(t).replace(/^#/,"")}`).join(" ");
+  if(tags){ lines.push(""); lines.push(tags); }
+  lines.push("");
+  lines.push("───────────────────────────");
+  lines.push("자세한 내용(경쟁사 동향·신제품·원료·수출지표 포함)은 웹사이트에서 확인하실 수 있습니다.");
+  lines.push("▶ https://new-kovas.github.io/trends/");
+  lines.push("");
+  lines.push("KOVAS 전략기획본부 전략경영팀");
+  const text=lines.join("\n");
+  const done=()=>{ const b=document.getElementById("weekCopyBtn"); if(b){ const t=b.textContent; b.textContent="복사됨 ✓"; setTimeout(()=>b.textContent=t,1500);} };
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done)); }
+  else fallbackCopy(text,done);
+}
+function fallbackCopy(text,cb){
+  const ta=document.createElement("textarea"); ta.value=text; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); }catch(e){}
+  document.body.removeChild(ta); cb&&cb();
+}
+
 /* ============ 성분 트렌드 ============ */
-let INGTREND = { updated:"", tracked:[], series:{dates:[],ma7:{}}, movers:[] };
+let INGTREND = { updated:"", tracked:[], series:{dates:[],cum:{}}, movers:[], ranking:[] };
 let itActive = [];   // 차트에 켜진 성분들
 const IT_COLORS = ["#F16522","#2F6FE4","#2E9E5B","#B8299B","#E4A400","#8A5CF6","#00A5B5","#D0342C"];
 
@@ -1032,17 +1183,18 @@ function renderIngTrend(){
   const box = document.getElementById("itUpdated");
   if(box) box.textContent = (INGTREND.updated||"") + " 기준 · 매일 누적";
 
-  const series = INGTREND.series || {dates:[], ma7:{}};
-  const names = Object.keys(series.ma7 || {});
+  const series = INGTREND.series || {dates:[], cum:{}};
+  const names = Object.keys(series.cum || {});
   const enough = (series.dates||[]).length >= 2 && names.length > 0;
   document.getElementById("itEmpty").classList.toggle("hidden", enough);
 
   renderMovers();
+  renderRanking();
   if(!enough){ document.getElementById("itChart").innerHTML=""; document.getElementById("itChips").innerHTML=""; return; }
 
   // 언급량 상위 성분을 기본으로 켬(최대 5개)
   if(!itActive.length){
-    const totals = names.map(n=>[n, (series.ma7[n]||[]).reduce((a,b)=>a+b,0)]);
+    const totals = names.map(n=>[n, (series.cum[n]||[]).slice(-1)[0]||0]);
     totals.sort((a,b)=>b[1]-a[1]);
     itActive = totals.slice(0,5).map(x=>x[0]);
   }
@@ -1068,9 +1220,9 @@ function drawItChart(){
   const dates = series.dates;
   const W=760, H=300, P={t:16,r:16,b:34,l:34};
   const iw=W-P.l-P.r, ih=H-P.t-P.b;
-  const active = itActive.filter(n=>series.ma7[n]);
+  const active = itActive.filter(n=>series.cum[n]);
   let max=0;
-  active.forEach(n=>series.ma7[n].forEach(v=>{ if(v>max) max=v; }));
+  active.forEach(n=>series.cum[n].forEach(v=>{ if(v>max) max=v; }));
   max = Math.max(1, Math.ceil(max));
   const n = dates.length;
   const x = i => P.l + (n<=1 ? iw/2 : iw*i/(n-1));
@@ -1091,15 +1243,28 @@ function drawItChart(){
   // 라인
   active.forEach((name,ci)=>{
     const col = IT_COLORS[ci % IT_COLORS.length];
-    const pts = series.ma7[name].map((v,i)=>`${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+    const pts = series.cum[name].map((v,i)=>`${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
     svg += `<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
-    const li=n-1, lv=series.ma7[name][li];
+    const li=n-1, lv=series.cum[name][li];
     svg += `<circle cx="${x(li).toFixed(1)}" cy="${y(lv).toFixed(1)}" r="3.2" fill="${col}"/>`;
   });
   svg += `</svg>`;
 
   const legend = active.map((name,ci)=>`<span><i style="background:${IT_COLORS[ci%IT_COLORS.length]}"></i>${name}</span>`).join("");
   document.getElementById("itChart").innerHTML = svg + `<div class="it-legend">${legend}</div>`;
+}
+
+function renderRanking(){
+  const box = document.getElementById("itRank");
+  if(!box) return;
+  const rk = INGTREND.ranking || [];
+  if(!rk.length){ box.innerHTML = `<div style="color:var(--ink-sub);font-size:13px">아직 순위를 매길 데이터가 부족합니다.</div>`; return; }
+  box.innerHTML = `<div class="rank-grid">` + rk.map(r=>`
+    <div class="rank-row${r.rank<=3?" top":""}">
+      <span class="rk">${r.rank}</span>
+      <span class="rn">${r.name}</span>
+      <span class="rt">${r.total}회</span>
+    </div>`).join("") + `</div>`;
 }
 
 function renderMovers(){
@@ -1117,6 +1282,7 @@ loadSheets();
 loadCompetitors();
 loadExports();
 loadIngTrend();
+initOpCorner();
 </script>
 <!-- 방문자 통계 (GoatCounter) — 통계는 https://kovas-trend.goatcounter.com 에서 확인 -->
 <script data-goatcounter="https://kovas-trend.goatcounter.com/count"
