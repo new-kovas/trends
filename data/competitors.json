@@ -1,6 +1,20 @@
 {
-  "updated": "2026-08-06",
+  "updated": "2026-08-07",
   "items": [
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "주요사항보고서(자기주식취득신탁계약해지결정)",
+      "date": "2026-08-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260806000477"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "제닉(123330)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. - 씽크풀 AI",
+      "date": "2026-08-05",
+      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5ZQ2Z4eWdTZHNhRzc5b29LNFRrWGF3Z3VyejNqQnpzTm1XMHQ0YVc2NmJxY1FkbWd0Tld6LW5WelJOLTBlQW15OUxPZFBoVXRZekxUd3ZqWnVzNElU?oc=5"
+    },
     {
       "company": "한국콜마",
       "type": "news",
@@ -161,6 +175,13 @@
       "title": "미라콤아이앤씨, 그린코스 디지털팩토리 구축…AI 기반 화장품 스마트 제조 혁신 - 더테크",
       "date": "2026-07-13",
       "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE96WjljWlFrNlpxY2Q0ckdFQkZ4RW1aaDFQSXpKQTlyczdTN2h5SXA2cnp6NE9GNzNoWjVxazNqWTljOHZqak4zc2ItVWVnZ3V6aHVsWjFtLVZHSnZqdFhxTmlydw?oc=5"
+    },
+    {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "[실적 왜이래] 한국콜마 2분기도 영업익 신기록 왜?…‘K-뷰티 열풍’ 이제 시작 - 에너지경제신문",
+      "date": "2026-07-13",
+      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1TWWYzckJHdWxOYzJQX19JTE9VR3VVRGxFV0pHRVpqWjU3U19Sei1vX1NNWUhyTmo2VkdfTnlhS1BXakI1eWpvMnlGcXF5MTB6RDNQMWI4R3ZuTVE?oc=5"
     },
     {
       "company": "그린코스",
