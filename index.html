@@ -290,6 +290,9 @@ img{ max-width:100%; display:block; }
 @media (max-width:480px){
   .ing-card .thumb{ width:84px; flex-basis:84px; }
 }
+.issue-src-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.src-jump{ font-size:12px; font-weight:700; color:var(--info); background:#EEF4FF; border:1px solid #D6E4FF; padding:6px 11px; border-radius:20px; cursor:pointer; transition:.13s; }
+.src-jump:hover{ background:var(--info); color:#fff; transform:translateY(-1px); }
 .site-footer{ background:var(--ink); color:#fff; padding:34px 0; text-align:center; font-size:13px; font-weight:700; letter-spacing:-.2px; }
 .op-corner{ margin-top:16px; display:flex; align-items:center; justify-content:center; gap:6px; opacity:.5; transition:opacity .2s; }
 .op-corner:hover{ opacity:.9; }
@@ -1002,7 +1005,7 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape") closePanel(); });
 function openNews(key){
   const d=NEWS_DATA[key];
   const issues=d.issues.map(it=>`
-    <div class="issue">
+    <div class="issue" data-focus="issue-${key}-${it.no}">
       <div class="issue-title"><span class="issue-no">${it.no}</span>${it.title}</div>
       <div class="issue-body">${it.body}</div>
       ${it.implications&&it.implications.length?`<div class="issue-imp"><div class="imp-label">시장·기획 시사점</div><ul>${it.implications.map(x=>`<li>${x}</li>`).join("")}</ul></div>`:""}
@@ -1024,12 +1027,19 @@ function openNews(key){
 }
 function openWeek(mon){
   const w=WEEKS[mon]; if(!w) return;
-  const issues=(w.weekIssues||[]).map((it,i)=>`
+  const issues=(w.weekIssues||[]).map((it,i)=>{
+    const src=(it.sources||[]).filter(s=>NEWS_DATA[s.date]);   // 원본 리포트가 있는 출처만
+    const srcBtns = src.length
+      ? `<div class="issue-src-row">${src.map(s=>`<button class="src-jump" onclick="goToDailyIssue('${s.date}',${s.no})">📄 ${s.date.slice(5)} 원본 #${s.no} →</button>`).join("")}</div>`
+      : "";
+    return `
     <div class="issue">
       <div class="issue-title"><span class="issue-no">${i+1}</span>${it.title}</div>
       <div class="issue-body">${it.body}</div>
       ${it.implications&&it.implications.length?`<div class="issue-imp"><div class="imp-label">코바스 관점 시사점</div><ul>${it.implications.map(x=>`<li>${x}</li>`).join("")}</ul></div>`:""}
-    </div>`).join("");
+      ${srcBtns}
+    </div>`;
+  }).join("");
   const one=`<div class="oneliner"><div class="ol-label">▶ 이번 주 트렌드 한 줄 정리</div>${w.weekOneLiner||""}</div>`;
   const tags=(w.hashtags&&w.hashtags.length)?`<div class="hashtags">${w.hashtags.map(t=>`<span>#${String(t).replace(/^#/,"")}</span>`).join("")}</div>`:"";
   const copyBox=`<div id="weekCopyBox" style="display:${OP_MODE?"":"none"}; margin-top:18px;">
@@ -1037,6 +1047,22 @@ function openWeek(mon){
       <div style="font-size:12px;color:var(--ink-sub);margin-top:8px">복사 후 아웃룩에 붙여넣어 발송하세요.</div>
     </div>`;
   openPanel(`${w.weekLabel||mon}`, `주간 <span style="color:var(--brand-yellow)">트렌드</span>`, one+tags+issues+copyBox);
+}
+
+/* 주간 이슈의 '원본 보기' → 그날 데일리 리포트를 열고 해당 이슈를 깜빡(펄스) */
+function goToDailyIssue(date, no){
+  const [y,m] = date.split("-").map(Number);
+  showPage("calendar");
+  vY=y; vM=m-1; renderCalendar();
+  openNews(date);                       // 그날 데일리 패널 열기
+  setTimeout(()=>{
+    const el=document.querySelector(`[data-focus="issue-${date}-${no}"]`);
+    if(el){
+      el.scrollIntoView({behavior:"smooth", block:"center"});
+      el.classList.remove("focus-pulse"); void el.offsetWidth; el.classList.add("focus-pulse");
+      setTimeout(()=>el.classList.remove("focus-pulse"), 3000);
+    }
+  }, 260);
 }
 function openProduct(id){
   const p=PRODUCTS.find(x=>x.id===id);
@@ -1185,12 +1211,18 @@ function renderIngTrend(){
 
   const series = INGTREND.series || {dates:[], cum:{}};
   const names = Object.keys(series.cum || {});
-  const enough = (series.dates||[]).length >= 2 && names.length > 0;
-  document.getElementById("itEmpty").classList.toggle("hidden", enough);
+  const hasData = (series.dates||[]).length >= 1 && names.length > 0;
+  // 데이터가 하루치뿐이면 곡선은 아직 밋밋하지만, 칩·순위·점은 보여줍니다.
+  const singleDay = (series.dates||[]).length === 1;
+  document.getElementById("itEmpty").classList.toggle("hidden", hasData);
 
   renderMovers();
   renderRanking();
-  if(!enough){ document.getElementById("itChart").innerHTML=""; document.getElementById("itChips").innerHTML=""; return; }
+  if(!hasData){ document.getElementById("itChart").innerHTML=""; document.getElementById("itChips").innerHTML=""; return; }
+  if(singleDay){
+    document.getElementById("itEmpty").classList.remove("hidden");
+    document.getElementById("itEmpty").textContent = "아직 하루치 데이터입니다. 며칠 쌓이면 추이 곡선이 그려집니다. (아래 순위는 지금도 볼 수 있어요)";
+  }
 
   // 언급량 상위 성분을 기본으로 켬(최대 5개)
   if(!itActive.length){
