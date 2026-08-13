@@ -1,6 +1,69 @@
 {
-  "updated": "2026-08-12",
+  "updated": "2026-08-13",
   "items": [
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-08-12",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260812800082"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "영업(잠정)실적(공정공시)",
+      "date": "2026-08-12",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260812800079"
+    },
+    {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "특징주, 한국콜마-화장품 테마 상승세에 19.65% ↑ - 매일경제 마켓",
+      "date": "2026-08-12",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4tMUNybWd4VjhNUGE0ejFESWNZM3JnZS1wSnlnZTRTbUl0SkxIOE9reHVuVXljZVgzcW9selRBaHR3cUpyMmFQdzBfM0hPbEdMM0E?oc=5"
+    },
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "특징주, 코스맥스-화장품 테마 상승세에 17.38% ↑ - 매일경제 마켓",
+      "date": "2026-08-12",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE55aFRITjdfSHN1YVhqaHJQVmtEcEZLT3FSd21iZi1DTTZ6UXJ4U1AtcXZBWXBtUzZrYi1haF9DR3F5dTh6T3h3aE1LRDNneGdIS3c?oc=5"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "news",
+      "title": "특징주, 코스메카코리아-화장품 테마 상승세에 14.44% ↑ - 매일경제 마켓",
+      "date": "2026-08-12",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBZbzd5OVZBQWVEYm1VZ1NiTEFxNlJIWWU4X0tULUVmaTVNTE02Rmg0OXBvbEx0NlJ1MU4tRWJPcXVDS1RIdEpNSFoxZFBJZnVzcUE?oc=5"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "주요사항보고서(자기주식취득신탁계약체결결정)",
+      "date": "2026-08-12",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260812000327"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "news",
+      "title": "특징주, 씨앤씨인터내셔널-화장품 테마 상승세에 5.49% ↑ - 매일경제 마켓",
+      "date": "2026-08-12",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFB3bExhQ3VYQUtLOFNCSmZsQnZkNnQtTGVZM19va2w2NGd0WVp5dGZiYktpVXFUT3ZzQjZQWUNDYVVlN3VBQVpMOS1pTl9uWjFod1E?oc=5"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "특징주, 제닉-화장품 테마 상승세에 5.77% ↑ - 매일경제 마켓",
+      "date": "2026-08-12",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9SWEx2RmRQbDFQWmtXVl9BNHNXRHMyQ3ExeTFMZ2h5Vm1MRDVRZzFVMHpPQVYzUnV1YVI0LUNoZU9aalY1OUYtYjJGZXVCODhrMlE?oc=5"
+    },
+    {
+      "company": "엔코스",
+      "type": "news",
+      "title": "엔코스, ‘글로벌 뷰티 파운드리’ 비전 담아 공식 홈페이지 전면 리뉴얼 - 투데이안",
+      "date": "2026-08-12",
+      "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1Cb1hpa2wtRHhNY25PbFNtM25KMGZUcGdUYzdveUpmOTlPQ3A1UVRkM3dNQXlzeVp4UHBSS2RReWRpNldpM0owbmhUS1dyRDBEYWhZeTh5OW83Y2hoVWc?oc=5"
+    },
     {
       "company": "코스맥스",
       "type": "disclosure",
@@ -357,6 +420,13 @@
       "title": "이미인 박정완 대표, 2026 대한민국 중소기업인대회 ‘중소벤처기업부 장관 표창’ 수상… K-뷰티 ODM 경쟁력 빛났다 - 뉴스와이어",
       "date": "2026-07-03",
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5yWUsydVdfa1VLc0pyam9BaGk5aXhvVHpLbTdjeWJYLUtTeHZQcTh5VG5HQ0J6UWF6X1pQWmRrMnA2blZhYmQxQ1UtVmNrVnBFSms4VEhobDk5SVNIRW5R?oc=5"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "박정완 이미인 대표, 중소기업인대회서 장관 표창 수상 - 매일경제",
+      "date": "2026-07-03",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBCZEVzUV9FUmxiRHJvX2dhRlk2QXFXMGUwRlg0YTFRTWhQdkxyanduT05IemNvQUV1UmVxSG9GSDFHZEgyNjJIOTZhUHU0NHpZY3c2R1ZR?oc=5"
     },
     {
       "company": "한국콜마",
