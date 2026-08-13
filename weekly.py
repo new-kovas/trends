@@ -64,12 +64,13 @@ def load_week_reports(start_sat):
 
 
 def build_prompt(days, start, end):
-    """한 주치 데일리 리포트 → 주간 트렌드 요약 프롬프트."""
+    """한 주치 데일리 리포트 → 주간 트렌드 요약 프롬프트. 각 이슈에 [날짜/번호] 표기."""
     blocks = []
     for d, r in days:
         lines = [f"[{d}]"]
         for it in r.get("issues", []):
-            lines.append(f"- {it.get('title','')}: {it.get('body','')}")
+            # 각 데일리 이슈를 (날짜, 번호)로 식별할 수 있게 표기
+            lines.append(f"- (출처 {d}#{it.get('no','')}) {it.get('title','')}: {it.get('body','')}")
         if r.get("oneLiner"):
             lines.append(f"  (한줄: {r['oneLiner']})")
         blocks.append("\n".join(lines))
@@ -77,11 +78,15 @@ def build_prompt(days, start, end):
 
     return f"""당신은 화장품 ODM 기업 코바스의 전략기획 담당자입니다.
 아래는 {start}~{end} 한 주간(토~금)의 '데일리 트렌드 요약'들입니다.
+각 항목 앞에 (출처 날짜#번호) 가 붙어 있습니다.
 이것들을 종합해, 한 주를 관통하는 '주간 트렌드'로 재정리하세요.
 
 작성 규칙:
-- 하루 단위 나열이 아니라, 한 주 전체에서 반복·심화된 큰 흐름을 3~5개의 '주간 이슈'로 묶으세요.
-- 각 주간 이슈에는 제목, 2~3문장 요약, 그리고 코바스(패치·시트마스크 ODM) 관점의 시사점 1~2개를 넣으세요.
+- 한 주 전체에서 의미 있는 흐름을 10개의 '주간 이슈'로 정리하세요. (데이터가 부족하면 가능한 만큼)
+- 각 주간 이슈에는 제목, 2~3문장 요약, 코바스(패치·시트마스크 ODM) 관점의 시사점 1~2개를 넣으세요.
+- 각 주간 이슈에는, 그 이슈의 근거가 된 데일리 항목들의 출처를 sources 배열로 넣으세요.
+  형식은 [{{"date":"YYYY-MM-DD","no":번호}}] 이며, 위 목록의 (출처 날짜#번호)에서 그대로 가져오세요.
+  여러 날에 걸친 흐름이면 여러 출처를 넣어도 됩니다. 최소 1개는 반드시 넣으세요.
 - 마지막에 이번 주를 한 문장으로 정리(weekOneLiner)하고, 핵심 키워드 해시태그 4~6개를 만드세요.
 - 사실에 근거하고, 없는 내용을 지어내지 마세요.
 
@@ -89,7 +94,7 @@ def build_prompt(days, start, end):
 
 {{
   "weekIssues": [
-    {{ "title": "주간 이슈 제목", "body": "2~3문장 요약", "implications": ["시사점1", "시사점2"] }}
+    {{ "title": "주간 이슈 제목", "body": "2~3문장 요약", "implications": ["시사점1"], "sources": [{{"date":"2026-07-11","no":3}}] }}
   ],
   "weekOneLiner": "이번 주 트렌드 한 문장",
   "hashtags": ["키워드1", "키워드2", "키워드3", "키워드4"]
@@ -104,7 +109,7 @@ def summarize_week(days, start, end):
     client = Anthropic()
     msg = client.messages.create(
         model=CLAUDE_MODEL,
-        max_tokens=4000,
+        max_tokens=8000,   # 이슈 10개 + 출처 매핑이라 넉넉히
         messages=[{"role": "user", "content": build_prompt(days, start, end)}],
     )
     text = "".join(b.text for b in msg.content if getattr(b, "type", None) == "text").strip()
@@ -112,7 +117,18 @@ def summarize_week(days, start, end):
     text = re.sub(r"```$", "", text).strip()
     if msg.stop_reason == "max_tokens" or not text.endswith("}"):
         raise RuntimeError("AI 답변이 잘렸습니다. max_tokens를 키우세요. 끝부분: " + text[-80:])
-    return json.loads(text)
+    data = json.loads(text)
+    # 출처가 실제 존재하는 (날짜,번호)인지 검증해서 잘못된 매핑은 제거
+    valid = {}
+    for d, r in days:
+        valid[d] = {it.get("no") for it in r.get("issues", [])}
+    for it in data.get("weekIssues", []):
+        clean = []
+        for s in it.get("sources", []) or []:
+            if s.get("date") in valid and s.get("no") in valid[s["date"]]:
+                clean.append({"date": s["date"], "no": s["no"]})
+        it["sources"] = clean
+    return data
 
 
 def make_email(week, start, end):
