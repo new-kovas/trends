@@ -164,7 +164,7 @@ def main():
     store["updated"] = datetime.now(KST).strftime("%Y-%m-%d")
 
     # 7일 이동평균 + 지난주 대비 증감 계산해서 함께 저장(웹이 바로 쓰게)
-    store["series"], store["movers"] = build_views(store)
+    store["series"], store["movers"], store["ranking"] = build_views(store)
 
     os.makedirs(DATA_DIR, exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
@@ -174,47 +174,57 @@ def main():
 
 
 def build_views(store):
-    """일별 카운트 → 성분별 7일 이동평균 시계열 + 지난주 대비 증감 상위."""
-    dates = sorted(store["daily"].keys())
+    """일별 카운트 → (1) 최근 1년 누적 시계열, (2) 누적 순위 1~50위, (3) 지난달 대비 증감."""
+    from datetime import date as _date
+
+    all_dates = sorted(store["daily"].keys())
     daily = store["daily"]
-
-    # 성분별 일별 카운트 배열 (별칭 멤버 제외)
     members = alias_members()
-    per = {}
-    for name in store["tracked"]:
-        if name in members:
-            continue
-        per[name] = [daily.get(d, {}).get(name, 0) for d in dates]
 
-    # 30일(약 한 달) 이동평균 시계열
-    series = {"dates": dates, "ma7": {}}
-    W = 30
+    # 최근 1년(365일)만 대상으로
+    if all_dates:
+        try:
+            last = _date.fromisoformat(all_dates[-1])
+            cutoff = (last - timedelta(days=365)).isoformat()
+            dates = [d for d in all_dates if d >= cutoff]
+        except Exception:
+            dates = all_dates[-365:]
+    else:
+        dates = []
+
+    names = [n for n in store["tracked"] if n not in members]
+
+    # 성분별 일별 카운트
+    per = {n: [daily.get(d, {}).get(n, 0) for d in dates] for n in names}
+
+    # (1) 누적 시계열: 매일의 값을 누적 합산 (계단식으로 우상향)
+    series = {"dates": dates, "cum": {}}
     for name, arr in per.items():
-        ma = []
-        for i in range(len(arr)):
-            window = arr[max(0, i - W + 1): i + 1]
-            ma.append(round(sum(window) / len(window), 2) if window else 0)
-        # 전 구간 0인 성분은 시계열에서 제외(그릴 게 없음)
-        if any(v > 0 for v in ma):
-            series["ma7"][name] = ma
+        run = 0
+        line = []
+        for v in arr:
+            run += v
+            line.append(run)
+        if run > 0:                      # 1년간 한 번이라도 언급된 것만
+            series["cum"][name] = line
 
-    # 최근 30일 대비 그 전 30일 언급 합 비교 → 증감
+    # (2) 누적 순위 (최근 1년 총 언급량 내림차순, 1~50위)
+    totals = [(n, sum(per[n])) for n in names if sum(per[n]) > 0]
+    totals.sort(key=lambda x: x[1], reverse=True)
+    ranking = [{"rank": i + 1, "name": n, "total": t} for i, (n, t) in enumerate(totals[:50])]
+
+    # (3) 지난 30일 대비 그 전 30일 증감 (뜨는/지는)
     movers = []
-    if len(dates) >= 2:
-        for name, arr in per.items():
-            last30 = sum(arr[-30:])
-            prev30 = sum(arr[-60:-30]) if len(arr) >= 31 else 0
-            if last30 == 0 and prev30 == 0:
-                continue
-            movers.append({
-                "name": name,
-                "last7": last30,      # 웹 호환 위해 키 이름 유지(값은 최근 30일)
-                "prev7": prev30,
-                "delta": last30 - prev30,
-            })
-        movers.sort(key=lambda x: x["delta"], reverse=True)
+    for name, arr in per.items():
+        last30 = sum(arr[-30:])
+        prev30 = sum(arr[-60:-30]) if len(arr) >= 31 else 0
+        if last30 == 0 and prev30 == 0:
+            continue
+        movers.append({"name": name, "last7": last30, "prev7": prev30, "delta": last30 - prev30})
+    movers.sort(key=lambda x: x["delta"], reverse=True)
 
-    return series, movers
+    return series, movers, ranking
+
 
 
 if __name__ == "__main__":
