@@ -61,20 +61,6 @@ jobs:
       - name: 성분 트렌드 집계
         run: python ingredients_trend.py
 
-      # 4-5) 주간 트렌드 생성 (금요일에만 — 이번 주 토~금을 묶어 요약 + 이메일 초안)
-      - name: 주간 트렌드 생성 (금요일)
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          # KST 기준 요일 확인 (금요일일 때만 실행). 수동 실행 시엔 항상 생성.
-          DOW=$(TZ=Asia/Seoul date +%u)   # 1=월 ... 5=금 ... 7=일
-          if [ "$DOW" = "5" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "주간 트렌드 생성 실행 (토~금)"
-            python weekly.py
-          else
-            echo "금요일이 아니라 주간 생성은 건너뜁니다 (오늘 요일=$DOW)"
-          fi
-
       # 5) 생성된 data 폴더를 저장소에 자동 커밋
       - name: 결과 저장(커밋)
         run: |
