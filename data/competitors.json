@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-15",
+  "updated": "2026-08-16",
   "items": [
     {
       "company": "이미인",
@@ -98,6 +98,13 @@
       "title": "엔코스, ‘글로벌 뷰티 파운드리’ 비전 담아 공식 홈페이지 전면 리뉴얼 - 뉴스와이어",
       "date": "2026-08-12",
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5hRWprT2g3NnZ6eG5MOXllWEdIVWRjNmdobFFqY0d3aGlCTFM4YllnNDNGV2w4U3ZkazhieVdhbHZaTTlXblc0OHNtSG5nTFdiY0NkYXU5OEJZOTlOS2J3?oc=5"
+    },
+    {
+      "company": "엔코스",
+      "type": "news",
+      "title": "엔코스, ‘글로벌 뷰티 파운드리’ 비전 담아 공식 홈페이지 전면 리뉴얼 - AI경기방송",
+      "date": "2026-08-12",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE85TFh5R3BvRGgzc3Vua3Z0dG5DVEVjdXUxaTh4R1lfN09hUThpdkhBeEFPMjdqOUlON0pQeWV4VlAySnI0Q0tsVl9PbXFjS2ZOY1E?oc=5"
     },
     {
       "company": "코스맥스",
@@ -497,6 +504,13 @@
       "title": "화장품신문 (Beautynury.com) :: 씨엔에프, 식약처 현장 간담회 - 뷰티누리",
       "date": "2026-07-01",
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9QTE5HMWhFV3RlZTM3V0lwdHJENEx6UVpYU082TklEYzBPdVU5Rzk2ZHZCNzV3UjRoeFV2TnUtSFFJdU5ndWRyMFVXeFc3bTRZbmg1Y0ZPZExUX0cya1RB?oc=5"
+    },
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "제품 의뢰부터 생산까지 3개월 만에 '뚝딱'…K뷰티 요람된 ODM - 한국경제",
+      "date": "2026-07-01",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1kb0RjNWtqZ3dRWkpocllPUmdVNEZycndFWTBXRVJJQl9LQ0l4dkwxWUR5Y3lfd0VHVDlLeTVQSXdzVFhXdjlIQ0hxaGdMRDc4d0RPUHBMM3ZuUQ?oc=5"
     },
     {
       "company": "한국콜마",
