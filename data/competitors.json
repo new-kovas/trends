@@ -1,6 +1,20 @@
 {
-  "updated": "2026-08-20",
+  "updated": "2026-08-21",
   "items": [
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "합병등종료보고서(합병)",
+      "date": "2026-08-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260820000434"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "신영증권 \"제닉, 가파른 실적 성장세…밸류에이션 매력↑ - 연합뉴스",
+      "date": "2026-08-18",
+      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA0cFhDVnpjSEZSandRQXV2MUhqbk45TDczaXpQNG13TVZMc3ZXcTFuSWtWZC16eWdKTG91cmlETlpucGZCWE96MHdkQS1Qb2toWlZFZEpxR2RwN2fSAWBBVV95cUxOWFQzYl94YzdZelBZMGNQZHF4Z2JHU3dpME1Ca0FfcVhCdmhxX3VtRVh1cWVsVzh6YTcyU0pGQkZGODcyREZrTW5DZmpfemZUeTh2Wm00T1BEenp3eklzeHM?oc=5"
+    },
     {
       "company": "엔코스",
       "type": "news",
@@ -240,6 +254,13 @@
       "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFB2NEVHWWNZMkllMkpfcHhHMmNWTDNjUmkyb3AtQkk3X1R1OXhGZ1R0a21Qc2ZRZXl0eUlyNVNQdjBjaThfbTR4NXMtd2JHVGpuT0tQZDJMMktFNUhUYVE?oc=5"
     },
     {
+      "company": "이미인",
+      "type": "news",
+      "title": "창립 20주년 이미인…'글로벌 스킨케어 ODM 도약' 선포 - 뉴시스",
+      "date": "2026-07-27",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5ZdWlmZ3NhaElvOEt3TWhPcko3MGtGVDhuMExMdGs3VlVGSXk4bkFRRmhoXzJnSGJncXBoQl9vUmROd0ZseWtoaWZsSVl3eVNXeklUV1dNdmlLTC1GUUU0N9IBeEFVX3lxTFB3NVFYY1VsM0pxS19qREFSZXNzR3hYbTgzYUNsUHMwNlhmUW9Ydk9pR1BvYkVhYnlEaVJKMjJLb3FNMGdTU0tQM0wtUnpJME5wSDlReGUwWjFqSm41bVdmU2JYelFvcnN1Yk01WlUzSEJzdWhWazZ1MQ?oc=5"
+    },
+    {
       "company": "코스메카코리아",
       "type": "disclosure",
       "title": "지속가능경영보고서등관련사항(자율공시)",
@@ -408,11 +429,25 @@
       "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1mcHBrdE52SVVQM1VBTXNzbDFDbkJTOGlhSjRLSVlFNzZMWnlsbW44N25PMlltbGJTblZKMUE5eTNSdklTbmFqSVBKN0FISXlGeGJ1T1FjeTRaVmZmUzlWLWUtczFQdWk4?oc=5"
     },
     {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "K-뷰티 글로벌 질주에⋯ 콜마·코스맥스, 역대급 실적 전망 - 브릿지경제",
+      "date": "2026-07-13",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBZV1Npc3RrTG1HUlRSS1JUZm0zYUdrRno3VVJMZEhyMVhhZzd1N2lEXzZsX2l1LXlzRjFQN1VXalR3dDNSZVFodjNiMFdUbUltT2d1NWNPNkUxdw?oc=5"
+    },
+    {
       "company": "그린코스",
       "type": "news",
       "title": "미라콤아이앤씨, 그린코스에 디지털팩토리 구축…화장품 제조 품질관리 고도화 - 한국경제",
       "date": "2026-07-12",
       "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE0tWUtsNzVIZEF0QlMtUWpSN2pKYl95MUFyUXFaVGpDeTBrdlpiaFZ6V3NnQ184cm1hUUlRc3ZIMnU2aVg5REtoeGxNQVdhWXQ1dXFoQzJ0WENYdw?oc=5"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "잉글우드랩 투자분석 2026. 07. 12 - 주달",
+      "date": "2026-07-12",
+      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5kU29sdmVTdGNuT2Fxbmg3emhCemx6cUlHbnBlY2x6S3VGMU1ibVBuM2xFc2MyN2xCWVdzOHdJM3F0X1cyUlVNbW03MVQtOW83V0lQRElTTkFRbVdKZW94dGxITGp6SjYwdXhDNXNlQVRWVzQ?oc=5"
     },
     {
       "company": "씨앤씨인터내셔널",
