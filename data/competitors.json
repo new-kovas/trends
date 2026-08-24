@@ -1,12 +1,26 @@
 {
-  "updated": "2026-08-24",
+  "updated": "2026-08-25",
   "items": [
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "코스맥스·현대홈쇼핑, 맞춤형 화장품 공동개발 | - 연합인포맥스",
+      "date": "2026-08-24",
+      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9oMHZDS09HSnpVNFVKTGl2emlGWll4dnN3VVZOT1Y1QVFkT2VHNUlZblZyT0JoMndOZzJSVzZyS0tIWHh2dW5zcDJwc3B6OEIzT3VyYUc0RkowMW1NOGJzMjRBZlFHODBka2xQQ3BDX1VsNnRl?oc=5"
+    },
     {
       "company": "코스맥스",
       "type": "disclosure",
       "title": "합병등종료보고서(합병)",
       "date": "2026-08-20",
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260820000434"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "[서치 e종목] 제닉, 증설 설비 가동으로 3분기도 역대 최고 분기 매출 경신할까 - 데일리인베스트",
+      "date": "2026-08-20",
+      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBNaF9ZSDdMM0pnb21vTm1ZSjlUMlY1ZXFzZ3kxRHBpVkJ3QTFTUGNkUHZHZ2pGeVZvZ1U4NDVHbElFWmRTWDdoQ1lzSTVRemJhWUFvSkJINnBGY0h0eHVVS05kQURMMERmQTl3?oc=5"
     },
     {
       "company": "제닉",
