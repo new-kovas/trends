@@ -1,6 +1,13 @@
 {
-  "updated": "2026-08-25",
+  "updated": "2026-08-26",
   "items": [
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "최대주주등소유주식변동신고서",
+      "date": "2026-08-25",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260825800411"
+    },
     {
       "company": "코스맥스",
       "type": "news",
@@ -28,6 +35,13 @@
       "title": "신영증권 \"제닉, 가파른 실적 성장세…밸류에이션 매력↑ - 연합뉴스",
       "date": "2026-08-18",
       "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA0cFhDVnpjSEZSandRQXV2MUhqbk45TDczaXpQNG13TVZMc3ZXcTFuSWtWZC16eWdKTG91cmlETlpucGZCWE96MHdkQS1Qb2toWlZFZEpxR2RwN2fSAWBBVV95cUxOWFQzYl94YzdZelBZMGNQZHF4Z2JHU3dpME1Ca0FfcVhCdmhxX3VtRVh1cWVsVzh6YTcyU0pGQkZGODcyREZrTW5DZmpfemZUeTh2Wm00T1BEenp3eklzeHM?oc=5"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "이미인, 창립 20주년 ‘글로벌 스킨케어 ODM 기업 도약’ - 주간신문씨엠엔",
+      "date": "2026-08-17",
+      "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE83R0VjUGxJNkswb1o1R0dwRjFrMk9jeVNzVU9KS1FPVW4tOHBwdWVzTVc2SFlvSW55SnU4ZHA0UThkVndDUkxhYXgtWmhPODdXVHlOZncwQlBGU2lDUlZqQ0lJdGJyQU0?oc=5"
     },
     {
       "company": "엔코스",
@@ -63,6 +77,13 @@
       "title": "화장품신문 (Beautynury.com) :: 이미인(IMINE), 글로벌 화장품 규제 강화에 ‘수출형 ODM’으로 승부수 - beautynury.com",
       "date": "2026-08-14",
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9waWZ2NzlxcXRIa1ZvZ1NnUUFuWXJValJLU2VBNkM3ckFhRDJfNFVId0VvdmMySldqUHpHT0N2VEttSGlXX1FnZVlhcFhoWVVEZGlFb2hiU1RHejJjcUZR?oc=5"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "'창립 20주년' 이미인, '수출형 ODM'으로 글로벌 공략 - 아시아경제",
+      "date": "2026-08-14",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE51dUVYQ3YtcUhKSGZ6bDB4Y3ZLWkNpbmVxSXNqWnkwRTBqWVlPb0ZkdDNyZ1NYdGZlNk5VLVpZdm80eFNLU2xXVXI5dWpYdlYtOUhmbjlzaldRV2Z0Q2hybw?oc=5"
     },
     {
       "company": "한국콜마",
