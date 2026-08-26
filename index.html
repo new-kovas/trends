@@ -704,31 +704,59 @@ function latestIngredient(){
 }
 
 /* 히어로 키워드 마퀴 — 최근 리포트의 해시태그를 모아 흘려보냅니다 */
+/* 합성 해시태그를 의미 단위 핵심어로 분해 */
+function tagKeywords(tag){
+  let t = String(tag).replace(/^#/,"");
+  // 붙여쓴 합성어를 자주 쓰이는 접두/접미 기준으로 쪼갬
+  const known = ["K뷰티","케이뷰티","글로벌","확장","확산","실적","호조","급등","성장",
+    "ODM","OEM","롱제비티","스킨","성분","트렌드","뷰티","패치","마스크","시트마스크",
+    "펩타이드","엑소좀","레티놀","병풀","콜라겐","인디브랜드","브랜드","수출","북미","미국",
+    "일본","동남아","중국","유통","채널","틱톡","아마存","세포라","올리브영","프리미엄",
+    "저가","품질","논란","AI","맞춤형","개인화","친환경","비건","더마","기능성","선케어",
+    "두피","헤어","앰플","세럼","크림","리들샷","리필","지속가능"];
+  const found = [];
+  for(const k of known){
+    if(t.includes(k)){ found.push(k); }
+  }
+  // 아무것도 못 쪼갰으면 원본 자체를 키워드로
+  if(!found.length) found.push(t);
+  // 너무 흔한 단어(뷰티, 브랜드, 트렌드)만 남으면 원본도 함께 고려
+  return { full:t, parts:[...new Set(found)] };
+}
+
 /* 한 키워드가 든 이슈·단신을 모아 반환 (마퀴 필터와 모아보기 패널이 공용) */
 function tagHits(tag){
-  const t = String(tag).replace(/^#/,"");
-  const norm = s => String(s||"").replace(/\s/g,"");
-  const tn = norm(t);
+  const norm = s => String(s||"").replace(/[\s\-·]/g,"");
+  const { full, parts } = tagKeywords(tag);
+  const nfull = norm(full);
+  // 흔해서 단독으로는 변별력이 약한 단어들 — 이것만으로는 매칭 인정 안 함
+  const WEAK = new Set(["뷰티","브랜드","트렌드","스킨","성분"].map(norm));
+  const strongParts = parts.map(norm).filter(p=>!WEAK.has(p));
   const dates = Object.keys(NEWS_DATA).sort().reverse();
   const hits = [];
   for(const d of dates){
     const rep = NEWS_DATA[d];
-    const taggedHere = (rep.hashtags||[]).some(h=>norm(String(h).replace(/^#/,""))===tn);
-    const matchedNos = new Set();
     (rep.issues||[]).forEach(it=>{
-      if(norm(it.title).includes(tn) || norm(it.body).includes(tn)){
-        hits.push({date:d, no:it.no, title:it.title, body:it.body, kind:"issue"});
-        matchedNos.add(it.no);
+      const hay = norm(it.title) + " " + norm(it.body);
+      let matched = false;
+      // 1순위: 태그 전체가 그대로
+      if(nfull.length>=2 && hay.includes(nfull)) matched = true;
+      // 2순위: 변별력 있는 핵심어가 2개 이상 동시에
+      if(!matched && strongParts.length){
+        const hitCount = strongParts.filter(p=>hay.includes(p)).length;
+        if(hitCount >= Math.min(2, strongParts.length)) matched = true;
       }
+      if(matched) hits.push({date:d, no:it.no, title:it.title, body:it.body, kind:"issue"});
     });
-    if(taggedHere && matchedNos.size===0 && (rep.issues||[]).length){
-      const it = rep.issues[0];
-      hits.push({date:d, no:it.no, title:it.title, body:it.body, kind:"issue"});
-    }
     (rep.briefs||[]).forEach(b=>{
-      if(norm(b.title).includes(tn)){
-        hits.push({date:d, title:b.title, link:b.link, kind:"brief"});
+      const hay = norm(b.title);
+      let matched = false;
+      if(nfull.length>=2 && hay.includes(nfull)) matched = true;
+      if(!matched && strongParts.length){
+        const hitCount = strongParts.filter(p=>hay.includes(p)).length;
+        if(hitCount >= Math.min(2, strongParts.length)) matched = true;
       }
+      if(matched) hits.push({date:d, title:b.title, link:b.link, kind:"brief"});
     });
   }
   return hits;
@@ -759,6 +787,7 @@ function renderMarquee(){
 function goToTag(tag){
   const t = String(tag).replace(/^#/,"");
   const hits = tagHits(t);
+  const kws = tagKeywords(t).parts;   // 강조할 핵심어들
   const intro = `<div class="tag-intro">'<b>#${t}</b>' 관련 소식 <b>${hits.length}</b>건을 모았습니다.</div>`;
   let body;
   if(!hits.length){
@@ -768,14 +797,14 @@ function goToTag(tag){
       if(h.kind==="issue"){
         return `<div class="tag-hit" onclick="goToDailyIssue('${h.date}',${h.no})">
           <div class="tag-hit-date">${h.date.replace(/-/g,'.')} · 이슈 #${h.no}</div>
-          <div class="tag-hit-title">${hl(h.title,t)}</div>
-          <div class="tag-hit-body">${hl((h.body||'').slice(0,90),t)}${(h.body||'').length>90?'…':''}</div>
+          <div class="tag-hit-title">${hl(h.title,kws)}</div>
+          <div class="tag-hit-body">${hl((h.body||'').slice(0,90),kws)}${(h.body||'').length>90?'…':''}</div>
           <div class="tag-hit-go">원본 리포트에서 보기 →</div>
         </div>`;
       }else{
         return `<a class="tag-hit brief" href="${h.link}" target="_blank" rel="noopener">
           <div class="tag-hit-date">${h.date.replace(/-/g,'.')} · 단신</div>
-          <div class="tag-hit-title">${hl(h.title,t)}</div>
+          <div class="tag-hit-title">${hl(h.title,kws)}</div>
           <div class="tag-hit-go">기사 원문 보기 ↗</div>
         </a>`;
       }
@@ -784,12 +813,20 @@ function goToTag(tag){
   openPanel(`#${t}`, `키워드 <span style="color:var(--brand-yellow)">모아보기</span>`, body);
 }
 
-/* 키워드를 본문에서 주황색으로 강조 */
+/* 키워드(들)를 본문에서 주황색으로 강조 */
 function hl(text, kw){
   if(!text||!kw) return text||"";
-  try{ const re=new RegExp('('+kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','g');
-    return String(text).replace(re,'<mark>$1</mark>'); }
-  catch(e){ return text; }
+  const list = Array.isArray(kw) ? kw : [kw];
+  let out = String(text);
+  // 흔한 약한 단어는 강조에서 제외(시각적 노이즈 방지)
+  const skip = new Set(["뷰티","브랜드","트렌드"]);
+  list.filter(k=>k && k.length>=2 && !skip.has(k))
+      .sort((a,b)=>b.length-a.length)   // 긴 단어 먼저 강조
+      .forEach(k=>{
+    try{ const re=new RegExp('('+k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','g');
+      out = out.replace(re,'<mark>$1</mark>'); }catch(e){}
+  });
+  return out;
 }
 
 function renderDashboard(){
