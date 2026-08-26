@@ -87,7 +87,7 @@ img{ max-width:100%; display:block; }
   animation:stampPress .5s cubic-bezier(.18,.85,.32,1) .55s both; }
 .hero h1{ font-size:clamp(40px,8.5vw,88px); font-weight:800; line-height:.98; letter-spacing:-3px; }
 .hero h1 em{ font-style:normal; color:var(--brand-primary); }
-.hero p{ color:var(--ink-sub); font-size:16px; margin-top:16px; max-width:620px; }
+.hero p{ color:var(--ink-sub); font-size:16px; margin-top:16px; max-width:none; word-break:keep-all; line-height:1.6; }
 .hero .rule{ height:6px; width:76px; background:var(--brand-amber); margin-top:22px; }
 /* 모바일: 인물 숨기고 타이틀만 (뭉개짐 방지 + 가독성) */
 @media (max-width:820px){
@@ -98,7 +98,8 @@ img{ max-width:100%; display:block; }
 /* 키워드 마퀴 — 히어로 아래 전체 폭 */
 .marquee{ overflow:hidden; margin:4px 0 30px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:11px 0; }
 .marquee-track{ display:flex; gap:26px; width:max-content; animation:slideMarquee 37s linear infinite; }
-.marquee span{ font-size:13px; font-weight:700; color:var(--brand-deep); white-space:nowrap; letter-spacing:.2px; }
+.marquee span{ font-size:13px; font-weight:700; color:var(--brand-deep); white-space:nowrap; letter-spacing:.2px; cursor:pointer; transition:color .15s; }
+.marquee span:hover{ color:var(--brand-primary); text-decoration:underline; }
 .marquee span::before{ content:"#"; opacity:.45; margin-right:2px; }
 .marquee:hover .marquee-track{ animation-play-state:paused; }
 
@@ -681,8 +682,43 @@ function renderMarquee(){
   });
   if(!tags.length){ box.style.display="none"; return; }
   box.style.display="";
-  const line = tags.map(t=>`<span>${t}</span>`).join("");
+  const line = tags.map(t=>{
+    const safe=t.replace(/'/g,"\\'");
+    return `<span onclick="goToTag('${safe}')">${t}</span>`;
+  }).join("");
   box.innerHTML = `<div class="marquee-track">${line}${line}</div>`;
+}
+
+/* 해시태그 클릭 → 그 키워드가 든 최신 리포트를 캘린더에서 열고, 관련 이슈 깜빡 */
+function goToTag(tag){
+  const t = String(tag).replace(/^#/,"");
+  // 그 키워드가 hashtags 또는 이슈 제목/본문에 든 가장 최근 날짜를 찾음
+  const dates = Object.keys(NEWS_DATA).sort().reverse();
+  const norm = s => String(s||"").replace(/\s/g,"");
+  const tn = norm(t);
+  let hitDate=null, hitNo=null;
+  for(const d of dates){
+    const rep = NEWS_DATA[d];
+    const inTags = (rep.hashtags||[]).some(h=>norm(String(h).replace(/^#/,""))===tn);
+    let inIssue=null;
+    (rep.issues||[]).forEach(it=>{
+      if(inIssue) return;
+      if(norm(it.title).includes(tn) || norm(it.body).includes(tn)) inIssue=it.no;
+    });
+    if(inTags || inIssue!=null){ hitDate=d; hitNo=inIssue; break; }
+  }
+  if(!hitDate){ showPage("calendar"); return; }
+  const [y,m]=hitDate.split("-").map(Number);
+  showPage("calendar"); vY=y; vM=m-1; renderCalendar();
+  openNews(hitDate);
+  if(hitNo!=null){
+    setTimeout(()=>{
+      const el=document.querySelector(`[data-focus="issue-${hitDate}-${hitNo}"]`);
+      if(el){ el.scrollIntoView({behavior:"smooth",block:"center"});
+        el.classList.remove("focus-pulse"); void el.offsetWidth; el.classList.add("focus-pulse");
+        setTimeout(()=>el.classList.remove("focus-pulse"),3000); }
+    },260);
+  }
 }
 
 function renderDashboard(){
