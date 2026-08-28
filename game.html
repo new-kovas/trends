@@ -15,6 +15,9 @@
 body{font-family:"Pretendard",-apple-system,"Malgun Gothic",sans-serif;background:var(--paper);color:var(--ink);display:flex;justify-content:center;padding:20px;}
 .game-wrap{width:100%;max-width:900px;}
 .game-frame{position:relative;width:100%;background:linear-gradient(180deg,#EAD7F2 0%,#FCEBDD 42%,#FFF3E9 62%,#F3D9C4 100%);border-radius:16px;overflow:hidden;box-shadow:0 14px 38px rgba(225,100,34,.18);user-select:none;touch-action:none;}
+/* 시작/결과 화면이 떠 있을 때: 캔버스를 뒤에 깔고, 화면 콘텐츠가 프레임 높이를 결정 → 잘림 방지(특히 모바일) */
+.game-frame.menu-open canvas{position:absolute;inset:0;height:100%;width:100%;}
+.game-frame.menu-open .screen{position:relative;min-height:100%;}
 canvas{display:block;width:100%;height:auto;}
 .screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:rgba(255,249,243,.94);backdrop-filter:blur(2px);padding:10px;overflow-y:auto;}
 .screen.hidden{display:none;}
@@ -144,7 +147,7 @@ canvas{display:block;width:100%;height:auto;}
 </head>
 <body>
 <div class="game-wrap">
-  <div class="game-frame" id="frame">
+  <div class="game-frame menu-open" id="frame">
     <canvas id="cv" width="900" height="760"></canvas>
 
     <div class="screen start-card" id="startScreen">
@@ -190,7 +193,7 @@ canvas{display:block;width:100%;height:auto;}
       <button class="btn btn-play" onclick="Game.requestStart()">▶ 게임 시작</button>
       <div class="key-hint">
         <div class="hint-row">PC — <b>&larr; &rarr;</b> 이동 · <b>Space</b> 점프(+아데노신)</div>
-        <div class="hint-row">모바일 — <b>손 떼면 점프</b> · <b>붙이고 좌우로 밀면</b> 이동</div>
+        <div class="hint-row">모바일 — <b>화면 좌·우 누르면</b> 이동 · <b>가볍게 탭</b> 점프</div>
       </div>
       <div class="legend">
         <div class="legend-item"><span class="legend-dot" style="background:#3BA7E0"></span>히알루론산 · 시간+</div>
@@ -1146,20 +1149,35 @@ const Game = (function(){
     if(e.code==="ArrowLeft") leftHeld=false;
     if(e.code==="ArrowRight") rightHeld=false;
   });
-  let touchStartX=null, touchMoved=false;
+  let touchStartX=null, touchMoved=false, touchStartTime=0;
   const frame=document.getElementById("frame");
-  frame.addEventListener("touchstart",e=>{ if(state!=="play")return; touchStartX=e.touches[0].clientX; touchMoved=false; },{passive:true});
+  // 손가락이 화면(캔버스) 좌/우 어디에 있는지로 이동 방향 결정
+  function updateDirFromTouch(clientX){
+    const rect=cv.getBoundingClientRect();
+    const rel=(clientX-rect.left)/rect.width;   // 0(맨왼쪽)~1(맨오른쪽)
+    const dead=0.08;                             // 중앙 근처 약간의 데드존
+    if(rel < 0.5-dead){ leftHeld=true; rightHeld=false; }
+    else if(rel > 0.5+dead){ leftHeld=false; rightHeld=true; }
+    else { leftHeld=false; rightHeld=false; }
+  }
+  frame.addEventListener("touchstart",e=>{
+    if(state!=="play")return;
+    const t=e.touches[0];
+    touchStartX=t.clientX; touchStartTime=Date.now(); touchMoved=false;
+    updateDirFromTouch(t.clientX);
+  },{passive:true});
   frame.addEventListener("touchmove",e=>{
-    if(state!=="play"||touchStartX==null)return;
-    const dx=e.touches[0].clientX-touchStartX;
-    leftHeld = dx<-8; rightHeld = dx>8;
-    if(Math.abs(dx)>8) touchMoved=true;
-    touchStartX=e.touches[0].clientX;
+    if(state!=="play")return;
+    const t=e.touches[0];
+    if(touchStartX!=null && Math.abs(t.clientX-touchStartX)>10) touchMoved=true;
+    updateDirFromTouch(t.clientX);            // 손가락 현재 위치로 계속 방향 갱신
   },{passive:true});
   frame.addEventListener("touchend",e=>{
     if(state!=="play")return;
     leftHeld=false; rightHeld=false;
-    if(!touchMoved) jump();
+    // 짧게 탭(거의 안 움직이고 빠르게 뗌)하면 점프
+    const quick=(Date.now()-touchStartTime)<250;
+    if(!touchMoved && quick) jump();
     touchStartX=null;
   },{passive:true});
 

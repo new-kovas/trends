@@ -311,6 +311,12 @@ img{ max-width:100%; display:block; }
 .ing-card .name{ margin:4px 0 6px; }
 @media (max-width:480px){
   .ing-card .thumb{ width:84px; flex-basis:84px; }
+  /* 신제품 카드도 모바일에선 원료처럼 가로형(작은 사진 + 정보)으로 */
+  .card-grid:not(.ing-grid){ grid-template-columns:1fr; gap:12px; }
+  .card-grid:not(.ing-grid) .item-card{ display:flex; align-items:stretch; }
+  .card-grid:not(.ing-grid) .item-card .thumb{ aspect-ratio:1/1; width:84px; flex:0 0 84px; height:auto; }
+  .card-grid:not(.ing-grid) .item-card .body{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:12px 16px; }
+  .card-grid:not(.ing-grid) .item-card .name{ margin:4px 0 6px; }
 }
 .issue-src-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
 .src-jump{ font-size:12px; font-weight:700; color:var(--info); background:#EEF4FF; border:1px solid #D6E4FF; padding:6px 11px; border-radius:20px; cursor:pointer; transition:.13s; }
