@@ -1,6 +1,41 @@
 {
-  "updated": "2026-08-27",
+  "updated": "2026-08-28",
   "items": [
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "대규모기업집단현황공시[분기별공시(개별회사용)]",
+      "date": "2026-08-28",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828000588"
+    },
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "코스맥스, 인도네시아 첫 화장품학과 개설 참여…산학 연구 확대 - 연합뉴스",
+      "date": "2026-08-28",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5KMi1Wd280SmFkM1k3bkpYdFdpOXYwX0hxeUhHQU5LTzd0RzIxUmt4V1RuN2c2WGFfT0lwWFFjUEJ3WWxzcUxuekN3d1VrNTlKM21oZEtzYllybnY3S0Zsd9IBYEFVX3lxTE5KMi1Wd280SmFkM1k3bkpYdFdpOXYwX0hxeUhHQU5LTzd0RzIxUmt4V1RuN2c2WGFfT0lwWFFjUEJ3WWxzcUxuekN3d1VrNTlKM21oZEtzYllybnY3S0Zsdw?oc=5"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "신탁계약에의한취득상황보고서",
+      "date": "2026-08-28",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828000597"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "이미인, 화장품 ODM 전 과정에 AI 전환…원단 추천·수출 규제 업무 적용 - 한국섬유신문",
+      "date": "2026-08-27",
+      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBwb2VPUURRbnVkSVhpYV9tbnBEemVhQzIybHN0WmNKTlVEZk9BX2YybDVBME5IazlKTVdJczR6U1RBZmF0eDVGWl9rcm4zUHBGTnk4WlVnMzRQTWM0WG5zSTUyMEhaSmlV?oc=5"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "이미인, 화장품 ODM 업무 전반 AX 도입으로 경쟁력 혁신 - 뉴스와이어",
+      "date": "2026-08-26",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9DRWI5WFNXZ2RqT1dLQWxsYTdjM0JsbWJ6NHhmdl92UWR0cEwzVGJBcUdRUFZQS3hVVEVtMzdhWS1uSFFMU1Q2Z0tHOEhUcHRTdHlvcXBXbjZ5XzQ2ZndF?oc=5"
+    },
     {
       "company": "한국콜마",
       "type": "disclosure",
@@ -226,6 +261,13 @@
       "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1vak5uMHpOaHhSUGcweUtodG1EZGx1Wmp4MG5tOWpqSnhPUC1mc1VDZUstYVVyU2ZhYi1oalF0ZmNxXy0wZC0tWTdZUXlLcnpKaWFIRzI5ejVZbUh5RFhQWU5uVHVibXBh0gFoQVVfeXFMTW9qTm4wek5oeFJQZzB5S2h0bURkbHVaangwbm05ampKeE9QLWZzVUNlSy1hVXJTZmFiLWhqUXRmY3FfLTBkLS1ZN1lReUtyekppYUhHMjl6NVltSHlEWFBZTm5UdWJtcGE?oc=5"
     },
     {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "한국콜마, K뷰티 인디 브랜드 질주에 2분기 사상 최대 실적 노린다 - 연합인포맥스",
+      "date": "2026-08-06",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBsb2ZHaXcwZFRrRlRoR3NIUGVMT0tibk1WdWx6bm1OTHluYWs1V2ZoZWZoenB4ZTYxeTh0aFozazB3U0N5UmlYejBzSHJGWXg0VnB2YU5mOG4yeEUya3FKQXFFVENhd2trbm1rZlpMRGg?oc=5"
+    },
+    {
       "company": "제닉",
       "type": "news",
       "title": "제닉(123330)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. - 씽크풀 AI",
@@ -294,6 +336,13 @@
       "title": "창립 20주년 이미인…'글로벌 스킨케어 ODM 도약' 선포 - 뉴시스",
       "date": "2026-07-27",
       "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5ZdWlmZ3NhaElvOEt3TWhPcko3MGtGVDhuMExMdGs3VlVGSXk4bkFRRmhoXzJnSGJncXBoQl9vUmROd0ZseWtoaWZsSVl3eVNXeklUV1dNdmlLTC1GUUU0N9IBeEFVX3lxTFB3NVFYY1VsM0pxS19qREFSZXNzR3hYbTgzYUNsUHMwNlhmUW9Ydk9pR1BvYkVhYnlEaVJKMjJLb3FNMGdTU0tQM0wtUnpJME5wSDlReGUwWjFqSm41bVdmU2JYelFvcnN1Yk01WlUzSEJzdWhWazZ1MQ?oc=5"
+    },
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "코스맥스, K뷰티 직수출 돕는 고객사 수출입 지원 플랫폼 가동 - 코스인코리아닷컴",
+      "date": "2026-07-24",
+      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE4xTnowdTVheHJ0Tng4czJwNUxQcW4yX3JNd2xpUWYzZnROandDX2xFYlRtTDAzZlRtWmVvTlU5WmZPODVCeTdqZ0psM3JaX29rR0NDUGNmWEI2UkYxYml3Z2ZROA?oc=5"
     },
     {
       "company": "코스메카코리아",
@@ -378,6 +427,13 @@
       "title": "제닉(123330)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략. - 씽크풀 AI",
       "date": "2026-07-20",
       "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE41aUZvUnpmczhDem82RWJPUWU2MzJ6bGg5MkFiYnVRMFlUcUJ2OXlkSnhfRGF2OVAwckNkRHJIZFF4TGo5aWtkbnQ1ZHUxcW9PSThpaGV4SjZPUjdD?oc=5"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "화장품신문 (Beautynury.com) :: 잉글우드랩, FDA 신규 승인 자외선 필터 적용 선케어 공개 - 뷰티누리",
+      "date": "2026-07-20",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBTRGR3eTY4YW55aDIyWVprTHlZemdwejJLd2tHZ0tNSTJVM0tidm1XSi1HTHY3QVNtMmJUYzNBOVZkemFaWnFpUDZ6cWxUdnZ0a2NKaWFzU3dnb2N4ZXpV?oc=5"
     },
     {
       "company": "씨앤씨인터내셔널",
