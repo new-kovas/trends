@@ -108,6 +108,31 @@ canvas{display:block;width:100%;height:auto;}
 
 .btn-play{ margin-top:8px; font-size:19px; padding:11px 42px; animation:popIn .5s .4s both; z-index:2; }
 
+/* 참여 완료 배너(참여자만) */
+.played-msg{ display:none; z-index:2; margin:2px 0 4px; padding:10px 18px; border-radius:14px;
+  background:linear-gradient(135deg,#FFF0D8,#FFE3C0); border:1.5px solid #F0C64B;
+  font-size:15px; font-weight:800; color:#B8860B; box-shadow:0 4px 14px rgba(240,180,40,.2); animation:popIn .5s both; }
+.played-msg em{ font-style:normal; color:var(--brand-deep); }
+.start-card.played-mode .played-msg{ display:block; }
+/* 참여자에겐 게임 시작 버튼·조작 안내·범례 숨김 → 랭킹만 */
+.start-card.played-mode .btn-play,
+.start-card.played-mode .key-hint,
+.start-card.played-mode .legend{ display:none; }
+
+/* 이름 등록/안내 모달 */
+.name-modal{ position:absolute; inset:0; z-index:40; display:flex; align-items:center; justify-content:center; background:rgba(31,26,23,.55); backdrop-filter:blur(3px); padding:20px; }
+.name-modal.hidden{ display:none; }
+.name-box{ background:#fff; border-radius:18px; max-width:340px; width:100%; padding:26px 24px; text-align:center; box-shadow:0 18px 50px rgba(0,0,0,.3); animation:popIn .35s cubic-bezier(.2,1.2,.3,1) both; }
+.name-title{ font-size:20px; font-weight:900; color:var(--ink); margin-bottom:8px; }
+.name-desc{ font-size:13px; color:var(--ink-sub); line-height:1.5; margin-bottom:16px; }
+.name-input{ width:100%; box-sizing:border-box; font-size:18px; font-weight:700; text-align:center; padding:12px; border:2px solid var(--line); border-radius:12px; outline:none; transition:.15s; color:var(--ink); }
+.name-input:focus{ border-color:var(--brand-primary); }
+.name-err{ min-height:18px; font-size:12.5px; font-weight:700; color:#E4571A; margin:8px 0 4px; }
+.name-btns{ display:flex; flex-direction:column; gap:8px; }
+.name-ok{ font-size:16px; padding:12px; width:100%; }
+.name-ok:disabled{ opacity:.5; cursor:default; }
+.name-cancel{ background:none; border:none; color:var(--ink-sub); font-size:13px; cursor:pointer; padding:4px; }
+
 /* 인트로 전환: 패치 달려 들어오기 */
 #introRunner{ position:absolute; inset:0; z-index:50; pointer-events:none; display:none; }
 #introRunner.show{ display:block; }
@@ -129,6 +154,8 @@ canvas{display:block;width:100%;height:auto;}
           <div class="mascot-patch"><span class="eye"></span><span class="eye"></span></div>
         </div>
       </div>
+
+      <div class="played-msg" id="playedMsg">🎉 이번 주는 참여 완료! <em>두근두근, 이번 주 1등은!?</em></div>
 
       <div class="rank-preview">
         <div class="rank-head">🏆 이번 주 TOP 5 <span>· 금요일 15시 마감</span></div>
@@ -158,7 +185,7 @@ canvas{display:block;width:100%;height:auto;}
         </div>
       </div>
 
-      <button class="btn btn-play" onclick="Game.start()">▶ 게임 시작</button>
+      <button class="btn btn-play" onclick="Game.requestStart()">▶ 게임 시작</button>
       <div class="key-hint">
         <div class="hint-row">PC — <b>&larr; &rarr;</b> 이동 · <b>Space</b> 점프(+아데노신)</div>
         <div class="hint-row">모바일 — <b>손 떼면 점프</b> · <b>붙이고 좌우로 밀면</b> 이동</div>
@@ -179,8 +206,22 @@ canvas{display:block;width:100%;height:auto;}
         <div class="s">막은 자외선<b id="statUv">0</b></div>
         <div class="s">메운 주름<b id="statWr">0</b></div>
       </div>
-      <button class="btn" onclick="Game.start()">다시 도전</button>
+      <button class="btn" onclick="Game.backToRanking()">🏆 이번 주 순위 보기</button>
       <div class="best" id="bestScore"></div>
+    </div>
+
+    <!-- 이름 등록/안내 모달 -->
+    <div class="name-modal hidden" id="nameModal">
+      <div class="name-box">
+        <div class="name-title" id="nameTitle">랭킹 등록</div>
+        <div class="name-desc" id="nameDesc">실명을 입력해주세요. 커피쿠폰 지급을 위해 실명으로 등록합니다.</div>
+        <input type="text" id="nameInput" class="name-input" maxlength="20" placeholder="실명 입력" autocomplete="off">
+        <div class="name-err" id="nameErr"></div>
+        <div class="name-btns">
+          <button class="btn name-ok" id="nameOk">등록하고 시작</button>
+          <button class="name-cancel" id="nameCancel">취소</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -212,7 +253,7 @@ const Game = (function(){
   // ★ Render에 API 서버를 올린 뒤, 아래 RANK_API 에 그 주소를 넣으세요.
   //   예: "https://kovas-ranking.onrender.com"  (끝에 / 없이)
   //   비워두면("") 서버 없이 샘플/내기록만으로 동작합니다(지금 상태).
-  const RANK_API = "";   // ← 서버 주소 입력 자리
+  const RANK_API = "https://ranking-server-8dc6.onrender.com";   // 랭킹 서버 주소
   // 참여자 이름: 최초 1회 입력받아 저장(닉네임). 재입력은 localStorage 지우면 됨.
   function getPlayerName(){
     let nm = store.get("kovasPlayerName");
@@ -230,6 +271,19 @@ const Game = (function(){
     try{ const r=await fetch(RANK_API+"/score",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
       return await r.json(); }
     catch(e){ return null; }
+  }
+  // 이름 등록(선착순 고유). 응답 { ok, taken, error, name }
+  async function apiRegister(name){
+    if(!RANK_API) return {ok:true, name};   // 서버 없으면 로컬만
+    try{ const r=await fetch(RANK_API+"/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name})});
+      return await r.json(); }
+    catch(e){ return {ok:false, error:"서버 연결 실패"}; }
+  }
+  // 이번 주 참여 여부 확인. 응답 { ok, played }
+  async function apiPlayed(name){
+    if(!RANK_API || !name) return {ok:true, played:false};
+    try{ const r=await fetch(RANK_API+"/played?name="+encodeURIComponent(name)); return await r.json(); }
+    catch(e){ return {ok:true, played:false}; }
   }
 
   const patch={ x:W*0.32, y:GROUND, vy:0, w:66, h:44, onGround:true, jumps:0, rot:0, tx:W*0.32 };
@@ -854,19 +908,19 @@ const Game = (function(){
   // 점수를 서버에 전송(서버 주소 있을 때만). 이름 없으면 1회 입력받음.
   async function submitScore(score){
     if(!RANK_API) return;                 // 서버 미연결이면 아무것도 안 함(내 기기 기록만)
-    let nm = getPlayerName();
-    if(!nm){
-      nm = (prompt("랭킹에 올릴 이름을 입력하세요 (최대 10자)")||"").trim().slice(0,10);
-      if(!nm) return;                     // 이름 안 넣으면 전송 스킵
-      setPlayerName(nm);
-    }
-    await apiPostScore({
+    const nm = getPlayerName();
+    if(!nm) return;                       // 이름은 시작 전에 이미 등록됨(없으면 스킵)
+    const res = await apiPostScore({
       player_name: nm,
       distance: score,
       uv_blocked: uvBlocked,
       wrinkle_filled: wrinkleFilled,
       play_seconds: Math.round((t/60)*100)/100,   // 논리프레임/60 = 초
     });
+    // 저장 성공/이미참여 → 이번 주 참여로 로컬 표시(재도전 시 막힘 + Trend 버튼 노출)
+    if(res && (res.ok || res.alreadyPlayed)){
+      store.set("kovasPlayedWeek", weekStartStr());
+    }
   }
 
   // ── 3초 시네마틱 인트로 ──
@@ -1110,7 +1164,110 @@ const Game = (function(){
 
   buildRankPreview();
   draw();
-  return { start };
+
+  // ── 이번 주 참여 여부에 따라 시작 화면 모드 결정 ──
+  // 참여 이력이 있으면: 게임 시작 버튼 없이 '랭킹만' 보여줌(F5 새로고침해도 동일)
+  function playedThisWeekLocal(){
+    return store.get("kovasPlayedWeek") === weekStartStr();
+  }
+  function applyPlayedMode(){
+    const card=document.getElementById("startScreen");
+    if(card) card.classList.add("played-mode");
+    // 헤더 문구를 설렘 멘트로
+    const note=document.getElementById("rankNote");
+    if(note) note.textContent="";
+    const headMsg=document.getElementById("playedMsg");
+    if(headMsg) headMsg.classList.add("show");
+  }
+  async function initStartMode(){
+    // 1) 로컬 기록이 있으면 즉시 참여완료 모드
+    if(playedThisWeekLocal()){ applyPlayedMode(); }
+    // 2) 서버가 있으면 이름 기준으로 한 번 더 확인(다른 기기/브라우저 대비)
+    const nm=getPlayerName();
+    if(RANK_API && nm){
+      const r=await apiPlayed(nm);
+      if(r && r.played){ store.set("kovasPlayedWeek", weekStartStr()); applyPlayedMode(); }
+    }
+  }
+  initStartMode();
+  // ── 플레이 요청: 이름 등록·주1회 제한을 확인한 뒤에만 실제 start() ──
+  let checkingStart = false;
+  async function requestStart(){
+    if(checkingStart) return; 
+    const nm = getPlayerName();
+    if(!nm){ openNameModal(); return; }          // 이름 없으면 등록부터
+    if(!RANK_API){ start(); return; }            // 서버 없으면 바로(로컬 테스트)
+    checkingStart = true;
+    const r = await apiPlayed(nm);
+    checkingStart = false;
+    if(r && r.played){                            // 이번 주 이미 참여 → 참여완료 랭킹 화면
+      store.set("kovasPlayedWeek", weekStartStr());
+      applyPlayedMode(); buildRankPreview();
+      return;
+    }
+    start();
+  }
+
+  // 이름 등록 모달
+  function openNameModal(){
+    const modal=document.getElementById("nameModal");
+    document.getElementById("nameTitle").textContent="랭킹 등록";
+    document.getElementById("nameDesc").textContent="실명을 입력해주세요. 커피쿠폰 지급을 위해 실명으로 등록합니다.";
+    const input=document.getElementById("nameInput");
+    input.style.display=""; input.value=""; 
+    document.getElementById("nameErr").textContent="";
+    const ok=document.getElementById("nameOk");
+    ok.style.display=""; ok.textContent="등록하고 시작";
+    document.getElementById("nameCancel").textContent="취소";
+    modal.classList.remove("hidden");
+    setTimeout(()=>input.focus(), 50);
+  }
+  function closeNameModal(){ document.getElementById("nameModal").classList.add("hidden"); }
+
+  async function submitName(){
+    const input=document.getElementById("nameInput");
+    const err=document.getElementById("nameErr");
+    const ok=document.getElementById("nameOk");
+    const name=(input.value||"").trim();
+    if(name.length<2){ err.textContent="실명을 2자 이상 입력해주세요."; return; }
+    ok.disabled=true; err.textContent="확인 중…";
+    const res=await apiRegister(name);
+    ok.disabled=false;
+    if(res && res.ok){
+      setPlayerName(res.name || name);
+      err.textContent="";
+      closeNameModal();
+      // 등록 직후 바로 게임 시작
+      const r = RANK_API ? await apiPlayed(res.name||name) : {played:false};
+      if(r && r.played){ store.set("kovasPlayedWeek", weekStartStr()); applyPlayedMode(); buildRankPreview(); return; }
+      start();
+    } else if(res && res.taken){
+      err.textContent="이미 등록된 이름입니다. 다르게 입력해주세요.";
+      input.focus(); input.select();
+    } else {
+      err.textContent=(res && res.error) ? res.error : "등록에 실패했습니다. 다시 시도해주세요.";
+    }
+  }
+
+  // 모달 버튼 이벤트
+  document.getElementById("nameOk").addEventListener("click", submitName);
+  document.getElementById("nameInput").addEventListener("keydown", e=>{ if(e.key==="Enter") submitName(); });
+  document.getElementById("nameCancel").addEventListener("click", closeNameModal);
+
+  // 게임 종료 후: 결과 화면 → 참여완료 랭킹 화면으로
+  function backToRanking(){
+    const over=document.getElementById("overScreen");
+    const card=document.getElementById("startScreen");
+    const frameEl=document.getElementById("frame");
+    if(over) over.classList.add("hidden");
+    applyPlayedMode();
+    buildRankPreview();                      // 최신 랭킹 반영(내 기록 포함)
+    if(card) card.classList.remove("hidden");
+    if(frameEl) frameEl.classList.add("menu-open");
+    state="idle";
+  }
+
+  return { start, requestStart, backToRanking };
 })();
 </script>
 </body>
