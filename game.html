@@ -80,6 +80,8 @@ canvas{display:block;width:100%;height:auto;}
 .rank-list .nm{ flex:1; font-weight:700; }
 .rank-list .sc{ color:var(--brand-deep); font-weight:800; }
 .rank-note{ font-size:12px; color:var(--ink-sub); margin-top:5px; text-align:center; }
+.rank-empty{ list-style:none; text-align:center; color:var(--ink-sub); font-size:14px; font-weight:600; padding:14px 4px !important; border-bottom:none !important; }
+.fame-empty{ list-style:none; color:var(--ink-sub); font-size:12.5px; padding:4px 0; }
 
 /* 명예의 전당: 올타임 챔피언 한 명(전설의 기록) */
 .hof-champion{ width:100%; max-width:440px; margin:6px 0 0; padding:10px 20px; z-index:2;
@@ -321,61 +323,60 @@ const Game = (function(){
     const list=document.getElementById("rankList");
     if(!list) return;
 
-    // ── 이번 주 TOP5 ──
-    // 서버가 있으면 실데이터, 없으면 샘플 + 내 기록
+    // ── 이번 주 TOP5 (실제 서버 데이터만) ──
     let ranking = null;
     const apiRank = await apiGet("/ranking");
     if(apiRank && apiRank.ok) ranking = apiRank.ranking.map(r=>({nm:r.name, sc:r.distance}));
-    if(!ranking){
-      // 샘플 폴백(서버 미연결 시)
-      ranking=[
-        {nm:"연구소 김책임",sc:412.480},{nm:"영업 이대리",sc:389.215},
-        {nm:"기획 박차장",sc:356.902},{nm:"품질 최주임",sc:331.550},{nm:"생산 정사원",sc:298.137},
-      ];
-      if(best>0) ranking.push({nm:"나 (이번 기록)",sc:best,me:true});
-      ranking.sort((a,b)=>b.sc-a.sc);
+    if(ranking && ranking.length){
+      const top=ranking.slice(0,5);
+      const myName = getPlayerName();
+      list.innerHTML=top.map((r,i)=>{
+        const isMe = myName && r.nm===myName;
+        return `<li><span class="rk">${i+1}</span><span class="nm">${r.nm}${isMe?" ⭐":""}</span><span class="sc">${r.sc.toFixed(3)} m</span></li>`;
+      }).join("");
+    } else {
+      // 아직 참여자가 없음(또는 서버 응답 없음)
+      list.innerHTML=`<li class="rank-empty">아직 참여자가 없어요. 첫 주자가 되어보세요!</li>`;
     }
-    const top=ranking.slice(0,5);
-    list.innerHTML=top.map((r,i)=>`<li><span class="rk">${i+1}</span><span class="nm">${r.nm}${r.me?" ⭐":""}</span><span class="sc">${r.sc.toFixed(3)} m</span></li>`).join("");
 
     // ── 내 최고 기록(All-time best, 내 기기 기준) ──
     const atb=document.getElementById("allTimeBest");
     if(atb) atb.textContent = best>0 ? best.toFixed(3) : "—";
 
-    // ── 올타임 챔피언(역대 최고 1명) ──
+    // ── 올타임 챔피언(역대 최고 1명, 실데이터만) ──
     const champName=document.getElementById("champName");
     const champScore=document.getElementById("champScore");
     if(champName && champScore){
       let champ=null;
       const apiCh = await apiGet("/champion");
       if(apiCh && apiCh.ok && apiCh.champion) champ={ nm:apiCh.champion.name, sc:apiCh.champion.distance };
-      if(!champ) champ={ nm:"물류 한사원", sc:445.120 };   // 샘플 폴백
-      if(best>champ.sc) champ={ nm:"나", sc:best };          // 내 기록이 더 높으면 나
-      champName.textContent = champ.nm==="나" ? "나 ⭐" : champ.nm;
-      champScore.textContent = champ.sc.toFixed(3)+" m";
+      if(champ){
+        champName.textContent = champ.nm;
+        champScore.textContent = champ.sc.toFixed(3)+" m";
+      } else {
+        champName.textContent = "—";
+        champScore.textContent = "기록 대기 중";
+      }
     }
 
-    // ── 역대 주간 위너 목록 ──
+    // ── 역대 주간 위너 목록(실데이터만) ──
     const fame=document.getElementById("fameList");
     if(fame){
       let winners=null;
       const apiW = await apiGet("/winners");
       if(apiW && apiW.ok && apiW.winners.length) winners=apiW.winners.map(w=>({gen:w.generation+"대", nm:w.name, sc:w.distance}));
-      if(!winners){
-        winners=[  // 샘플 폴백
-          {gen:"3대", nm:"물류 한사원", sc:445.120},
-          {gen:"2대", nm:"연구소 김책임", sc:412.480},
-          {gen:"1대", nm:"영업 이대리", sc:389.215},
-        ];
+      if(winners && winners.length){
+        fame.innerHTML=winners.map(w=>`<li><span class="fw">${w.gen}</span><span class="fn">${w.nm}</span><span class="fs">${w.sc.toFixed(1)}m</span></li>`).join("");
+      } else {
+        fame.innerHTML=`<li class="fame-empty">첫 주간 위너를 기다리고 있어요 (매주 금요일 15시 선정)</li>`;
       }
-      fame.innerHTML=winners.map(w=>`<li><span class="fw">${w.gen}</span><span class="fn">${w.nm}</span><span class="fs">${w.sc.toFixed(1)}m</span></li>`).join("");
     }
 
     // ── 이번 주 내 순위 ──
     const myRankEl=document.getElementById("myWeekRank");
     if(myRankEl){
-      if(best>0){
-        const myPos = top.filter(r=>r.sc>best).length + 1;
+      if(best>0 && ranking && ranking.length){
+        const myPos = ranking.filter(r=>r.sc>best).length + 1;
         myRankEl.textContent = myPos+"위";
       } else {
         myRankEl.textContent = "—";
