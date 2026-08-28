@@ -309,7 +309,7 @@ img{ max-width:100%; display:block; }
 .ing-card .thumb{ aspect-ratio:1/1; width:104px; flex:0 0 104px; height:auto; }
 .ing-card .body{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:14px 16px; }
 .ing-card .name{ margin:4px 0 6px; }
-@media (max-width:480px){
+@media (max-width:600px){
   .ing-card .thumb{ width:84px; flex-basis:84px; }
   /* 신제품 카드도 모바일에선 원료처럼 가로형(작은 사진 + 정보)으로 */
   .card-grid:not(.ing-grid){ grid-template-columns:1fr; gap:12px; }
@@ -1590,10 +1590,13 @@ function hideLoading(){
 
   // 이번 주 토요일(주 시작일) — 게임 랭킹 주간과 동일 기준
   function weekStart(){
+    // 주기 = 금요일 15:00 ~ 다음 금요일 15:00 (KST). 게임·서버와 동일 기준.
     const now=new Date(); const kst=new Date(now.getTime()+9*3600*1000);
-    const day=kst.getUTCDay(); const back=(day+1)%7;
-    const sat=new Date(kst); sat.setUTCDate(kst.getUTCDate()-back);
-    return sat.toISOString().slice(0,10);
+    const day=kst.getUTCDay(); const hour=kst.getUTCHours();
+    let back=(day-5+7)%7;
+    if(day===5 && hour<15) back=7;
+    const start=new Date(kst); start.setUTCDate(kst.getUTCDate()-back);
+    return start.toISOString().slice(0,10);
   }
   function today(){ const kst=new Date(Date.now()+9*3600*1000); return kst.toISOString().slice(0,10); }
 
