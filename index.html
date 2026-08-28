@@ -686,7 +686,14 @@ function showPage(page){
   document.getElementById("page-"+page).classList.add("active");
   document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("active", b.dataset.page===page));
   window.scrollTo(0,0);
-  if(page==="exports") maybeCountUp();
+  if(page==="exports"){
+    maybeCountUp();
+    // 수출지표 페이지가 보일 때 그래프를 최신(오른쪽)으로 스크롤
+    requestAnimationFrame(()=>{
+      const vbars = document.querySelector("#barChart .vbars");
+      if(vbars) vbars.scrollLeft = vbars.scrollWidth;
+    });
+  }
 }
 
 /* ---- 홈 대시보드 ---- */
@@ -1133,6 +1140,12 @@ function renderExports(){
         <div class="vtrack"><div class="col" style="height:${Math.max(2, b.val/max*TRACK).toFixed(1)}px"></div></div>
         <div class="vlabel">${b.label}</div>
       </div>`).join("") + `</div>`;
+
+  // 그래프를 맨 오른쪽(최신 데이터)으로 스크롤 — 월간·연간 모두 최신이 기본으로 보이도록
+  requestAnimationFrame(()=>{
+    const vbars = document.querySelector("#barChart .vbars");
+    if(vbars) vbars.scrollLeft = vbars.scrollWidth;
+  });
 }
 
 /* 카운트업은 수출지표 페이지에 처음 들어섰을 때 딱 한 번만 실행 */
