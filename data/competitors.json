@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-28",
+  "updated": "2026-08-29",
   "items": [
     {
       "company": "한국콜마",
@@ -23,6 +23,13 @@
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828000597"
     },
     {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "최대주주등소유주식변동신고서",
+      "date": "2026-08-28",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828800495"
+    },
+    {
       "company": "이미인",
       "type": "news",
       "title": "이미인, 화장품 ODM 전 과정에 AI 전환…원단 추천·수출 규제 업무 적용 - 한국섬유신문",
@@ -37,6 +44,13 @@
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9DRWI5WFNXZ2RqT1dLQWxsYTdjM0JsbWJ6NHhmdl92UWR0cEwzVGJBcUdRUFZQS3hVVEVtMzdhWS1uSFFMU1Q2Z0tHOEhUcHRTdHlvcXBXbjZ5XzQ2ZndF?oc=5"
     },
     {
+      "company": "이미인",
+      "type": "news",
+      "title": "[똑똑한케어] 이미인, 현대백화점 코오드, 스킨1004, 루나, LG생건 도미나스 - 에너지경제신문",
+      "date": "2026-08-26",
+      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9qQU5rZmsyOXVaZVdLckF6M0FrTUxpWkJWMnRGWktjMUpldVlnTzZFeGFxSWdvRkF4M25oQWVtTkpZZlA1OHNZbXJ0M1BTbWxZZnVBak1YS1lTLTQ?oc=5"
+    },
+    {
       "company": "한국콜마",
       "type": "disclosure",
       "title": "최대주주등소유주식변동신고서",
@@ -49,6 +63,13 @@
       "title": "코스맥스·현대홈쇼핑, 맞춤형 화장품 공동개발 | - 연합인포맥스",
       "date": "2026-08-24",
       "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9oMHZDS09HSnpVNFVKTGl2emlGWll4dnN3VVZOT1Y1QVFkT2VHNUlZblZyT0JoMndOZzJSVzZyS0tIWHh2dW5zcDJwc3B6OEIzT3VyYUc0RkowMW1NOGJzMjRBZlFHODBka2xQQ3BDX1VsNnRl?oc=5"
+    },
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "코스맥스·현대홈쇼핑, 맞춤형 화장품 공동개발 - 연합인포맥스",
+      "date": "2026-08-24",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE85Z05CZVZLZVRxcmJ5VElZLWlrWG1FcGNNdG1JZTFqX0NLRlJ3LWRGSmZaN0M0Y05RSF8ybE9DV0tFMXFyMm5aM3Z2WE9GeHVDdVJTV1R4M2U3cWhiYThuZ1RXdnZQM0VmR0dObnhTcXc?oc=5"
     },
     {
       "company": "코스맥스",
