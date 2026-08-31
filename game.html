@@ -928,13 +928,30 @@ const Game = (function(){
     if(!RANK_API) return;                 // 서버 미연결이면 아무것도 안 함(내 기기 기록만)
     const nm = getPlayerName();
     if(!nm) return;                       // 이름은 시작 전에 이미 등록됨(없으면 스킵)
-    const res = await apiPostScore({
+    const payload = {
       player_name: nm,
       distance: score,
       uv_blocked: uvBlocked,
       wrinkle_filled: wrinkleFilled,
       play_seconds: Math.round((t/60)*100)/100,   // 논리프레임/60 = 초
-    });
+    };
+    let res = await apiPostScore(payload);
+
+    // ★ DB 초기화 등으로 '브라우저엔 이름 있는데 서버엔 미등록'인 경우 자동 복구
+    //   서버가 needRegister를 주면 → 그 이름을 자동 재등록 후 점수 재전송
+    if(res && res.needRegister){
+      const reg = await apiRegister(nm);
+      if(reg && reg.ok){
+        res = await apiPostScore(payload);           // 등록 성공 → 점수 다시 전송
+      } else if(reg && reg.taken){
+        // 그 이름이 이미 다른 사람 것 → 로컬 이름 비우고 새 이름 등록 유도
+        setPlayerName("");
+        alert("등록된 이름 정보가 초기화되었어요. 이름을 다시 등록해주세요.");
+        openNameModal();
+        return;
+      }
+    }
+
     // 저장 성공/이미참여 → 이번 주 참여로 로컬 표시(재도전 시 막힘 + Trend 버튼 노출)
     if(res && (res.ok || res.alreadyPlayed)){
       store.set("kovasPlayedWeek", weekStartStr());
