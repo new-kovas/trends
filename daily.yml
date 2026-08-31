@@ -2,7 +2,13 @@
 #  KOVAS 데일리 트렌드 자동 실행 (GitHub Actions)
 # ------------------------------------------------------------
 #  이 파일은 GitHub 서버가 매일 스스로 run.py를 돌리게 하는 지시서입니다.
-#  차장님 PC를 켜둘 필요 없이, 매일 아침 자동으로 사이트가 갱신됩니다.
+#  차장님 PC를 켜둘 필요 없이, 자동으로 사이트가 갱신됩니다.
+#
+#  [이번 개선]
+#   1) 하루 여러 번 예약 → GitHub이 한 번 건너뛰어도 다음 회차가 받아줌
+#      (그날 이미 리포트가 있으면 두 번째·세 번째 실행은 스스로 건너뜀 → 중복 없음)
+#   2) 데일리가 끝나면, 그날이 '금요일'이면 주간 트렌드까지 이어서 자동 실행
+#      → 데일리가 몇 시에 끝나든 그 직후 주간이 생성됨(시각 계산 불필요)
 #
 #  놓을 위치: 저장소 안  .github/workflows/daily.yml
 # ============================================================
@@ -11,10 +17,13 @@ name: 데일리 트렌드 자동 수집
 
 on:
   schedule:
-    # 매일 실행 시각. GitHub은 UTC(세계표준시) 기준이라,
-    # 한국 오전 7시 = UTC 22시(전날). 그래서 '0 22 * * *' 로 적습니다.
-    - cron: "0 22 * * *"
-  # 아래 덕분에 GitHub 화면에서 '지금 즉시 실행' 버튼으로도 돌릴 수 있습니다(테스트용).
+    # GitHub Actions 예약은 부하 시 지연·누락될 수 있어, 하루 3번 예약해 안정성을 높입니다.
+    # 그날 이미 리포트가 만들어졌으면 뒤 회차는 자동으로 건너뜁니다(중복 방지).
+    # 한국시간(KST) = UTC + 9시간.
+    - cron: "0 22 * * *"   # KST 07:00 (다음날 아침)
+    - cron: "0 2 * * *"    # KST 11:00
+    - cron: "0 6 * * *"    # KST 15:00
+  # GitHub 화면에서 '지금 즉시 실행' 버튼으로도 돌릴 수 있습니다(테스트용).
   workflow_dispatch:
 
 # 결과 파일을 저장소에 커밋하려면 쓰기 권한이 필요합니다.
@@ -24,49 +33,120 @@ permissions:
 jobs:
   run-trend:
     runs-on: ubuntu-latest
+    # 실행 결과(오늘 리포트가 새로 생겼는지, 오늘이 금요일인지)를 다음 잡에 전달
+    outputs:
+      made_today: ${{ steps.check.outputs.made_today }}
+      is_friday: ${{ steps.check.outputs.is_friday }}
     steps:
       # 1) 저장소 내용을 가져옵니다
       - name: 저장소 가져오기
         uses: actions/checkout@v4
 
-      # 2) 파이썬 설치
+      # 2) 오늘 리포트가 이미 있는지 확인 (있으면 이번 회차는 수집을 건너뜀 → 중복 방지)
+      - name: 오늘 리포트 유무 확인
+        id: pre
+        run: |
+          TODAY=$(TZ=Asia/Seoul date +%F)
+          if [ -f "data/${TODAY}.json" ]; then
+            echo "오늘(${TODAY}) 리포트가 이미 있음 → 수집 건너뜀"
+            echo "already=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "오늘(${TODAY}) 리포트 없음 → 수집 진행"
+            echo "already=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 3) 파이썬 설치 (오늘 아직 안 만들어졌을 때만)
+      - name: 파이썬 설치
+        if: steps.pre.outputs.already == 'false'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 4) 필요한 도구 설치
+      - name: 패키지 설치
+        if: steps.pre.outputs.already == 'false'
+        run: pip install -r requirements.txt
+
+      # 5) run.py 실행 (API 키는 Secrets에서 안전하게 주입)
+      - name: 트렌드 수집·요약 실행
+        if: steps.pre.outputs.already == 'false'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python run.py
+
+      # 5-2) 경쟁사 동향 수집 (일부 실패해도 전체가 멈추지 않도록 continue-on-error)
+      - name: 경쟁사 동향 수집
+        if: steps.pre.outputs.already == 'false'
+        continue-on-error: true
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python competitors.py
+
+      # 5-3) 화장품 수출지표 수집
+      - name: 수출지표 수집
+        if: steps.pre.outputs.already == 'false'
+        continue-on-error: true
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+        run: python exports.py
+
+      # 5-4) 성분 트렌드 집계
+      - name: 성분 트렌드 집계
+        if: steps.pre.outputs.already == 'false'
+        continue-on-error: true
+        run: python ingredients_trend.py
+
+      # 6) 결과를 저장소에 커밋
+      - name: 결과 저장(커밋)
+        if: steps.pre.outputs.already == 'false'
+        run: |
+          git config user.name "trend-bot"
+          git config user.email "trend-bot@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "데일리 트렌드 자동 업데이트 ($(TZ=Asia/Seoul date +%F))"
+          git push
+
+      # 7) 오늘 리포트가 최종적으로 존재하는지 + 오늘이 금요일인지 판정 (주간 연결용)
+      - name: 상태 판정
+        id: check
+        run: |
+          TODAY=$(TZ=Asia/Seoul date +%F)
+          DOW=$(TZ=Asia/Seoul date +%u)   # 1=월 … 5=금 … 7=일
+          if [ -f "data/${TODAY}.json" ]; then echo "made_today=true"  >> "$GITHUB_OUTPUT"; else echo "made_today=false" >> "$GITHUB_OUTPUT"; fi
+          if [ "$DOW" = "5" ]; then echo "is_friday=true" >> "$GITHUB_OUTPUT"; else echo "is_friday=false" >> "$GITHUB_OUTPUT"; fi
+          echo "오늘=${TODAY}, 요일=${DOW}"
+
+  # ── 금요일이고 오늘 데일리가 준비됐으면, 곧바로 주간 트렌드 생성 ──
+  weekly:
+    needs: run-trend
+    if: needs.run-trend.outputs.is_friday == 'true' && needs.run-trend.outputs.made_today == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: 저장소 가져오기 (데일리 커밋 반영된 최신)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
       - name: 파이썬 설치
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # 3) 필요한 도구 설치 (requirements.txt 기준)
       - name: 패키지 설치
         run: pip install -r requirements.txt
 
-      # 4) run.py 실행 (API 키는 아래 Secrets에서 안전하게 주입)
-      - name: 트렌드 수집·요약 실행
+      - name: 주간 트렌드 생성 (이번 주 토~금 묶어 요약 + 이메일 초안)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python run.py
+        run: python weekly.py
 
-      # 4-2) 경쟁사 동향 수집 (DART 공시 + 뉴스)
-      - name: 경쟁사 동향 수집
-        env:
-          DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python competitors.py
-
-      # 4-3) 화장품 수출지표 수집 (관세청)
-      - name: 수출지표 수집
-        env:
-          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
-        run: python exports.py
-
-      # 4-4) 성분 트렌드 집계 (수집된 뉴스 기반, 추가 키 불필요)
-      - name: 성분 트렌드 집계
-        run: python ingredients_trend.py
-
-      # 5) 생성된 data 폴더를 저장소에 자동 커밋
       - name: 결과 저장(커밋)
         run: |
           git config user.name "trend-bot"
           git config user.email "trend-bot@users.noreply.github.com"
+          git pull --rebase --autostash origin main || true
           git add data/
-          # 변경사항이 있을 때만 커밋 (없으면 그냥 넘어감)
-          git diff --staged --quiet || git commit -m "데일리 트렌드 자동 업데이트 ($(date +%F))"
+          git diff --staged --quiet || git commit -m "주간 트렌드 자동 생성 ($(TZ=Asia/Seoul date +%F))"
           git push
