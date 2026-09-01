@@ -1,6 +1,34 @@
 {
-  "updated": "2026-09-01",
+  "updated": "2026-09-02",
   "items": [
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "금전대여결정",
+      "date": "2026-09-01",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260901800717"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "단기차입금증가결정",
+      "date": "2026-09-01",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260901800710"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "타인에대한채무보증결정",
+      "date": "2026-09-01",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260901800706"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "타인에대한채무보증결정",
+      "date": "2026-09-01",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260901800689"
+    },
     {
       "company": "코스맥스",
       "type": "news",
@@ -70,6 +98,13 @@
       "title": "[똑똑한케어] 이미인, 현대백화점 코오드, 스킨1004, 루나, LG생건 도미나스 - 에너지경제신문",
       "date": "2026-08-26",
       "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9qQU5rZmsyOXVaZVdLckF6M0FrTUxpWkJWMnRGWktjMUpldVlnTzZFeGFxSWdvRkF4M25oQWVtTkpZZlA1OHNZbXJ0M1BTbWxZZnVBak1YS1lTLTQ?oc=5"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "화장품신문 (Beautynury.com) :: 이미인(IMINE), 화장품 ODM 업무 전반 AX 도입으로 경쟁력 혁신 - 뷰티누리",
+      "date": "2026-08-26",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE52dEtuZV95cndTblo5am1VdEFPaGNJNU1jQy05alducXhyakQ2eWhYTkJtbjN4ZkJSampmVzdwc0d6T09SWmNwd0Y2RG43Ymk3YTFtLTFZemV1alVvd0NZ?oc=5"
     },
     {
       "company": "한국콜마",
