@@ -1,6 +1,13 @@
 {
-  "updated": "2026-09-04",
+  "updated": "2026-09-05",
   "items": [
+    {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "세종미래고 학생들, 한국콜마 화장품 공장에 가더니… - 세종의소리",
+      "date": "2026-09-04",
+      "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFAyMFA5YkJpcm0yRmxDdkRnZlAxVGlnbW83TU1RR3dsLWxkWWNfTWcxazRtLUdTOVkxQkNwUXFPY01UeXd5ejMwTDdSWWRGTjYyRXd6QUhoUkFKdDFuUDZZR1JUQWVfQm8?oc=5"
+    },
     {
       "company": "이미인",
       "type": "news",
@@ -408,6 +415,13 @@
       "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE10WDdwRDRZMm1hbWFqS1hWWnRMWUJkUFJkWTJ4NG5UbnNGblZCYUpZcnd6aGpMY1Z4WkdDMGZ6TkNYUWlSWWwwWG1rU0JFODdaWHljUk1XbTlJbktJbXdyeWVxQQ?oc=5"
     },
     {
+      "company": "제닉",
+      "type": "news",
+      "title": "[서치 e종목] 제닉, 캐파 확대 및 높은 가동률로 2분기 역대 최고 실적 달성할까 - 데일리인베스트",
+      "date": "2026-07-30",
+      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1rU2M4bjdFNFB3Uk91UTV6RGVXZHRXdHY3VkVRR1c0Z2JuVzRLLU5INVJxTmFWYU1iM2dtWEhsdDY4YWhRZGdLbnhBRm9mYVdGbmhTRUZxN1RpcXdTVW5hVEpFODJ0ajJUcm530gFvQVVfeXFMTkJsc0xvZENpclJ4T284a1BDSXBlNUN5ZEZvSjVSQnJydldhVWVGMTlyeFA5TjJCT1RFeWw1c3hWTFh6MG9SV1RvVUx6SzAxd3duOU9hc0xER3NQTGNJMGI5SDA5UE5IV0duQ0NKZS1N?oc=5"
+    },
+    {
       "company": "코스맥스",
       "type": "news",
       "title": "회복 조짐 보이는 中 화장품 소비… 기대감 키우는 LG생건·코스맥스·한국콜마 - 조선비즈 - Chosunbiz",
@@ -576,11 +590,25 @@
       "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1NdXlqRWJuem5TN05QQXRVNjZJV0tmVDRVR2xGT0hvcHJMRU54dFhRSmMtejZoTEppQy00dGpQZ19fdVJ2R1o2cXRxMVhWX3hLU1pVMU5RUWE4OEY3dkUtV1k1MEFhcldmajlDM1NEZmNqbTQ?oc=5"
     },
     {
+      "company": "씨엔에프",
+      "type": "news",
+      "title": "IBITA 한국관, 미국서 K뷰티 글로벌 경쟁력 입증 - 주간신문씨엠엔",
+      "date": "2026-07-16",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBqYVcwWDVZVkRhS3hkZGM5NDUxVmt4QVRqMjBXcDRqYkNnYTZuMDhIUTBZSDkwMnQ3SXhpVVVCTUlCblNNMFZhT0NQaC1Fc0M2ZldyaTgyMzBsaHVJczJPYUdYX0xGQQ?oc=5"
+    },
+    {
       "company": "엔코스",
       "type": "news",
       "title": "북미에 불어닥친 K-화장품·뷰티 열풍 재확인 - 코스모닝",
       "date": "2026-07-15",
       "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1FcGJURldkNTFuSVg3bHA2eWtoajJsV09ZZUN6NGdmcnBOVlJMM3R6WjdxVTZOVGVWQ3BLRzAtSTlEVkliU0JYTmRHSWJmeG5GOWItWktIQmlUdmtNbXdwUVVkMA?oc=5"
+    },
+    {
+      "company": "엔코스",
+      "type": "news",
+      "title": "IBITA, 코스모프로프 북미서 통합 한국관 성료 - 코스인코리아닷컴",
+      "date": "2026-07-15",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9NQkhhRjlQNEdSZlVOWXFSN1hCbE5jVUU2SmRWOWt3WlAzX2V5TmVMOEo1NUpmSEZ4aWhIdGZUdWJUVkdLUU11Njc3Tlg5SFNUcE9OczI0Umg2bzZONnM2ZQ?oc=5"
     },
     {
       "company": "코스맥스",
@@ -721,6 +749,13 @@
       "title": "\"폭우 뒤 폭염\"…여름철 기능성 화장품 뜬다 - 뉴시스",
       "date": "2026-07-10",
       "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9GbFUxYndnM1NOTE9CMElYeks1eDM0MVNtQXNXZmgxMmQtc0RYRnhvVEdtSldoaWJ2UUtSQ0hySDFFY1BPdVd2MFluRkc3ejJjVjljdF9OSUxrTVBETTZxMNIBeEFVX3lxTE93a3RPdzdVSHVKTVFRbzZSVm5rd0kxODU3dGpwQmRqcmlfVi1TZ0NoYkt2RldnZDMwNUktdHdFeDNuX0pZdUUzdHVHOXZMdW11TWNxVENGOG42YXZQYVhTYmVyT09BdHFwa3VmTk94cENneTljSUU4Zw?oc=5"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "news",
+      "title": "[코스닥 현미경 분석] 코스메카코리아, 신규브랜드·수주경쟁력으로 주가 탄력? - 데일리인베스트",
+      "date": "2026-07-10",
+      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBsdzBmRjZGRnFhVXZiTExVemt3TW5rWDh5SGVxeUZQOXVzTGc5am80VXNSR0xMM3VrS0h5cVlla3VtVERQU1lpUW9VQjdUX2Z0T0VXTHlKS1JWdXowR1dndVB1S09MdExhcHNR0gFvQVVfeXFMUGJQWjJDM2tCN2UzLUk0cTI5anJIbmVvTVo0ZWczUDFmWVB1d19RMjJaZ2twcmNMWWdoZGZfaXpmYnVzaGwyem5uWUxWLWdMSzhQOTBjeHNFNmlCWkozSHdOR0xfWFV6cjVzbEhEVnI0?oc=5"
     },
     {
       "company": "제닉",
