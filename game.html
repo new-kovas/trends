@@ -244,6 +244,24 @@ const Game = (function(){
   const W = cv.width, H = cv.height;
   const GROUND = H - 70;
   const LANE_MIN = 60, LANE_MAX = W-60;
+
+  // ── 이미지 로더 (안전) ──────────────────────────────────
+  //  이미지가 아직 안 올라왔거나 로드 실패해도 게임은 기존 도형으로 정상 작동.
+  //  로드가 끝난 이미지만 ready()가 true가 되어 그때부터 그림으로 대체.
+  const IMG_BASE = "img/game/";
+  function loadImg(file){
+    const im = new Image();
+    im.__ok = false;
+    im.onload = () => { im.__ok = true; };
+    im.onerror = () => { im.__ok = false; };
+    im.src = IMG_BASE + file;
+    return im;
+  }
+  function ready(im){ return im && im.__ok && im.naturalWidth > 0; }
+  const IMG = {
+    bg:     loadImg("background.jpg"),
+    ground: loadImg("ground-skin.png"),
+  };
   const C = {
     primary:"#F16522", deep:"#E4571A", mid:"#F7941D", amber:"#FBB040", ink:"#1F1A17",
     uv:"#8B5CF6", uvLight:"#A78BFA", adeno:"#63C7B8",
@@ -654,10 +672,17 @@ const Game = (function(){
     // 화면 흔들림(피격·콤보 시)
     ctx.save();
     if(shake>0.2){ ctx.translate((Math.random()-0.5)*shake, (Math.random()-0.5)*shake); }
-    // 하늘 그라데이션(원경 배경)
-    const sky=ctx.createLinearGradient(0,0,0,GROUND+18);
-    sky.addColorStop(0,"#EAD7F2"); sky.addColorStop(0.55,"#FCEBDD"); sky.addColorStop(1,"#FFF3E9");
-    ctx.fillStyle=sky; ctx.fillRect(0,0,W,GROUND+18);
+    // 하늘(원경 배경) — 이미지가 준비되면 이미지, 아니면 기존 그라데이션
+    if(ready(IMG.bg)){
+      const bh = GROUND+18;                       // 하늘 영역 높이
+      const bw = IMG.bg.naturalWidth * (bh/IMG.bg.naturalHeight); // 비율 유지 폭
+      let ox = -((dist*8*0.25) % bw);             // 아주 느리게 흐름(원경)
+      for(let x=ox; x<W; x+=bw){ ctx.drawImage(IMG.bg, x, 0, bw, bh); }
+    } else {
+      const sky=ctx.createLinearGradient(0,0,0,GROUND+18);
+      sky.addColorStop(0,"#EAD7F2"); sky.addColorStop(0.55,"#FCEBDD"); sky.addColorStop(1,"#FFF3E9");
+      ctx.fillStyle=sky; ctx.fillRect(0,0,W,GROUND+18);
+    }
     // 원경: 부드러운 빛무리(아주 천천히)
     bgFar.forEach(o=>{
       const g=ctx.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r);
@@ -666,9 +691,16 @@ const Game = (function(){
     });
     // 중경: 떠다니는 입자
     bgMid.forEach(o=>{ ctx.fillStyle="rgba(200,170,210,.35)"; ctx.beginPath(); ctx.arc(o.x,o.y,o.r,0,6.28); ctx.fill(); });
-    // 지면(피부)
-    ctx.fillStyle="#E9C4A6"; ctx.fillRect(0,GROUND+18,W,H-GROUND);
-    ctx.fillStyle="#DDB292"; ctx.fillRect(0,GROUND+18,W,4);
+    // 지면(피부) — 이미지가 준비되면 흐르는 이미지, 아니면 기존 단색
+    if(ready(IMG.ground)){
+      const gy = GROUND+18, gh = H-(GROUND+18);
+      const gw = IMG.ground.naturalWidth * (gh/IMG.ground.naturalHeight);
+      let ox = -((dist*8*1.15) % gw);             // 근경이라 빠르게 흐름(속도감)
+      for(let x=ox; x<W; x+=gw){ ctx.drawImage(IMG.ground, x, gy, gw, gh); }
+    } else {
+      ctx.fillStyle="#E9C4A6"; ctx.fillRect(0,GROUND+18,W,H-GROUND);
+      ctx.fillStyle="#DDB292"; ctx.fillRect(0,GROUND+18,W,4);
+    }
     // 근경: 피부 결·모공(빠르게 지나가 속도감)
     skinTex.forEach(o=>{
       if(o.kind===0){ // 결(가로 선)
