@@ -105,19 +105,41 @@ def build_prompt(days, start, end):
 """
 
 
-def summarize_week(days, start, end):
+def _ask_claude(prompt, max_tokens):
+    """Claude 호출 후 text만 추려서 (텍스트, 잘림여부) 반환."""
     client = Anthropic()
     msg = client.messages.create(
         model=CLAUDE_MODEL,
-        max_tokens=8000,   # 이슈 10개 + 출처 매핑이라 넉넉히
-        messages=[{"role": "user", "content": build_prompt(days, start, end)}],
+        max_tokens=max_tokens,
+        messages=[{"role": "user", "content": prompt}],
     )
     text = "".join(b.text for b in msg.content if getattr(b, "type", None) == "text").strip()
     text = re.sub(r"^```(json)?", "", text).strip()
     text = re.sub(r"```$", "", text).strip()
-    if msg.stop_reason == "max_tokens" or not text.endswith("}"):
-        raise RuntimeError("AI 답변이 잘렸습니다. max_tokens를 키우세요. 끝부분: " + text[-80:])
-    data = json.loads(text)
+    truncated = (msg.stop_reason == "max_tokens") or (not text.endswith("}"))
+    return text, truncated
+
+
+def summarize_week(days, start, end):
+    prompt = build_prompt(days, start, end)
+    # 1차: 넉넉한 토큰(16000)으로 시도. 주간은 이슈 10개+출처 매핑이라 답변이 길다.
+    text, truncated = _ask_claude(prompt, 16000)
+    # 2차: 그래도 잘리면 한 번 더 최대치로 재시도(데이터가 아주 많은 주 대비)
+    if truncated:
+        print("   ⚠ 1차 응답이 잘림 → 더 큰 토큰으로 재시도")
+        text, truncated = _ask_claude(prompt, 24000)
+    if truncated:
+        raise RuntimeError(
+            "AI 답변이 두 번 다 잘렸습니다. 한 주 데이터가 너무 많습니다. "
+            "build_prompt에서 이슈 개수를 줄이거나 입력을 압축하세요. 끝부분: " + text[-120:]
+        )
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError as e:
+        # 원인 파악이 쉽도록 실패한 응답의 앞부분을 로그에 남김
+        raise RuntimeError(
+            f"AI 응답을 JSON으로 읽지 못했습니다({e}). 응답 앞부분: {text[:200]}"
+        )
     # 출처가 실제 존재하는 (날짜,번호)인지 검증해서 잘못된 매핑은 제거
     valid = {}
     for d, r in days:
