@@ -2678,7 +2678,7 @@ const Game = (function(){
   })();
 
   const hero = { x:270, y:0, vy:0, onGround:true, jumps:0, acc:0, face:1, moved:false, landT:0,
-                 mode:"auto", idleT:0, idleAcc:0, gs:3.4, gtL:0, gtR:0 };   // mode: auto(자동 달리기) / manual(직접 조작)
+                 mode:"auto", idleT:0, idleAcc:0, gs:3.4, gtL:0, gtR:0, lockL:false, lockR:false };   // mode: auto(자동 달리기) / manual(직접 조작)
   let heroGroundX = 0, heroRAF = 0, heroLast = 0, heroAcc = 0;
 
   function heroJump(){
@@ -2727,8 +2727,11 @@ const Game = (function(){
 
     // 양쪽 끝에 잠깐 머무르면 각각 다른 곳으로 — 실수로 들어가지 않게 시간을 둔다
     const atL = hero.x <= HERO.X_MIN+4, atR = hero.x >= HERO.X_MAX-4;
-    hero.gtL = atL ? Math.min(GATE_HOLD, hero.gtL+1) : Math.max(0, hero.gtL-2);
-    hero.gtR = atR ? Math.min(GATE_HOLD, hero.gtR+1) : Math.max(0, hero.gtR-2);
+    // area를 벗어나면 잠금 해제(다시 들어오면 한 번 더 트리거 가능)
+    if(!atL) hero.lockL=false;
+    if(!atR) hero.lockR=false;
+    hero.gtL = (atL && !hero.lockL) ? Math.min(GATE_HOLD, hero.gtL+1) : Math.max(0, hero.gtL-2);
+    hero.gtR = (atR && !hero.lockR) ? Math.min(GATE_HOLD, hero.gtR+1) : Math.max(0, hero.gtR-2);
     const gL=document.getElementById("tutGate"),  fL=document.getElementById("gateFill");
     const gR=document.getElementById("playGate"), fR=document.getElementById("playFill");
     if(gL) gL.classList.toggle("near", hero.x < HERO.X_MIN+190);
@@ -2737,8 +2740,8 @@ const Game = (function(){
     if(fR) fR.style.width = Math.round(hero.gtR/GATE_HOLD*100)+"%";
     // 이름 등록 모달이 떠 있으면 관문 진입을 막는다(입력 중 반복 트리거 방지)
     const nameOpen = !document.getElementById("nameModal").classList.contains("hidden");
-    if(hero.gtL>=GATE_HOLD && !nameOpen){ hero.gtL=0; tutStart(); return; }   // 왼쪽 → 게임하는 법
-    if(hero.gtR>=GATE_HOLD && !nameOpen){ hero.gtR=0; start();    return; }   // 오른쪽 → 게임 시작
+    if(hero.gtL>=GATE_HOLD && !nameOpen){ hero.gtL=0; hero.lockL=true; tutStart(); return; }   // 왼쪽 → 게임하는 법
+    if(hero.gtR>=GATE_HOLD && !nameOpen){ hero.gtR=0; hero.lockR=true; start();    return; }   // 오른쪽 → 게임 시작
 
     if(left)  { hero.x-=HERO.SPEED; hero.face=-1; }
     if(right) { hero.x+=HERO.SPEED; hero.face=1; }
@@ -2819,7 +2822,7 @@ const Game = (function(){
     hero.x=270; hero.y=0; hero.vy=0; hero.onGround=true; hero.jumps=0;
     hero.acc=0; hero.face=1; hero.landT=0;
     hero.mode="auto"; hero.idleT=0; hero.gs=HERO.BASE_SCROLL;
-    hero.gtL=0; hero.gtR=0;
+    hero.gtL=0; hero.gtR=0; hero.lockL=false; hero.lockR=false;
     ["tutGate","playGate"].forEach(id=>{ const g=document.getElementById(id); if(g) g.classList.remove("near"); });
     ["gateFill","playFill"].forEach(id=>{ const f=document.getElementById(id); if(f) f.style.width="0%"; });
     if(KC.box && KC.got.left && KC.got.right && KC.got.space) KC.box.classList.add("gone");
