@@ -1033,10 +1033,8 @@ const Game = (function(){
     let ranking=[];
     const apiRank = await apiGet("/ranking");
     if(apiRank && apiRank.ok && apiRank.ranking) ranking = apiRank.ranking.map(r=>({nm:r.name, sc:r.distance}));
-    // 내 이번 기록도 함께 표시(로컬 best)
-    const merged = ranking.slice();
-    if(best>0) merged.push({nm:"나 (이번 기록)", sc:best, me:true});
-    const ranked = merged.filter(r=>r.sc!=null).sort((a,b)=>b.sc-a.sc);
+    // 랭킹은 서버 데이터만 표시(내 기록은 아래 '내 최고 기록' 칸에 별도 표시)
+    const ranked = ranking.filter(r=>r.sc!=null).sort((a,b)=>b.sc-a.sc);
     // 상위 5명 + 빈 줄 채우기
     const top = ranked.slice(0,5);
     while(top.length<5) top.push({});
