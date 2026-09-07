@@ -1090,6 +1090,10 @@ const Game = (function(){
   }
 
   async function start(withIntro){
+    // 튜토리얼 등에서 넘어온 경우 게임 루프가 돌고 있으므로, 확인 절차 동안 완전히 멈춘다
+    // (이름 입력하는 사이 배경에서 시간이 깎이는 것 방지)
+    TUT.on=false; TUT.freeze=false;
+    state="idle";
     // 게임 시작 전: 이름 등록 + 이번 주 참여 확인 (서버 연동)
     if(RANK_API){
       const nm = getPlayerName();
@@ -2546,6 +2550,9 @@ const Game = (function(){
   function startLoop(){ lastT=0; acc=0; requestAnimationFrame(loop); }
 
   window.addEventListener("keydown",e=>{
+    // 입력창(이름 등록 등)에 포커스가 있으면 게임 조작키를 가로채지 않는다
+    const el = document.activeElement;
+    if(el && (el.tagName==="INPUT" || el.tagName==="TEXTAREA")) return;
     if(infoOpen){
       e.preventDefault();
       if(infoThen){ if(!e.repeat) ingHoldStart(); return; }  // 튜토리얼 — 0.5초 길게 누르기
