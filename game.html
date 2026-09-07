@@ -740,6 +740,7 @@ const Game = (function(){
   let sessionActive=false;  // 게임 시작~정상종료 사이 true (중간 이탈 시 0m 기록)
   function openNameModal(){
     const modal=document.getElementById("nameModal");
+    if(!modal.classList.contains("hidden")) return;  // 이미 열려 있으면 재초기화 안 함(입력값 보존)
     const input=document.getElementById("nameInput");
     input.value=""; document.getElementById("nameErr").textContent="";
     const ok=document.getElementById("nameOk"); ok.disabled=false;
@@ -2734,8 +2735,10 @@ const Game = (function(){
     if(gR) gR.classList.toggle("near", hero.x > HERO.X_MAX-190);
     if(fL) fL.style.width = Math.round(hero.gtL/GATE_HOLD*100)+"%";
     if(fR) fR.style.width = Math.round(hero.gtR/GATE_HOLD*100)+"%";
-    if(hero.gtL>=GATE_HOLD){ hero.gtL=0; tutStart(); return; }   // 왼쪽 → 게임하는 법
-    if(hero.gtR>=GATE_HOLD){ hero.gtR=0; start();    return; }   // 오른쪽 → 게임 시작
+    // 이름 등록 모달이 떠 있으면 관문 진입을 막는다(입력 중 반복 트리거 방지)
+    const nameOpen = !document.getElementById("nameModal").classList.contains("hidden");
+    if(hero.gtL>=GATE_HOLD && !nameOpen){ hero.gtL=0; tutStart(); return; }   // 왼쪽 → 게임하는 법
+    if(hero.gtR>=GATE_HOLD && !nameOpen){ hero.gtR=0; start();    return; }   // 오른쪽 → 게임 시작
 
     if(left)  { hero.x-=HERO.SPEED; hero.face=-1; }
     if(right) { hero.x+=HERO.SPEED; hero.face=1; }
