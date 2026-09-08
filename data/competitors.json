@@ -1,6 +1,13 @@
 {
-  "updated": "2026-09-07",
+  "updated": "2026-09-08",
   "items": [
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "SK증권, 코스맥스 목표가↑…\"화장품 수출 호조 실적에 반영\" - 연합뉴스",
+      "date": "2026-09-06",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9nX2tYd2h2SFZkRFpXZ202Vzg1UzNmZWpXbDc5OWlyVUpoaW1UU3BYejUzYVAwY2RTbEt0eVNhTUJMS0trWWdWdVpLN1BBeTJNT1dpNy1vdGNFTHdoS1NqWdIBYEFVX3lxTE9nX2tYd2h2SFZkRFpXZ202Vzg1UzNmZWpXbDc5OWlyVUpoaW1UU3BYejUzYVAwY2RTbEt0eVNhTUJMS0trWWdWdVpLN1BBeTJNT1dpNy1vdGNFTHdoS1NqWQ?oc=5"
+    },
     {
       "company": "한국콜마",
       "type": "news",
@@ -322,6 +329,13 @@
       "title": "잉글우드랩, 코스메카코리아와 화장품 세계 최대시장 점령 스타트... 미국 FDA 기준 충족 - 한국AI부동산신문",
       "date": "2026-08-12",
       "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE04M3FtaWdvS3dEQ1UwNVZKUGFzcnVVOFlZQUNmRGgwM3lNSXo1MldTMjcwQVQ5cG1sYUNhRVp2U2Fxa19fWXpyeW5Iems?oc=5"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "특징주, 제닉-화장품 테마 상승세에 5.77% ↑ - 매일경제",
+      "date": "2026-08-12",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBpWGFmX2Q5MWU4SFBVMXFYb1FnVnZIM1pjN2dQa192SXZCaVZVWnR1b3ZqTGZwT0lTcTFsRy16QVJyYVl6bkNsZlR0eHNfaWNZS1E?oc=5"
     },
     {
       "company": "코스맥스",
