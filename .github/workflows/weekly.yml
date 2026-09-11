@@ -1,21 +1,29 @@
 # ============================================================
-#  KOVAS 주간 트렌드 자동 생성 (GitHub Actions) — 데일리와 분리된 독립 워크플로
+#  KOVAS 주간 트렌드 — 수동 실행 전용 (예비/보정용)
 # ------------------------------------------------------------
-#  매주 금요일 저녁, 그 주(토~금)의 데일리 리포트를 묶어 '주간 트렌드'와
-#  이메일 초안을 만듭니다. 데일리 수집과 섞이지 않아, 안 돌면 바로 눈에 띕니다.
+#  [중요] 이제 주간 트렌드는 daily.yml 안에서 '금요일 데일리가 끝난 직후'
+#  자동으로 생성됩니다. 그래서 이 파일의 '예약(cron)'은 없앴습니다.
+#
+#  이 파일은 다음 경우에만 손으로 실행하는 예비용입니다:
+#   - 특정 주를 다시 생성하고 싶을 때 (과거 주 보정)
+#   - 금요일 자동 생성이 어떤 이유로 빠졌을 때 수동 복구
+#
+#  실행 방법: GitHub 저장소 → Actions → '주간 트렌드 (수동)' → Run workflow
+#            (원하면 week_date 칸에 그 주에 속한 날짜 하나를 입력: 예 2026-08-24)
 #
 #  놓을 위치: 저장소 안  .github/workflows/weekly.yml
 # ============================================================
 
-name: 주간 트렌드 생성
+name: 주간 트렌드 (수동)
 
 on:
-  schedule:
-    # 금요일 저녁에 실행. 그날 데일리(아침 7시)가 이미 쌓인 뒤라야 하므로 저녁으로 둡니다.
-    # 한국시간(KST) 금요일 20:00 = UTC 금요일 11:00.
-    - cron: "0 11 * * 5"
-  # GitHub 화면에서 '지금 즉시 실행' 버튼으로도 돌릴 수 있습니다.
+  # 예약 없음 — 자동 생성은 daily.yml이 담당. 여기서는 수동 실행만.
   workflow_dispatch:
+    inputs:
+      week_date:
+        description: "생성할 주에 속한 날짜(YYYY-MM-DD). 비우면 이번 주."
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -35,17 +43,21 @@ jobs:
       - name: 패키지 설치
         run: pip install -r requirements.txt
 
-      # 주간 트렌드 생성 (이번 주 토~금을 묶어 요약 + 이메일 초안)
       - name: 주간 트렌드 생성
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python weekly.py
+        run: |
+          if [ -n "${{ github.event.inputs.week_date }}" ]; then
+            python weekly.py "${{ github.event.inputs.week_date }}"
+          else
+            python weekly.py
+          fi
 
-      # 생성된 data 폴더를 저장소에 자동 커밋
       - name: 결과 저장(커밋)
         run: |
           git config user.name "trend-bot"
           git config user.email "trend-bot@users.noreply.github.com"
+          git pull --rebase --autostash origin main || true
           git add data/
-          git diff --staged --quiet || git commit -m "주간 트렌드 자동 생성 ($(date +%F))"
+          git diff --staged --quiet || git commit -m "주간 트렌드 수동 생성 ($(TZ=Asia/Seoul date +%F))"
           git push
