@@ -1,6 +1,20 @@
 {
-  "updated": "2026-09-18",
+  "updated": "2026-09-19",
   "items": [
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "[기재정정]주요사항보고서(회사합병결정)",
+      "date": "2026-09-18",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918000288"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "잉글우드랩, 화장품주 저PER 1위... 5.12배 - 버핏연구소",
+      "date": "2026-09-18",
+      "link": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBnQWNtZjAxNjctTzZGMmxxYXRJTTdMbzhnRTZyQXo4QXdQSmVpcGxBbUVISWtBV2RpUVN4OEtVcTlXTktxdXFEVzVGVlFOU0ExRVdqc05WMTY3Y19wM2FHWF9R?oc=5"
+    },
     {
       "company": "코스맥스",
       "type": "news",
