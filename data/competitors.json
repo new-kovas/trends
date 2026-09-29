@@ -1,6 +1,27 @@
 {
-  "updated": "2026-09-28",
+  "updated": "2026-09-29",
   "items": [
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "코스메카코리아 자회사 잉글우드랩, '메이크업 인 뉴욕' 통해 북미 공략 - v.daum.net",
+      "date": "2026-09-29",
+      "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBEb3ZDNVJLeVc2b0czQnRUS2d2S28xMXlwX1RIVDlCaTZjUnRFd29yTWhmZmM5V2d6QlNuTldRYjJyNXM0X1p1blhHR0pqRUU?oc=5"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "화장품신문 (Beautynury.com) :: 잉글우드랩, 뉴욕서 스킨케어·메이크업 융합 제형 공개 - 뷰티누리",
+      "date": "2026-09-29",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1DZk1nZmptQTRqQUJmb20ycDUzRGMtUmZuai1qT3drN3NuZ3hycHBlUmlZcVJkcUNJNzUxQWpmWjlSUlVGM3ZXa3FZYWVLOUdRMnM1RkR3dVdZMy1CQXVB?oc=5"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "[첨부정정]주요사항보고서(회사합병결정)",
+      "date": "2026-09-28",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260928000245"
+    },
     {
       "company": "그린코스",
       "type": "news",
@@ -224,6 +245,13 @@
       "title": "세종미래고 학생들, 한국콜마 화장품 공장에 가더니… - 세종의소리",
       "date": "2026-09-04",
       "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFAyMFA5YkJpcm0yRmxDdkRnZlAxVGlnbW83TU1RR3dsLWxkWWNfTWcxazRtLUdTOVkxQkNwUXFPY01UeXd5ejMwTDdSWWRGTjYyRXd6QUhoUkFKdDFuUDZZR1JUQWVfQm8?oc=5"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "가동률 132%·15개 라인 풀가동…제닉 '어닝쇼크' - ket.kr",
+      "date": "2026-09-04",
+      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFB3ekc5X0tWemZKc0RMVl9ZQ2ZLenBHTkpNOEREQ0FyalA3MUd4Mk5raXBWS3VucTFlMW9odlI5dWNKVmFLcWZkV3VGc1pwRHRXOWFUNzBZb3I?oc=5"
     },
     {
       "company": "이미인",
