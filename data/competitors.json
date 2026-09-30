@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-29",
+  "updated": "2026-09-30",
   "items": [
     {
       "company": "잉글우드랩",
@@ -16,11 +16,32 @@
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1DZk1nZmptQTRqQUJmb20ycDUzRGMtUmZuai1qT3drN3NuZ3hycHBlUmlZcVJkcUNJNzUxQWpmWjlSUlVGM3ZXa3FZYWVLOUdRMnM1RkR3dVdZMy1CQXVB?oc=5"
     },
     {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "코스메카코리아 자회사 잉글우드랩, '메이크업 인 뉴욕' 통해 북미 공략 - v.daum.net",
+      "date": "2026-09-29",
+      "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1nRXltWllHc2VYY3NJUVQ5VlRlV1BCem1lN3pDVlhMeVo2OW1OUnU5cTA2RG9zSWM0S2dTdDhiZzMxSFdsakE?oc=5"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "잉글우드랩, ‘메이크업 인 뉴욕 2026’서 스킨케어·메이크업 융합 제형 공개 - 코스인코리아닷컴",
+      "date": "2026-09-29",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE96ZnhVaTg0R0hnSEpyVFFUSUF5SzVSWFhjMG1ydWx5MzA4bnpkcnFDQ3F3ZWg0UjY3dElWd05OUmJQaFlIeTRaaE1NMmZMUEhUYi1yNEZ0V0Y4ZVhZWWdiTQ?oc=5"
+    },
+    {
       "company": "코스메카코리아",
       "type": "disclosure",
       "title": "[첨부정정]주요사항보고서(회사합병결정)",
       "date": "2026-09-28",
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260928000245"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "화장품신문 (Beautynury.com) :: ﻿이미인, ‘메이크업 인 뉴욕’ IT어워드 4년 연속 파이널리스트 선정 쾌거 - 뷰티누리",
+      "date": "2026-09-25",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1hRFQxeXZTV2psbWRnZTJvYXVfWlE4SlVJUHBXamFXSTZEWW1RVlVlZzRSd3JQdTg1emZ6ZG9CR3I2RWtaN0dKVDVfYk1VRzBMb1FJMG1ISGtzQ0FzY1NV?oc=5"
     },
     {
       "company": "그린코스",
