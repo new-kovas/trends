@@ -1,6 +1,20 @@
 {
-  "updated": "2026-09-30",
+  "updated": "2026-10-01",
   "items": [
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "풍문또는보도에대한해명(미확정)",
+      "date": "2026-09-30",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260930800232"
+    },
+    {
+      "company": "그린코스",
+      "type": "news",
+      "title": "그린코스·오브이코스, 한가위 맞아 김포지역 이웃과 ‘아름다운 변화’ 나눔 실천 - 더쎈뉴스",
+      "date": "2026-09-30",
+      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBLR2E3MnRjWGRZUEJ2eU5VM0pLem56bERyQ2I2ZVhGRHFYQnlfZ3ZQbGd6N1ZGUkdrdEw1dFZWWXVHVk1Qc3FXVVBOWVk2dGV4Zzl0MUFYb3FzSjVKVENGZ3dlVUw5MDRJ?oc=5"
+    },
     {
       "company": "잉글우드랩",
       "type": "news",
