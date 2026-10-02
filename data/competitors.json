@@ -1,6 +1,20 @@
 {
-  "updated": "2026-10-01",
+  "updated": "2026-10-02",
   "items": [
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "특수관계인에대한영업양도",
+      "date": "2026-10-01",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261001000180"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "타인에대한채무보증결정",
+      "date": "2026-10-01",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261001800185"
+    },
     {
       "company": "한국콜마",
       "type": "disclosure",
@@ -287,6 +301,13 @@
       "title": "가동률 132%·15개 라인 풀가동…제닉 '어닝쇼크' - ket.kr",
       "date": "2026-09-04",
       "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFB3ekc5X0tWemZKc0RMVl9ZQ2ZLenBHTkpNOEREQ0FyalA3MUd4Mk5raXBWS3VucTFlMW9odlI5dWNKVmFLcWZkV3VGc1pwRHRXOWFUNzBZb3I?oc=5"
+    },
+    {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "화장품 ODM 대기업 한국콜마, 창사 이래 첫 노조 설립 - ohmynews.com",
+      "date": "2026-09-04",
+      "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBIcGFJbzMwNnpKdXVma2VWaWJVZUtRa2t5QmpWUXVQYXROck9uNlZNTGx5ekNjYnoyMUNFQzhZUHRyTUdwRXZkZjBmb3RBVzdpX1FXRC1TbnpNRWhZcWJEZW5WeUVCcGpOR1pNSF9CaTNoWHhUN1pv?oc=5"
     },
     {
       "company": "이미인",
