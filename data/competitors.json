@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-08",
+  "updated": "2026-10-12",
   "items": [
     {
       "company": "엔코스",
@@ -269,6 +269,13 @@
     },
     {
       "company": "코스메카코리아",
+      "type": "news",
+      "title": "[충북] 코스메카코리아, 청주에 2천억 투자...화장품 공장 신설 - YTN",
+      "date": "2026-09-10",
+      "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5OY3RHS1d1UEgtbUFpOGdmQV95MnZBeVl6YldpRHl4RWtzdFZsU1NWUDRvYXhVeVhxQ0xKTVdrMDJIUklOVUpYQkNQOGpWMlpxQS1RMWRBd1dTUUs5OFE?oc=5"
+    },
+    {
+      "company": "코스메카코리아",
       "type": "disclosure",
       "title": "신규시설투자등",
       "date": "2026-09-09",
@@ -464,6 +471,13 @@
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1RQWtDZGpSS1VqNURSOUo0MkFRNlAyNWFuT3lxUkpoVFdpamo0MFBYZU9nVkVadHIyeVF4NHlxY2ZXV1BOMTAyMkZXeTJHN3VQWHVqRlZ1bHE0MGp4dkRN0gFkQVVfeXFMTXZUVk05TXBNYmxlVDYtcWpJaXVDZWtYeHBCVGVGVGF4NDZIanA0LV9YNWswWkxPWG1hbWk0dm9IS0lQZ0NsVFA5Ni1Vbnl4U0VNOFJ4MEc1QnZsd0VvdWoxLWwtYw?oc=5"
     },
     {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "화장품주, 실적 개선 기대감 강세…한국콜마 5%↑[핫종목] - 뉴스1",
+      "date": "2026-08-28",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1RQWtDZGpSS1VqNURSOUo0MkFRNlAyNWFuT3lxUkpoVFdpamo0MFBYZU9nVkVadHIyeVF4NHlxY2ZXV1BOMTAyMkZXeTJHN3VQWHVqRlZ1bHE0MGp4dkRN?oc=5"
+    },
+    {
       "company": "이미인",
       "type": "news",
       "title": "이미인, 화장품 ODM 전 과정에 AI 전환…원단 추천·수출 규제 업무 적용 - 한국섬유신문",
@@ -541,6 +555,13 @@
       "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBQNmk2VXNOMF9adWRtNlBMQUIxeGQwczBCdDBDT2NYeG9mNUo3eVVSZndOZzBOOE54Sm9XLVhDeV92LXdobllVVmFxWnZqT1ZfNmxXMTAyWFRHS2M?oc=5"
     },
     {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "코스맥스·한국콜마, 글로벌 ODM 1·2위…K뷰티 '쌍끌이' - Daum",
+      "date": "2026-08-23",
+      "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1SdTJndWR4Y0IyejRYTm5xcmRpbW5neGlQZjBxcWVUT0FCWXhXMmFLZFJrSk1mYVpwWmZnU2FiOWtMOW16cFE?oc=5"
+    },
+    {
       "company": "제닉",
       "type": "news",
       "title": "[서치 e종목] 제닉, 증설 설비 가동으로 3분기도 역대 최고 분기 매출 경신할까 - dailyinvest.kr",
@@ -567,6 +588,13 @@
       "title": "중견 ODM의 1분기 매출액 증가율 28% 〉 빅3(11.2%) 추월 - 코스인코리아닷컴",
       "date": "2026-08-20",
       "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFA5RUpDNnAyZnlrdGs1eUJfb1FGdnVKaFVjVGNScFNwOGswZ2tmMk00QkNkR0JSMXVHaU1ReElOdzZFaGM2REc2bFdwR0FuT3dTcGpiUW91TEtLd3NFdzd3SnBzcw?oc=5"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "news",
+      "title": "BB크림으로 뜨더니 이번엔 스킨케어 대박…코스메카코리아 이번엔 ‘코스피 이전’ 성공할까 [플러스 관심종목] - 매일경제",
+      "date": "2026-08-19",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFA4S3p3SUtveU9ZczlWQ2s4bk8wUDM1aWN5bXhyZW1yTURHLW05NzJuVzBhTkdnVWlLZEdFY2ppVkl2cFU0d1c0cmJCYjFtOVF5c0E?oc=5"
     },
     {
       "company": "제닉",
@@ -637,6 +665,13 @@
       "title": "씨앤씨인터내셔널 투자분석 2026. 08. 14 - 주달",
       "date": "2026-08-14",
       "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTFByVDN0dG9RdmRES3RXeENuSUw4aTNXUFdvR3RERm1MUkNJbGxoRGE1dGE2SnViRUFCYWhJTGw3ZXJPaUJtQkFvaGRtOWNhTU1mWE44UG53bEsxUXR5MV96RUlESWptYm1xYmdiZmVoNGpPYnM?oc=5"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "이미인, K-뷰티 ‘수출형 ODM’ 강화… 제품 개발부터 글로벌 규제 대응까지 - 비즈트리뷴",
+      "date": "2026-08-14",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9ZcXoxVUFnSXhhbk1DM3Z1dVdhcEhxVGNzUGtKR0drZlhzaUV3TEE5Z0RJakZFOUJxb0pLX2d4eG9jU2ItcHBPa0l2ZDhjSl8wVDVvb2hNa19MMm9BUzhLREVmN1pzWnhGMDRSSDU1R3o?oc=5"
     },
     {
       "company": "한국콜마",
