@@ -1,6 +1,20 @@
 {
-  "updated": "2026-10-13",
+  "updated": "2026-10-14",
   "items": [
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "웅진휴캄·코스맥스, 화장품 개발·생산·마케팅 협력 강화 - 연합뉴스",
+      "date": "2026-10-13",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9QTFlVcHBBeE9mc25sVUxGcHFXZ25LRDlPcy1WUTU0R1M1ZWNUMmxJQi13eGNQSDNzZW5hRHNkeHlqV2lCVVUyQi16VFJFUlpsajVQZ1luejFHc1VfYW1wT9IBYEFVX3lxTE9QTFlVcHBBeE9mc25sVUxGcHFXZ25LRDlPcy1WUTU0R1M1ZWNUMmxJQi13eGNQSDNzZW5hRHNkeHlqV2lCVVUyQi16VFJFUlpsajVQZ1luejFHc1VfYW1wTw?oc=5"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "주주명부폐쇄기간또는기준일설정",
+      "date": "2026-10-13",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261013900398"
+    },
     {
       "company": "엔코스",
       "type": "news",
@@ -91,6 +105,13 @@
       "title": "코스메카코리아 자회사 잉글우드랩, '메이크업 인 뉴욕' 통해 북미 공략 - news.tf.co.kr",
       "date": "2026-09-29",
       "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE55V0dnbEx1aVR5ZmItMXBMQUdSRlFoMzFLajdTckZJaEVEQXZlb2owVGpQZldRN2NfLW9qMjVpV203RlVnUzVRUGtFVnZpdks3TnZiTk94MEJTQdIBVEFVX3lxTFBQcGFlclNyQW5uendNZUh3VW8yR2tTSkt5dzZVaU42WHZtdmxLVWlXSE5LTVRTaXV1bnF3VUJoNHU2eVZIOFRkRlBRUjNmRmZLbXU1NQ?oc=5"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "잉글우드랩, 북미 인디뷰티 공략⋯ 현지 생산·OTC 지원 강화 - 브릿지경제",
+      "date": "2026-09-29",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5NZF9fbnpXSDdkV3lOb2daQ1p1d0RIWnVRSmRSSjFJVXFNdDMtc3QyX2tvandrNXVMM1V2VFVGNWNyLWVzeE9IanVaNm5rdk5ubDBVZVpLblFaQQ?oc=5"
     },
     {
       "company": "코스메카코리아",
@@ -574,6 +595,13 @@
       "title": "[서치 e종목] 제닉, 증설 설비 가동으로 3분기도 역대 최고 분기 매출 경신할까 - dailyinvest.kr",
       "date": "2026-08-21",
       "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBNaF9ZSDdMM0pnb21vTm1ZSjlUMlY1ZXFzZ3kxRHBpVkJ3QTFTUGNkUHZHZ2pGeVZvZ1U4NDVHbElFWmRTWDdoQ1lzSTVRemJhWUFvSkJINnBGY0h0eHVVS05kQURMMERmQTl30gFvQVVfeXFMTV9nT2RxZzRBT2xIZXBUTnJpejZia0M2Nm9WNTk3UWRacllSWTJxUlF2TktHZHFtWTNVZ0UwTjQxTnpYeGNiZDRMTm9QeUw2SXAxaUxLSkc0TkFwZy1acHZwRjNfMy1Pd0FPMFZNXy1B?oc=5"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "news",
+      "title": "씨앤씨인터내셔널 투자분석 2026. 08. 21 - 주달",
+      "date": "2026-08-21",
+      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBQT1VWMjFJbjBwVklkNXdrOVdKN045dk9WSF9sVGNVYl94cE1QYlZITG05QU9qaE10bGE2OFFQMlA0VWc4Q0lMbG1vYUpvNkNwUVMxenU1dzhTVjZ6SWNySEtXRHh6Rml5eWlFMHBadHF0Q1E?oc=5"
     },
     {
       "company": "코스맥스",
