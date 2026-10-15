@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "items": [
     {
       "company": "코스맥스",
@@ -28,6 +28,13 @@
       "title": "주주명부폐쇄기간또는기준일설정",
       "date": "2026-10-06",
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900386"
+    },
+    {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "한국콜마, 역대 최대 화장품 수출액에 4분기 기대감↑-NH - 머니투데이 - 머니투데이",
+      "date": "2026-10-06",
+      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1sR0ZNOTBCWmFxMmZLOHl5bUpDTy1NWWtFdkE1ckFrckhIaGVCLTFLbGp2aGhFTHBIUmFTS1VlVWJRbk9adGlhZlJYeFRYRDI3N0dkcnlBWWZfMUphR2o1b0VleEVlMUo20gFuQVVfeXFMUGQyaXhWX2xiSHk3bUVDeV9sYndaZEhOOS1oZkg1MWc0Z3ZycC1JZXYzMFRYWWNtWkNWU2pITmRZZElQbUxDdFZmTkZCMFBQRThmaUxSV2tCYktLSElTR1BiY0syTWZSMGZIZzRzX1E?oc=5"
     },
     {
       "company": "코스맥스",
@@ -630,6 +637,13 @@
       "title": "BB크림으로 뜨더니 이번엔 스킨케어 대박…코스메카코리아 이번엔 ‘코스피 이전’ 성공할까 [플러스 관심종목] - 매일경제",
       "date": "2026-08-19",
       "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFA4S3p3SUtveU9ZczlWQ2s4bk8wUDM1aWN5bXhyZW1yTURHLW05NzJuVzBhTkdnVWlLZEdFY2ppVkl2cFU0d1c0cmJCYjFtOVF5c0E?oc=5"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "news",
+      "title": "BB크림으로 뜨더니 이번엔 스킨케어 대박…코스메카코리아 이번엔 ‘코스피 이전’ 성공할까 [플러스 관심종목] - 매일경제 마켓",
+      "date": "2026-08-19",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9vUGxsY053ZGJtUEdnWHNFMXpfZDhRV1loWEFrZ2lSbWR2UmsybXpfUFR0QUNYLUxNOENmWEdJMTFvQTlzS3IyWkVLUzBxeC1PM1E?oc=5"
     },
     {
       "company": "제닉",
