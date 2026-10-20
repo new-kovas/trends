@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "items": [
     {
       "company": "씨엔에프",
@@ -23,6 +23,13 @@
       "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFA1NjhUanFXMGxwRTZQU1pqQnRZWFJ3UFdkeURIdUdodTcteEFHOGtYZnktTGxxRDJNYU8tUlJxLTd3RnNGMGRTQ3Y1b1JteEtXWm1TVQ?oc=5"
     },
     {
+      "company": "그린코스",
+      "type": "news",
+      "title": "역대 최대 ‘2026 K-뷰티엑스포 코리아’ 성황 - 주간신문씨엠엔",
+      "date": "2026-10-16",
+      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFAySGNQR0lSUjZCN0t6YTRHZ3JXQ2JpZTgtTDlnUVhwVnlveV9ZMlhZMEE1TjlRM1hPc2NtWXItMGNWV19UTUctWEF6TF9sdTBPRFJUcFFhb0JFYldGa1ZxVHp0ODF0N2xTdWhn?oc=5"
+    },
+    {
       "company": "코스맥스",
       "type": "news",
       "title": "웅진휴캄·코스맥스, 화장품 개발·생산·마케팅 협력 강화 - 연합뉴스",
@@ -35,6 +42,13 @@
       "title": "주주명부폐쇄기간또는기준일설정",
       "date": "2026-10-13",
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261013900398"
+    },
+    {
+      "company": "씨엔에프",
+      "type": "news",
+      "title": "'연어 1/200 농도로 더 높은 세포 회복률'…‘장미 PDRN 반격’ - 팜이데일리",
+      "date": "2026-10-13",
+      "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBzZlZzYkdJTFYwNFIzdTBaOG9vMDRkZ3pQQXFBdDF3U3VWUU1zc2JrQlZrTHZ5eGNlcmFSWFNTZWdKZlFVRkxKcDdJRzhUdC0tMnR4ZDhGMHdORUtIdmJDaDR2S2x0UlJGZmxkX1ZR?oc=5"
     },
     {
       "company": "엔코스",
@@ -56,6 +70,13 @@
       "title": "한국콜마, 역대 최대 화장품 수출액에 4분기 기대감↑-NH - 머니투데이 - 머니투데이",
       "date": "2026-10-06",
       "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1sR0ZNOTBCWmFxMmZLOHl5bUpDTy1NWWtFdkE1ckFrckhIaGVCLTFLbGp2aGhFTHBIUmFTS1VlVWJRbk9adGlhZlJYeFRYRDI3N0dkcnlBWWZfMUphR2o1b0VleEVlMUo20gFuQVVfeXFMUGQyaXhWX2xiSHk3bUVDeV9sYndaZEhOOS1oZkg1MWc0Z3ZycC1JZXYzMFRYWWNtWkNWU2pITmRZZElQbUxDdFZmTkZCMFBQRThmaUxSV2tCYktLSElTR1BiY0syTWZSMGZIZzRzX1E?oc=5"
+    },
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "코스맥스, ‘화장품 올림픽’서 구두발표 세계 최다…1년 새 2배 - 이투데이",
+      "date": "2026-10-06",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBzYjl1OU81bXRPZkRQVmRaT1FFNHFKOTczZUxvWUVnMjdlSy1NTTdqU3FvbUI4UFRjbDhSQTRNSzU1dElNcjhnZzdYYTlCdjZLQnZxcA?oc=5"
     },
     {
       "company": "코스맥스",
@@ -387,6 +408,13 @@
       "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE80QkhEUHM0akJFcmN5LVdOeXZpQXBSSTQ1dE9udWlza2hZUVNjNkp0eldWVGNZbmNIUG00aHRRQllQcHYxSXZZeV9lUjRXT0dfRGlWOTJPWURFZw?oc=5"
     },
     {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "한국콜마, 화장품 수출 강세에 글로벌 고객사 증가까지…‘K-뷰티’ 성장 이끈다 - ER 이코노믹리뷰",
+      "date": "2026-09-07",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9iV2dSZk53YlV3N0lKZVFlWHdtOWw3R2dCZWpCT1c2dGxJWVU1OXdPeDJIeUt4a0xBVEpmYk5VcmdlYllDRzJSTVloMTVEbDA5U3IyNEVHbWhYcGZRTC1BTEdhbmtWS2FCME5nTg?oc=5"
+    },
+    {
       "company": "코스맥스",
       "type": "news",
       "title": "SK증권, 코스맥스 목표가↑…\"화장품 수출 호조 실적에 반영\" - 연합뉴스",
@@ -434,6 +462,13 @@
       "title": "화장품 생산업체 한국콜마에 노조 생겼다 - 매일노동뉴스",
       "date": "2026-09-04",
       "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9QLU9sOGxuUWltY2ktQXVLaWdUN2NHcVpQaXhlNnNOMW5tVlo2blB2UUZCSDVTejk5NFBEN3ctNGhZZURvQUJ1SVlaZEh1dEgtbmRzNHJFY2lnMTkzRzFYTGphb2Z1RmtmVXY0aEFOYS0?oc=5"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "가동률 132%·15개 라인 풀가동…제닉 '어닝쇼크' - 경제타임스",
+      "date": "2026-09-04",
+      "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFA4TWNucDRLbi15UzdUYXRHZDd0QjRORDBhYTctdjdvb3BKNU1QM1RsS0J0WXpvekV0UXRmX2FTeVVraU1nVWJLeXdDX0RFS0Y1aTF3?oc=5"
     },
     {
       "company": "이미인",
