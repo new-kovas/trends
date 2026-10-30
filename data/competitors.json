@@ -1,6 +1,20 @@
 {
-  "updated": "2026-10-29",
+  "updated": "2026-10-30",
   "items": [
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "최대주주등소유주식변동신고서",
+      "date": "2026-10-30",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261030800288"
+    },
+    {
+      "company": "코스맥스",
+      "type": "disclosure",
+      "title": "단기차입금증가결정",
+      "date": "2026-10-29",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261029800781"
+    },
     {
       "company": "엔코스",
       "type": "news",
@@ -49,6 +63,13 @@
       "title": "역대 최대 ‘2026 K-뷰티엑스포 코리아’ 성황 - 주간신문씨엠엔",
       "date": "2026-10-16",
       "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFAySGNQR0lSUjZCN0t6YTRHZ3JXQ2JpZTgtTDlnUVhwVnlveV9ZMlhZMEE1TjlRM1hPc2NtWXItMGNWV19UTUctWEF6TF9sdTBPRFJUcFFhb0JFYldGa1ZxVHp0ODF0N2xTdWhn?oc=5"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "news",
+      "title": "코스메카코리아·성균관대, 화이트 바이오 유화제 공동 개발 - THE K BEAUTY SCIENCE",
+      "date": "2026-10-14",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE84SkFKdFFkd3BIMFREUGNXUE9xY2pFcU01X3VpNFZZdlZTMUFCOUJEZzFnTmxoalc0emowcmVTMEFLZXlENnB2S1drZnJfLVFxOEF4dXlBUXU2dl9iRlQ5SmViQVNvYjV4Y1E?oc=5"
     },
     {
       "company": "코스맥스",
