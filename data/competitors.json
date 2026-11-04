@@ -1,6 +1,13 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-04",
   "items": [
+    {
+      "company": "엔코스",
+      "type": "news",
+      "title": "신공장에 300억 베팅…엔코스 1년 만에 매출 70%↑ - 한국경제",
+      "date": "2026-11-03",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE91anpaYTJzaXFLTzgycGxJM1JfbHptTmk1WmF5UHRXNi1vYTJubmo3MG5JbTZEQV9uT21Jbl8xQkI1bHdzaldieWpxYU5STng2Sk5nZFYwUndIQQ?oc=5"
+    },
     {
       "company": "코스맥스",
       "type": "disclosure",
@@ -14,6 +21,13 @@
       "title": "화장품신문 (Beautynury.com) :: ﻿화장품 OEM·ODM '﻿이미인', 거침없는 실적 신기록 행진 - 뷰티누리",
       "date": "2026-11-01",
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9nY3dyNGEzUzctOE5nOS1wWmtqdVIxSS1hajBUWU1wcEM4b1BGU3JONTRHYnRGOXRtb3JUNjZ5UEZEUmt6MlJORU53R0dmRDVQMWNnbHQ2Y0h5RUJnYk4w?oc=5"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "화장품신문 (Beautynury.com) :: ﻿화장품 OEM·ODM '﻿이미인', 거침없는 실적 신기록 행진 - 뷰티누리",
+      "date": "2026-11-01",
+      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1jc0F3TWtBWnl3QVVBRlIzemdVTDJhckVqamZFX3Z4OE1FZEJuWUtQbWVhNFVvR3F4M0wwWHZhdGl5enVzWkIzSThmQ1ZQbWV4UHdVRy0tZkJCbHo2cUdqVExHRU5QZExM?oc=5"
     },
     {
       "company": "한국콜마",
@@ -79,6 +93,13 @@
       "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9xVVg3YXEtVHlHamdHSENpRF9KVktKOTZ2dHVDSFlFb2VkZlJqLXBfUUVVWWxlSEt5aWxVeW1EbGpkdW5IRWxiWTdLd040Tzd0WFHSAVNBVV95cUxOM0s4d0haeDNxWXBpRXkwTmM1R1hFN3FiN3l6b2JjNkY0Qk9kY01LbFh1MkpGcFpaLS1VVkg0R0Y2LWRsQmlBVThGbnZTU215Vm9ibw?oc=5"
     },
     {
+      "company": "코스메카코리아",
+      "type": "news",
+      "title": "[K-뷰티 숨은 주역] 한국콜마·코스맥스·코스메카코리아…세계 시장 놓고 '제조 경쟁력' 격돌 - 경인방송 뉴스",
+      "date": "2026-10-23",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9uT1B6clFyODJDZ25hOVFydVJEQ2VMUU9BMU12dHd0cWVxaGNjWUJBclVkQldqMmlfTzBwT2FjNXg2TWlHaVIzeVhuakQxbkxxNDZtcS1EUGt0VGlOVGx6VHhpR1XSAWhBVV95cUxQYkVhUGd6NUtQSDVLQU1wQXFjNTFfVUY0VWpSQzZSZXpmT25aZE9oX212NVExT2FMNElzdFdUY1dITFBTQnB3TlJhbnM3dnFaZ1Boa3pEMUVOSXZBbkZXandlTTUwdEtlZg?oc=5"
+    },
+    {
       "company": "코스맥스",
       "type": "news",
       "title": "코스맥스, 화장품 넘어 신약·건기식으로…하버드 의대 병원과 맞손 - 조선비즈 - Chosunbiz",
@@ -119,6 +140,13 @@
       "title": "역대 최대 ‘2026 K-뷰티엑스포 코리아’ 성황 - 주간신문씨엠엔",
       "date": "2026-10-16",
       "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFAySGNQR0lSUjZCN0t6YTRHZ3JXQ2JpZTgtTDlnUVhwVnlveV9ZMlhZMEE1TjlRM1hPc2NtWXItMGNWV19UTUctWEF6TF9sdTBPRFJUcFFhb0JFYldGa1ZxVHp0ODF0N2xTdWhn?oc=5"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "주가로 읽는 K-뷰티: 중견 ODM株 조정 국면...외국인은 코스메카·제닉 선택 - 뷰티경제",
+      "date": "2026-10-15",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBBNllSS25kRDZITkpZbTVuVzRyQjJadkF5Smh2OTNja29FVVBBTFlhOWVCbTBrbjMyd1JXX0lUR0pLTWdkMm9QSE5KN3lzNDlYSWdTUDRFdkY0VEktbThQRWhuU05xV1pWV1E?oc=5"
     },
     {
       "company": "코스메카코리아",
@@ -385,6 +413,13 @@
       "title": "제네셀, 코스맥스와 줄기세포 배양액 화장품 ODM 계약 - 서울경제",
       "date": "2026-09-18",
       "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBHTWgyVE44enpiVEYzRERSQWZHbHhCMDkydERyOEhMQjFudmRVU3pJeGlMRWRESXp3RXFVdVNldkZrVV9ZVkdTV19Rb1V0b1dxMEHSAVNBVV95cUxQNm9zZ0VfWF9KZVN5WV9zNEViNGNoVTRJMGljZ3RzOF9vVEYtcjlNNXpXenhtWmNWbjNZQ192R2J4d1dkX09Ob3RybFJGNnlvcDZDYw?oc=5"
+    },
+    {
+      "company": "코스맥스",
+      "type": "news",
+      "title": "[뷰티人] 박천호 코스맥스BTI 연구원장 \"더마화장품, 2~3년 트렌드 될 것\" - KB Think",
+      "date": "2026-09-17",
+      "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE5sR1pGZWh6M2l3VEZOOTJfemc0aUY2NlZvOGw2VzA4NGpoclFjWWoxWkZUbFh4dVJRV09KV0NOc0NNMjF1ZEZFSmo4dkttQkZwUDJwUzJNUGZ5Qk9WRjd4Z2pYel9PeEt2U0ZXQnUtSXlVQQ?oc=5"
     },
     {
       "company": "코스맥스",
