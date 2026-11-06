@@ -1,6 +1,34 @@
 {
-  "updated": "2026-11-05",
+  "updated": "2026-11-06",
   "items": [
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-11-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106800151"
+    },
+    {
+      "company": "한국콜마",
+      "type": "disclosure",
+      "title": "영업(잠정)실적(공정공시)",
+      "date": "2026-11-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106800125"
+    },
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-11-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106900602"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-11-06",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106900712"
+    },
     {
       "company": "엔코스",
       "type": "news",
@@ -9,11 +37,25 @@
       "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE91anpaYTJzaXFLTzgycGxJM1JfbHptTmk1WmF5UHRXNi1vYTJubmo3MG5JbTZEQV9uT21Jbl8xQkI1bHdzaldieWpxYU5STng2Sk5nZFYwUndIQQ?oc=5"
     },
     {
+      "company": "엔코스",
+      "type": "news",
+      "title": "매출 70% '점프'…웰투시 만난 엔코스, ‘스킨케어 ODM’ 선두 노린다 [PEF 밸류업 사례탐구] - 한국경제",
+      "date": "2026-11-03",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9CUDRLeTRGVl9VRU1URGJQckpXRUw4aUs4Nlg5Y0l0TVJVWmVhWVhfYy0yc3puZEZ0ekczWlBVRHJPRnNCdlJzUmswT0thbFhsRWM1QnkxSTZVZw?oc=5"
+    },
+    {
       "company": "코스맥스",
       "type": "disclosure",
       "title": "[기재정정]신규시설투자등",
       "date": "2026-11-02",
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800544"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "news",
+      "title": "화장품신문 (Beautynury.com) :: [기업분석] 씨앤씨인터내셔널, 상반기 매출 3.1%↑…영업익 67.9% - 뷰티누리",
+      "date": "2026-11-02",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1QMTMxX0FqWVV6ZklZeEZsQ01hNi1uZl9Fa3MtRnlMbjY2bHV4T2Zfa3BwWEFiM19OTW5ZZFlkc0ttWUE0dWFtNWJUd1ducDBNMjJGOG0xNXNVVG5wR0pV?oc=5"
     },
     {
       "company": "이미인",
