@@ -1,6 +1,13 @@
 {
-  "updated": "2026-11-09",
+  "updated": "2026-11-10",
   "items": [
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "disclosure",
+      "title": "연결재무제표기준영업(잠정)실적(공정공시)",
+      "date": "2026-11-09",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261109900490"
+    },
     {
       "company": "한국콜마",
       "type": "disclosure",
@@ -70,6 +77,13 @@
       "title": "화장품신문 (Beautynury.com) :: ﻿화장품 OEM·ODM '﻿이미인', 거침없는 실적 신기록 행진 - 뷰티누리",
       "date": "2026-11-01",
       "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1jc0F3TWtBWnl3QVVBRlIzemdVTDJhckVqamZFX3Z4OE1FZEJuWUtQbWVhNFVvR3F4M0wwWHZhdGl5enVzWkIzSThmQ1ZQbWV4UHdVRy0tZkJCbHo2cUdqVExHRU5QZExM?oc=5"
+    },
+    {
+      "company": "이미인",
+      "type": "news",
+      "title": "이미인, 하이드로겔 앞세워 실적 신기록... 3분기 만에 연간 실적 추월 - 시장경제신문",
+      "date": "2026-10-31",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9VQWFuV3pnNmp5WWR0SzdpRnVOM1hmWEJRcjdtSW9rTkNrMk1SNWtiUTNXV0hKN3BDcVMyMVdfMEZZZW5TaUlBb0lxQjd3czhRZjlFQThQMFpPRjAxdGlKa3ZSdVVwazZrck5ydHZSRUo?oc=5"
     },
     {
       "company": "한국콜마",
@@ -308,6 +322,13 @@
       "title": "이미인, 해외 ODM 신규 고객 ‘쑥’ - 장업신문",
       "date": "2026-10-01",
       "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBvWnJfMlhvcnR3cmtFSnJMbFBEblRQVTQtWFBpRTJHa2NjRFNQUkh4UzhqLTNqZ1h5Z2xwNk9Ia3B4RUhyVkN4cjltTDZ4dTUzNDVhcDlSRUcxbF9SNHhwU3hmdVF5N0l0?oc=5"
+    },
+    {
+      "company": "씨앤씨인터내셔널",
+      "type": "news",
+      "title": "사상 최대 K-뷰티 수출에도 ODM 희비…외국인 자금 코스메카로 집중 - 뷰티경제",
+      "date": "2026-10-01",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBOUkZpQ0hOLXNjczFReUcySGV2WnFFbnlIYlU0UHV3LXFudy1UQ1B5QmYwZXpvT1k5OU5GbWhiMXl4NkhOOHYwS1RGWXQwWU9Ca0FGckJlQndEQVFkSmgwR3Q4UDhBeUNXVWc?oc=5"
     },
     {
       "company": "한국콜마",
