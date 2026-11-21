@@ -1,6 +1,13 @@
 {
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "items": [
+    {
+      "company": "코스메카코리아",
+      "type": "disclosure",
+      "title": "임시주주총회결과",
+      "date": "2026-11-20",
+      "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261120900409"
+    },
     {
       "company": "그린코스",
       "type": "news",
@@ -245,6 +252,13 @@
       "title": "[K-뷰티 숨은 주역] 한국콜마·코스맥스·코스메카코리아…세계 시장 놓고 '제조 경쟁력' 격돌 - 경인방송 뉴스",
       "date": "2026-10-23",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9uT1B6clFyODJDZ25hOVFydVJEQ2VMUU9BMU12dHd0cWVxaGNjWUJBclVkQldqMmlfTzBwT2FjNXg2TWlHaVIzeVhuakQxbkxxNDZtcS1EUGt0VGlOVGx6VHhpR1XSAWhBVV95cUxQYkVhUGd6NUtQSDVLQU1wQXFjNTFfVUY0VWpSQzZSZXpmT25aZE9oX212NVExT2FMNElzdFdUY1dITFBTQnB3TlJhbnM3dnFaZ1Boa3pEMUVOSXZBbkZXandlTTUwdEtlZg?oc=5"
+    },
+    {
+      "company": "잉글우드랩",
+      "type": "news",
+      "title": "코스메카코리아 | 국내 수주 호조에도 미국 잉글우드랩 회복이 관건 - 네이버 프리미엄콘텐츠",
+      "date": "2026-10-22",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQYXNhdkpIRzlLRGxEN2YwZmt2LXFDYno5MzFiYThOWnI0TUFpQ084WXR0SDRMVlBWUjV2SHR1bkhTVkNxaDJIeGU5V3ljdzVnSWhEVkVkb0pWdVMxM0dFOVFlT1R1MDdjZll5QkpXUXFxbVlKTHZUTzdCV2RvSTFadnY4c2ExbERT?oc=5"
     },
     {
       "company": "코스맥스",
