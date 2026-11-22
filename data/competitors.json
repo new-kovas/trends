@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "items": [
     {
       "company": "코스메카코리아",
@@ -7,6 +7,13 @@
       "title": "임시주주총회결과",
       "date": "2026-11-20",
       "link": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261120900409"
+    },
+    {
+      "company": "제닉",
+      "type": "news",
+      "title": "세포랩 바이오제닉 에센스, 누적 판매액 3000억원 돌파 - 지디넷코리아",
+      "date": "2026-11-19",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBjZnFnSGctdkl1V3RzMFV0dHlwV0R4STg2LWpQZURyaktEc0NxYldOMUx6OFJ6R0hoYnhKNlFnZ2xWc3dLRmd1bXF3NjZVSjl1VnRwdVlR?oc=5"
     },
     {
       "company": "그린코스",
