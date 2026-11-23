@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "items": [
     {
       "company": "코스메카코리아",
@@ -23,11 +23,25 @@
       "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBpaDlDN2QzSGNhWHJCb0ZTYV9QYVg5cHYtc1dyWkVPdHlZSFJyeTVTaW9FRGpfWmV6bzFKLWtJWm0xbmxzZzE5MEVCOTBra2NsczhvMFZR?oc=5"
     },
     {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "\"AI로 화장품 안전성 예측\"···화학연·한국콜마 공동연구 - 헬로디디",
+      "date": "2026-11-19",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFAtUUtlYmpRYWJpcWdvdmI0NEFKd19TMmFmcnZLemNhdjVpMHJ2b0RtVUliSDFmZGtMQVFTbEtSMzZXNVI5Ym41Sm1DaXNGdGY0VWItbHRlYTBNUnpqYkFTRTFRYUNpSzVrYXc?oc=5"
+    },
+    {
       "company": "그린코스",
       "type": "news",
       "title": "미라콤아이앤씨, 레인보우로보틱스와 제조 RX 사업 확대 맞손 - 지디넷코리아",
       "date": "2026-11-18",
       "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE45SlY4cjRkem1WUDVCa3RmXzIxLXJlS1RpeVh5bG4yemVPTXJFeUxrM1hQMUk5Z3JiYzdmYXdtTTFpWUJvelZnX2k1ekZiNk5wOVFyQnlB?oc=5"
+    },
+    {
+      "company": "한국콜마",
+      "type": "news",
+      "title": "한국콜마, 화장품 피부 안전성 AI로 예측···한국화학연구원과 맞손 - 바이오타임즈",
+      "date": "2026-11-18",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE04cklxSEFTQlYtZ2tad2RjaW1xbzVQOGRCZ3NBWDRWNUdXbWUzNlJKRGlRaUU5c0hPVk9nT2xlWGVJSVVOcy0tQlZYSGc0U2ctdnBxRHF3UmhqVVNFd0c0VDNkRlhzUjdwYUJTRg?oc=5"
     },
     {
       "company": "씨앤씨인터내셔널",
